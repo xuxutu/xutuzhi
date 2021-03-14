@@ -1,0 +1,40 @@
+From 26bb7f9c6f2684990e2cd1d7f58d62a2b19a95be Mon Sep 17 00:00:00 2001
+From: xshu <xshu@google.com>
+Date: Tue, 22 Dec 2020 19:12:32 -0800
+Subject: [PATCH] Fix UAF problem in wificond
+
+This is a security upstream patch.
+
+Bug: 175124730
+Test: Verified the crash in rvc-qpr-dev using poc.cpp and test
+instructions provided in the bug and verified the fix works.
+
+Change-Id: Iabccac7f9fbed9d856bee41c5443e3b8479c3e62
+Merged-In: Iabccac7f9fbed9d856bee41c5443e3b8479c3e62
+(cherry picked from commit fae786e5bbc4adfbe5239b3bb3df0cd6122283a6)
+(cherry picked from commit 67d87a0e7e2213959f505e6a355c50079b062037)
+---
+ main.cpp | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/main.cpp b/main.cpp
+index e5e41aa..0c17edf 100644
+--- a/main.cpp
++++ b/main.cpp
+@@ -124,11 +124,11 @@ int main(int argc, char** argv) {
+   android::wificond::NetlinkUtils netlink_utils(&netlink_manager);
+   android::wificond::ScanUtils scan_utils(&netlink_manager);
+ 
+-  unique_ptr<android::wificond::Server> server(new android::wificond::Server(
++  android::sp<android::wificond::Server> server(new android::wificond::Server(
+       unique_ptr<InterfaceTool>(new InterfaceTool),
+       &netlink_utils,
+       &scan_utils));
+-  RegisterServiceOrCrash(server.get());
++  RegisterServiceOrCrash(server);
+ 
+   WifiKeystoreHalConnector keystore_connector;
+   keystore_connector.start();
+-- 
+2.30.0.280.ga3ce27912f-goog
+

@@ -1,0 +1,12 @@
+atexit函数
+#include <stdlib.h>
+int atexit(void (*function)(void));
+
+1.每个启动的进程默认登记了一个标准的终止函数
+2.终止函数在进程终止时释放进程所占用的一些资源
+3.登记多个终止函数执行的顺序是栈的方式，先登记的后执行
+
+						return 		exit	_exit()/_Exit()		
+是否刷新标准I/O缓存		是			是			否
+是否自动调用终止函数		是			是			否
+

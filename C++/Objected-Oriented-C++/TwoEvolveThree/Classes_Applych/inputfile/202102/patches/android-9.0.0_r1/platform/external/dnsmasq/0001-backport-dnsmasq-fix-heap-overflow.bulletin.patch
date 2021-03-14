@@ -1,0 +1,189 @@
+From 803b5fe54ec7f4f8c876055d76eeb7e6ea3e5344 Mon Sep 17 00:00:00 2001
+From: Luke Huang <huangluke@google.com>
+Date: Tue, 8 Dec 2020 23:51:54 +0800
+Subject: [PATCH] backport: dnsmasq: fix heap overflow
+
+Backport CVE-2017-14491.
+(http://thekelleys.org.uk/gitweb/?p=dnsmasq.git;a=commit;h=0549c73b7ea6b22a3c49beb4d432f185a81efcbc)
+
+Bug: 158221622
+Test: 1. Manual testing - build dnsmasq with asan enabled and test the
+         corresponding functionalities.
+	       2. Test tethering still worked fine
+Change-Id: I05f33d872f44b015706139f0a438171c42b0b27e
+Merged-In: I90390535198fe0a7b8084879d39f813d8de51ab3
+(cherry picked from commit 303ca2733ad5d3994cd728dc09f0cd2d2417b4f3)
+---
+ src/dnsmasq.h |  2 +-
+ src/rfc1035.c | 28 +++++++++++++++++++++++++---
+ src/rfc2131.c |  4 ++--
+ src/util.c    | 11 ++++++++---
+ 4 files changed, 36 insertions(+), 9 deletions(-)
+
+diff --git a/src/dnsmasq.h b/src/dnsmasq.h
+index 5b696b2..653db46 100755
+--- a/src/dnsmasq.h
++++ b/src/dnsmasq.h
+@@ -690,7 +690,7 @@ void rand_init(void);
+ unsigned short rand16(void);
+ int legal_hostname(char *c);
+ char *canonicalise(char *s, int *nomem);
+-unsigned char *do_rfc1035_name(unsigned char *p, char *sval);
++unsigned char *do_rfc1035_name(unsigned char *p, char *sval, char *limit);
+ void *safe_malloc(size_t size);
+ void safe_pipe(int *fd, int read_noblock);
+ void *whine_malloc(size_t size);
+diff --git a/src/rfc1035.c b/src/rfc1035.c
+index d4e9bf5..7a6bfb0 100755
+--- a/src/rfc1035.c
++++ b/src/rfc1035.c
+@@ -1033,10 +1033,20 @@ static int add_resource_record(HEADER *header, char *limit, int *truncp, unsigne
+   unsigned short usval;
+   long lval;
+   char *sval;
++#define CHECK_LIMIT(size) \
++    if (limit && p + (size) > (unsigned char*)limit) { \
++        va_end(ap); \
++        goto truncated; \
++    }
+ 
+   if (truncp && *truncp)
+     return 0;
+ 
++  va_start(ap, format); /* make ap point to 1st unamed argument */
++
++  /* nameoffset (1 or 2) + type (2) + class (2) + ttl (4) + 0 (2) */
++  CHECK_LIMIT(12);
++
+   PUTSHORT(nameoffset | 0xc000, p);
+   PUTSHORT(type, p);
+   PUTSHORT(class, p);
+@@ -1044,14 +1054,13 @@ static int add_resource_record(HEADER *header, char *limit, int *truncp, unsigne
+ 
+   sav = p;              /* Save pointer to RDLength field */
+   PUTSHORT(0, p);       /* Placeholder RDLength */
+-
+-  va_start(ap, format);   /* make ap point to 1st unamed argument */
+   
+   for (; *format; format++)
+     switch (*format)
+       {
+ #ifdef HAVE_IPV6
+       case '6':
++	CHECK_LIMIT(IN6ADDRSZ);
+ 	sval = va_arg(ap, char *); 
+ 	memcpy(p, sval, IN6ADDRSZ);
+ 	p += IN6ADDRSZ;
+@@ -1059,17 +1068,20 @@ static int add_resource_record(HEADER *header, char *limit, int *truncp, unsigne
+ #endif
+ 	
+       case '4':
++	CHECK_LIMIT(IN6ADDRSZ);
+ 	sval = va_arg(ap, char *); 
+ 	memcpy(p, sval, INADDRSZ);
+ 	p += INADDRSZ;
+ 	break;
+ 	
+       case 's':
++	CHECK_LIMIT(2);
+ 	usval = va_arg(ap, int);
+ 	PUTSHORT(usval, p);
+ 	break;
+ 	
+       case 'l':
++	CHECK_LIMIT(4);
+ 	lval = va_arg(ap, long);
+ 	PUTLONG(lval, p);
+ 	break;
+@@ -1078,12 +1090,18 @@ static int add_resource_record(HEADER *header, char *limit, int *truncp, unsigne
+ 	/* get domain-name answer arg and store it in RDATA field */
+ 	if (offset)
+ 	  *offset = p - (unsigned char *)header;
+-	p = do_rfc1035_name(p, va_arg(ap, char *));
++	p = do_rfc1035_name(p, va_arg(ap, char *), limit);
++	if (!p) {
++		va_end(ap);
++		goto truncated;
++	}
++	CHECK_LIMIT(1);
+ 	*p++ = 0;
+ 	break;
+ 	
+       case 't':
+ 	usval = va_arg(ap, int);
++	CHECK_LIMIT(usval);
+ 	sval = va_arg(ap, char *);
+ 	memcpy(p, sval, usval);
+ 	p += usval;
+@@ -1094,20 +1112,24 @@ static int add_resource_record(HEADER *header, char *limit, int *truncp, unsigne
+ 	usval = sval ? strlen(sval) : 0;
+ 	if (usval > 255)
+ 	  usval = 255;
++	CHECK_LIMIT(usval + 1);
+ 	*p++ = (unsigned char)usval;
+ 	memcpy(p, sval, usval);
+ 	p += usval;
+ 	break;
+       }
+ 
++#undef CHECK_LIMIT
+   va_end(ap);	/* clean up variable argument pointer */
+   
+   j = p - sav - 2;
++  /* this has already been checked against limit before */
+   PUTSHORT(j, sav);     /* Now, store real RDLength */
+   
+   /* check for overflow of buffer */
+   if (limit && ((unsigned char *)limit - p) < 0)
+     {
++truncated:
+       if (truncp)
+ 	*truncp = 1;
+       return 0;
+diff --git a/src/rfc2131.c b/src/rfc2131.c
+index 1ef8569..0ce107d 100755
+--- a/src/rfc2131.c
++++ b/src/rfc2131.c
+@@ -2188,9 +2188,9 @@ static void do_options(struct dhcp_context *context,
+ 
+ 	      if (fqdn_flags & 0x04)
+ 		{
+-		  p = do_rfc1035_name(p, hostname);
++		  p = do_rfc1035_name(p, hostname, NULL);
+ 		  if (domain)
+-		    p = do_rfc1035_name(p, domain);
++		    p = do_rfc1035_name(p, domain, NULL);
+ 		  *p++ = 0;
+ 		}
+ 	      else
+diff --git a/src/util.c b/src/util.c
+index e44b8fa..687804a 100755
+--- a/src/util.c
++++ b/src/util.c
+@@ -206,15 +206,20 @@ char *canonicalise(char *in, int *nomem)
+   return ret;
+ }
+ 
+-unsigned char *do_rfc1035_name(unsigned char *p, char *sval)
++unsigned char *do_rfc1035_name(unsigned char *p, char *sval, char *limit)
+ {
+   int j;
+   
+   while (sval && *sval)
+     {
++      if (limit && p + 1 > (unsigned char*)limit)
++        return p;
+       unsigned char *cp = p++;
+-      for (j = 0; *sval && (*sval != '.'); sval++, j++)
+-	*p++ = *sval;
++      for (j = 0; *sval && (*sval != '.'); sval++, j++) {
++        if (limit && p + 1 > (unsigned char*)limit)
++          return p;
++        *p++ = *sval;
++      }
+       *cp  = j;
+       if (*sval)
+ 	sval++;
+-- 
+2.30.0.280.ga3ce27912f-goog
+

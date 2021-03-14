@@ -1,0 +1,60 @@
+From ffa62ed93f06ad9acba14400615cb533671ebc09 Mon Sep 17 00:00:00 2001
+From: Steven Moreland <smoreland@google.com>
+Date: Fri, 4 Dec 2020 21:13:03 +0000
+Subject: [PATCH] セキュリティパッチ 2021-03-01 ANDROID-172655291
+
+[porting]
+
+libbinder: readString*Inplace SafetyNet (II)
+
+SafetyNet logs (this time for failure case, instead of success case).
+
+Bug: 172655291
+Test: adb logcat -b events | grep snet # exactly one occurance w/ repro
+(c/p'd from 34af0637666f43ae62040ad1bad76468423feba2)
+Merged-In: I75ace071693c0a4579ed9477f7b9212a6e27c36d
+
+CVE-2021-0394
+
+Change-Id: I75ace071693c0a4579ed9477f7b9212a6e27c36d
+
+(cherry picked from commit 61d0f84881cfc1bbac513ccd156c56603a48cc90)
+---
+ libs/binder/Parcel.cpp | 14 ++++++++++----
+ 1 file changed, 10 insertions(+), 4 deletions(-)
+
+diff --git a/libs/binder/Parcel.cpp b/libs/binder/Parcel.cpp
+index 1f7d27e0e..b7ad66031 100644
+--- a/libs/binder/Parcel.cpp
++++ b/libs/binder/Parcel.cpp
+@@ -1869,8 +1869,11 @@ const char* Parcel::readString8Inplace(size_t* outLen) const
+     if (size >= 0 && size < INT32_MAX) {
+         *outLen = size;
+         const char* str = (const char*)readInplace(size+1);
+-        if (str != nullptr && str[size] == '\0') {
+-            return str;
++        if (str != nullptr) {
++            if (str[size] == '\0') {
++                return str;
++            }
++            android_errorWriteLog(0x534e4554, "172655291");
+         }
+     }
+     *outLen = 0;
+@@ -1929,8 +1932,11 @@ const char16_t* Parcel::readString16Inplace(size_t* outLen) const
+     if (size >= 0 && size < INT32_MAX) {
+         *outLen = size;
+         const char16_t* str = (const char16_t*)readInplace((size+1)*sizeof(char16_t));
+-        if (str != nullptr && str[size] == u'\0') {
+-            return str;
++        if (str != nullptr) {
++            if (str[size] == u'\0') {
++                return str;
++            }
++            android_errorWriteLog(0x534e4554, "172655291");
+         }
+     }
+     *outLen = 0;
+-- 
+2.30.0.280.ga3ce27912f-goog
+

@@ -1,0 +1,12 @@
+android-10.0.0_r1/platform/art/0001-Validate-input-of-JNI-NewStringUTF-.bulletin.patch
+android-10.0.0_r1/platform/art/0002-Add-SafetyNet-logging-to-JNI-NewStringUTF-.bulletin.patch
+android-10.0.0_r1/platform/system/tools/hidl/0001-hidl_test_java-reflect-new-overread-check-in-art.bulletin.patch
+android-11.0.0_r1/platform/art/0001-Validate-input-of-JNI-NewStringUTF-.bulletin.patch
+android-11.0.0_r1/platform/art/0002-Add-SafetyNet-logging-to-JNI-NewStringUTF-.bulletin.patch
+android-11.0.0_r1/platform/frameworks/native/0001-libbinder-check-null-bytes-in-readString-Inplace.bulletin.patch
+android-11.0.0_r1/platform/frameworks/native/0002-libbinder-readString-Inplace-SafetyNet-II-.bulletin.patch
+android-11.0.0_r1/platform/system/tools/hidl/0001-hidl_test_java-reflect-new-overread-check-in-art.bulletin.patch
+android-8.1.0_r1/platform/art/0001-Validate-input-of-JNI-NewStringUTF-.bulletin.patch
+android-8.1.0_r1/platform/art/0002-Add-SafetyNet-logging-to-JNI-NewStringUTF-.bulletin.patch
+android-9.0.0_r1/platform/art/0001-Validate-input-of-JNI-NewStringUTF-.bulletin.patch
+android-9.0.0_r1/platform/art/0002-Add-SafetyNet-logging-to-JNI-NewStringUTF-.bulletin.patch

@@ -1,0 +1,53 @@
+From 6fa3f0d4219c1c99df17635c9fa510364e7a223a Mon Sep 17 00:00:00 2001
+From: Steven Moreland <smoreland@google.com>
+Date: Wed, 18 Nov 2020 00:32:42 +0000
+Subject: [PATCH] セキュリティパッチ 2021-03-01 ANDROID-172655291
+
+[porting]
+
+libbinder: check null bytes in readString*Inplace
+
+This is entirely defensive, since the only real guarantee we have here
+from these APIs is that a buffer of a given length is available.
+However, since we write 0's here, presumably to guard against people
+assuming these are null-terminated strings, we might as well enforce
+that they are actually null terminated.
+
+Bug: 172655291
+Test: binderParcelTest (added in newer CL)
+
+CVE-2021-0394
+
+Change-Id: Ie879112540155f6a93b97aeaf3d41ed8ba4ae79f
+Merged-In: Ie879112540155f6a93b97aeaf3d41ed8ba4ae79f
+(cherry picked from commit 51e02b16c397c44ddf81a0736cf6045cd4c44128)
+(cherry picked from commit 58f5cfa56d5282e69a7580dc4bb97603c409f003)
+---
+ libs/binder/Parcel.cpp | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/libs/binder/Parcel.cpp b/libs/binder/Parcel.cpp
+index 9642a87f4..1f7d27e0e 100644
+--- a/libs/binder/Parcel.cpp
++++ b/libs/binder/Parcel.cpp
+@@ -1869,7 +1869,7 @@ const char* Parcel::readString8Inplace(size_t* outLen) const
+     if (size >= 0 && size < INT32_MAX) {
+         *outLen = size;
+         const char* str = (const char*)readInplace(size+1);
+-        if (str != nullptr) {
++        if (str != nullptr && str[size] == '\0') {
+             return str;
+         }
+     }
+@@ -1929,7 +1929,7 @@ const char16_t* Parcel::readString16Inplace(size_t* outLen) const
+     if (size >= 0 && size < INT32_MAX) {
+         *outLen = size;
+         const char16_t* str = (const char16_t*)readInplace((size+1)*sizeof(char16_t));
+-        if (str != nullptr) {
++        if (str != nullptr && str[size] == u'\0') {
+             return str;
+         }
+     }
+-- 
+2.30.0.280.ga3ce27912f-goog
+

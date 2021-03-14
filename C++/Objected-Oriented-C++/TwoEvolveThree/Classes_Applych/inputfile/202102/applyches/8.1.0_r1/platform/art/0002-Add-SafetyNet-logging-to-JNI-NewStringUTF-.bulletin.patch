@@ -1,0 +1,47 @@
+From 0ec930f677609ab7752b243235dab491e0c6815e Mon Sep 17 00:00:00 2001
+From: Vladimir Marko <vmarko@google.com>
+Date: Fri, 4 Dec 2020 15:50:30 +0000
+Subject: [PATCH] セキュリティパッチ 2021-03-01 ANDROID-172655291
+
+[porting]
+
+Add SafetyNet logging to JNI::NewStringUTF.
+
+(cherry picked from commit 6444277041f41294d98adac4bb585183e56587f6)
+
+Test: blueline-userdebug boots.
+Bug: 172655291
+Merged-In: I653db8be0c0a45302f0d1c54285c02d2d052a9f4
+Merged-In: I9e9ed17377c9723d07169e7bcdbb8e36f995988e
+
+CVE-2021-0394
+
+Change-Id: I9e9ed17377c9723d07169e7bcdbb8e36f995988e
+(cherry picked from commit 4b56bb8ce224408acfef7f2b2c2cee2abd938c9a)
+---
+ runtime/jni_internal.cc | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/runtime/jni_internal.cc b/runtime/jni_internal.cc
+index c2c47c3ac0..23c7369b1e 100644
+--- a/runtime/jni_internal.cc
++++ b/runtime/jni_internal.cc
+@@ -19,6 +19,7 @@
+ #include <dlfcn.h>
+ 
+ #include <cstdarg>
++#include <log/log.h>
+ #include <memory>
+ #include <utility>
+ #include <vector>
+@@ -1861,6 +1862,7 @@ class JNI {
+         /*bad=*/ []() { return true; });  // Abort processing and return 0 for bad characters.
+     if (UNLIKELY(utf8_length != 0u && utf16_length == 0u)) {
+       // VisitModifiedUtf8Chars() aborted for a bad character.
++      android_errorWriteLog(0x534e4554, "172655291");  // Report to SafetyNet.
+       // Report the error to logcat but avoid too much spam.
+       static const uint64_t kMinDelay = UINT64_C(10000000000);  // 10s
+       static std::atomic<uint64_t> prev_bad_input_time(UINT64_C(0));
+-- 
+2.30.0.280.ga3ce27912f-goog
+

@@ -1,0 +1,4726 @@
+Data loading over! row = 38 column = 19
+
+实际作业信息 : 
+CVE-2017-14491 patches/android-10.0.0_r1/platform/external/dnsmasq/0001-dnsmasq-fix-heap-overflow.bulletin.patch
+CVE-2021-0396 patches/android-10.0.0_r1/platform/external/v8/0001--parser-Fix-off-by-one-in-parameter-count-check.bulletin.patch
+CVE-2021-0393 patches/android-10.0.0_r1/platform/external/v8/0002-LiteralBuffer-ExpandBuffer-always-grows.bulletin.patch
+CVE-2021-0394 patches/android-10.0.0_r1/platform/art/0001-Validate-input-of-JNI-NewStringUTF-.bulletin.patch
+CVE-2021-0394 patches/android-10.0.0_r1/platform/art/0002-Add-SafetyNet-logging-to-JNI-NewStringUTF-.bulletin.patch
+CVE-2021-0394 patches/android-10.0.0_r1/platform/system/tools/hidl/0001-hidl_test_java-reflect-new-overread-check-in-art.bulletin.patch
+CVE-2021-0391 patches/android-10.0.0_r1/platform/frameworks/base/0001-Protect-account-chooser-activities-against-overlay-.bulletin.patch
+CVE-2021-0397 patches/android-10.0.0_r1/platform/system/bt/0001-SDP-Only-start-discovery-once.bulletin.patch
+CVE-2021-0390 patches/android-10.0.0_r1/platform/frameworks/opt/net/wifi/0001--Suggestion-Check-foreground-user-for-API-call.bulletin.patch
+CVE-2021-0392 patches/android-10.0.0_r1/platform/system/connectivity/wificond/0001-Fix-UAF-problem-in-wificond.bulletin.patch
+
+重复票：
+
+1.create workdir: /home/zhaoyong/spwork/202102/code/XH73Q
+mkdir -p /home/zhaoyong/spwork/202102/code/XH73Q 
+2.change commit message
+3.init Enviroment
+4.push_back all .xml releated to project
+5.loadmanifest
+.repo/manifests/30100013_SP/SDM660.xml
+SDM660/adsp_proc
+ADSP.VT.4.0/adsp_proc
+  <project groups="SDM660" name="SDM660/adsp_proc" path="ADSP.VT.4.0/adsp_proc" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+SDM660/boot_images
+BOOT.XF.1.4/boot_images
+	<project groups="SDM660" name="SDM660/boot_images" path="BOOT.XF.1.4/boot_images" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+SDM660/btfm_proc
+BTFM.CHE.2.1.1/btfm_proc
+	<project groups="SDM660" name="SDM660/btfm_proc" path="BTFM.CHE.2.1.1/btfm_proc" revision="OF6/dev/SDM660/30100016/BSP"/>
+
+0
+SDM660/cdsp_proc
+CDSP.VT.1.0/cdsp_proc
+	<project groups="SDM660" name="SDM660/cdsp_proc" path="CDSP.VT.1.0/cdsp_proc" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+SDM660/cpe_proc
+CPE.TSF.2.0/cpe_proc
+	<project groups="SDM660" name="SDM660/cpe_proc" path="CPE.TSF.2.0/cpe_proc" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+SDM660/rpm_proc
+RPM.BF.1.8/rpm_proc
+	<project groups="SDM660" name="SDM660/rpm_proc" path="RPM.BF.1.8/rpm_proc" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+SDM660/trustzone_images
+TZ.BF.4.0.7/trustzone_images
+	<project groups="SDM660" name="SDM660/trustzone_images" path="TZ.BF.4.0.7/trustzone_images" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+SDM660/venus_proc
+VIDEO.VE.4.4/venus_proc
+	<project groups="SDM660" name="SDM660/venus_proc" path="VIDEO.VE.4.4/venus_proc" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+SDM660/wdsp_proc
+WDSP.9340.1.0/wdsp_proc
+	<project groups="SDM660" name="SDM660/wdsp_proc" path="WDSP.9340.1.0/wdsp_proc" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+SDM660/wlan_proc
+WLAN.HL.1.0.1/wlan_proc
+	<project groups="SDM660" name="SDM660/wlan_proc" path="WLAN.HL.1.0.1/wlan_proc" revision="OF6/dev/SDM660/30100016/BSP"/>
+
+0
+SDM660/common
+SDM660.LA.3.0/common
+	<project groups="SDM660" name="SDM660/common" path="SDM660.LA.3.0/common" revision="OF6/dev/SDM660/30100013/BSP">  
+
+0
+SDM660/common
+SDM660.LA.3.0_00JP/common
+	<project groups="SDM660_FIH" name="SDM660/common" path="SDM660.LA.3.0_00JP/common" revision="OF6/dev/SDM660/30100013/BSP">  
+
+0
+SDM660/common
+SDM660.LA.3.0_3RJP/common
+	<project groups="SDM660_FIH" name="SDM660/common" path="SDM660.LA.3.0_3RJP/common" revision="OF6/dev/SDM660/30100013/BSP">  
+
+0
+SDM660/common
+SDM660.LA.3.0_14JP/common
+	<project groups="SDM660_FIH" name="SDM660/common" path="SDM660.LA.3.0_14JP/common" revision="OF6/dev/SDM660/30100013/BSP">  
+
+0
+SDM630/common
+SDM630.LA.3.0/common
+	<project groups="SDM630" name="SDM630/common" path="SDM630.LA.3.0/common" revision="OF6/dev/SDM630/30100013/BSP">  
+
+0
+.repo/manifests/30100013_SP/MDM.xml
+SDM660/modem_proc
+MPSS.AT.3.1/modem_proc
+	<project groups="SDM660" name="SDM660/modem_proc" path="MPSS.AT.3.1/modem_proc" revision="OF6/dev/SDM660/30100016/MDM"/>
+
+0
+SDM660/modem_fih_common
+MPSS.AT.3.1/modem_fih_common
+	<project groups="SDM660" name="SDM660/modem_fih_common" path="MPSS.AT.3.1/modem_fih_common" revision="OF6/dev/SDM660/30100016/MDM"/>
+
+0
+SDM660/modem_proc
+MPSS.AT.3.1_00JP/modem_proc
+	<project groups="SDM660_00JP" name="SDM660/modem_proc" path="MPSS.AT.3.1_00JP/modem_proc" revision="OF6/dev/SDM660/30100016/MDM"/>
+
+0
+SDM660/modem_fih_common
+MPSS.AT.3.1_00JP/modem_fih_common
+	<project groups="SDM660_00JP" name="SDM660/modem_fih_common" path="MPSS.AT.3.1_00JP/modem_fih_common" revision="OF6/dev/SDM660/30100016/MDM"/>
+
+0
+SDM660/modem_proc
+MPSS.AT.3.1_3RJP/modem_proc
+	<project groups="SDM660_3RJP" name="SDM660/modem_proc" path="MPSS.AT.3.1_3RJP/modem_proc" revision="OF6/dev/SDM660/30100016/MDM"/>
+
+0
+SDM660/modem_fih_common
+MPSS.AT.3.1_3RJP/modem_fih_common
+	<project groups="SDM660_3RJP" name="SDM660/modem_fih_common" path="MPSS.AT.3.1_3RJP/modem_fih_common" revision="OF6/dev/SDM660/30100016/MDM"/>
+
+0
+SDM660/modem_proc
+MPSS.AT.3.1_14JP/modem_proc
+	<project groups="SDM660_14JP" name="SDM660/modem_proc" path="MPSS.AT.3.1_14JP/modem_proc" revision="OF6/dev/SDM660/30100016/MDM"/>
+
+0
+SDM660/modem_fih_common
+MPSS.AT.3.1_14JP/modem_fih_common
+	<project groups="SDM660_14JP" name="SDM660/modem_fih_common" path="MPSS.AT.3.1_14JP/modem_fih_common" revision="OF6/dev/SDM660/30100016/MDM"/>
+
+0
+.repo/manifests/30100013/QC.xml
+abl/tianocore/edk2
+LINUX/android/bootable/bootloader/edk2
+	<project groups="QC" name="abl/tianocore/edk2" path="LINUX/android/bootable/bootloader/edk2"/>
+
+0
+device/amlogic/yukawa
+LINUX/android/device/amlogic/yukawa
+	<project groups="QC" name="device/amlogic/yukawa" path="LINUX/android/device/amlogic/yukawa"/>
+
+0
+device/amlogic/yukawa-kernel
+LINUX/android/device/amlogic/yukawa-kernel
+	<project groups="QC" name="device/amlogic/yukawa-kernel" path="LINUX/android/device/amlogic/yukawa-kernel"/>
+
+0
+device/common
+LINUX/android/device/common
+	<project groups="QC" name="device/common" path="LINUX/android/device/common"/>
+
+0
+device/generic/arm64
+LINUX/android/device/generic/arm64
+	<project groups="QC" name="device/generic/arm64" path="LINUX/android/device/generic/arm64"/>
+
+0
+device/generic/armv7-a-neon
+LINUX/android/device/generic/armv7-a-neon
+	<project groups="QC" name="device/generic/armv7-a-neon" path="LINUX/android/device/generic/armv7-a-neon"/>
+
+0
+device/generic/car
+LINUX/android/device/generic/car
+	<project groups="QC" name="device/generic/car" path="LINUX/android/device/generic/car"/>
+
+0
+device/generic/common
+LINUX/android/device/generic/common
+	<project groups="QC" name="device/generic/common" path="LINUX/android/device/generic/common"/>
+
+0
+device/generic/goldfish
+LINUX/android/device/generic/goldfish
+	<project groups="QC" name="device/generic/goldfish" path="LINUX/android/device/generic/goldfish"/>
+
+0
+device/generic/goldfish-opengl
+LINUX/android/device/generic/goldfish-opengl
+	<project groups="QC" name="device/generic/goldfish-opengl" path="LINUX/android/device/generic/goldfish-opengl"/>
+
+0
+device/generic/mini-emulator-arm64
+LINUX/android/device/generic/mini-emulator-arm64
+	<project groups="QC" name="device/generic/mini-emulator-arm64" path="LINUX/android/device/generic/mini-emulator-arm64"/>
+
+0
+device/generic/mini-emulator-armv7-a-neon
+LINUX/android/device/generic/mini-emulator-armv7-a-neon
+	<project groups="QC" name="device/generic/mini-emulator-armv7-a-neon" path="LINUX/android/device/generic/mini-emulator-armv7-a-neon"/>
+
+0
+device/generic/mini-emulator-x86
+LINUX/android/device/generic/mini-emulator-x86
+	<project groups="QC" name="device/generic/mini-emulator-x86" path="LINUX/android/device/generic/mini-emulator-x86"/>
+
+0
+device/generic/mini-emulator-x86_64
+LINUX/android/device/generic/mini-emulator-x86_64
+	<project groups="QC" name="device/generic/mini-emulator-x86_64" path="LINUX/android/device/generic/mini-emulator-x86_64"/>
+
+0
+device/generic/opengl-transport
+LINUX/android/device/generic/opengl-transport
+	<project groups="QC" name="device/generic/opengl-transport" path="LINUX/android/device/generic/opengl-transport"/>
+
+0
+device/generic/qemu
+LINUX/android/device/generic/qemu
+	<project groups="QC" name="device/generic/qemu" path="LINUX/android/device/generic/qemu"/>
+
+0
+device/generic/trusty
+LINUX/android/device/generic/trusty
+	<project groups="QC" name="device/generic/trusty" path="LINUX/android/device/generic/trusty"/>
+
+0
+device/generic/uml
+LINUX/android/device/generic/uml
+	<project groups="QC" name="device/generic/uml" path="LINUX/android/device/generic/uml"/>
+
+0
+device/generic/x86
+LINUX/android/device/generic/x86
+	<project groups="QC" name="device/generic/x86" path="LINUX/android/device/generic/x86"/>
+
+0
+device/generic/x86_64
+LINUX/android/device/generic/x86_64
+	<project groups="QC" name="device/generic/x86_64" path="LINUX/android/device/generic/x86_64"/>
+
+0
+device/google/atv
+LINUX/android/device/google/atv
+	<project groups="QC" name="device/google/atv" path="LINUX/android/device/google/atv"/>
+
+0
+device/google/contexthub
+LINUX/android/device/google/contexthub
+	<project groups="QC" name="device/google/contexthub" path="LINUX/android/device/google/contexthub"/>
+
+0
+device/google/cuttlefish
+LINUX/android/device/google/cuttlefish
+	<project groups="QC" name="device/google/cuttlefish" path="LINUX/android/device/google/cuttlefish"/>
+
+0
+device/google/cuttlefish_common
+LINUX/android/device/google/cuttlefish_common
+	<project groups="QC" name="device/google/cuttlefish_common" path="LINUX/android/device/google/cuttlefish_common"/>
+
+0
+device/google/cuttlefish_kernel
+LINUX/android/device/google/cuttlefish_kernel
+	<project groups="QC" name="device/google/cuttlefish_kernel" path="LINUX/android/device/google/cuttlefish_kernel"/>
+
+0
+device/google/cuttlefish_vmm
+LINUX/android/device/google/cuttlefish_vmm
+	<project groups="QC" name="device/google/cuttlefish_vmm" path="LINUX/android/device/google/cuttlefish_vmm"/>
+
+0
+device/google/vrservices
+LINUX/android/device/google/vrservices
+	<project groups="QC" name="device/google/vrservices" path="LINUX/android/device/google/vrservices"/>
+
+0
+device/linaro/poplar
+LINUX/android/device/linaro/poplar
+	<project groups="QC" name="device/linaro/poplar" path="LINUX/android/device/linaro/poplar"/>
+
+0
+device/linaro/poplar-kernel
+LINUX/android/device/linaro/poplar-kernel
+	<project groups="QC" name="device/linaro/poplar-kernel" path="LINUX/android/device/linaro/poplar-kernel"/>
+
+0
+device/qcom/common
+LINUX/android/device/qcom/common
+	<project groups="QC" name="device/qcom/common" path="LINUX/android/device/qcom/common">
+
+0
+device/qcom/qssi
+LINUX/android/device/qcom/qssi
+	<project groups="QC" name="device/qcom/qssi" path="LINUX/android/device/qcom/qssi"/>
+
+0
+device/qcom/sepolicy
+LINUX/android/device/qcom/sepolicy
+	<project groups="QC" name="device/qcom/sepolicy" path="LINUX/android/device/qcom/sepolicy"/>
+
+0
+device/sample
+LINUX/android/device/sample
+	<project groups="QC" name="device/sample" path="LINUX/android/device/sample"/>
+
+0
+kernel/configs
+LINUX/android/kernel/configs
+	<project groups="QC" name="kernel/configs" path="LINUX/android/kernel/configs"/>
+
+0
+kernel/msm-4.4
+LINUX/android/kernel/msm-4.4
+	<project groups="QC" name="kernel/msm-4.4" path="LINUX/android/kernel/msm-4.4"/>
+
+0
+kernel/tests
+LINUX/android/kernel/test
+	<project groups="QC" name="kernel/tests" path="LINUX/android/kernel/test"/>
+
+0
+platform/art
+LINUX/android/art
+	<project groups="QC" name="platform/art" path="LINUX/android/art"/>
+
+0
+platform/bionic
+LINUX/android/bionic
+	<project groups="QC" name="platform/bionic" path="LINUX/android/bionic"/>
+
+0
+platform/bootable/recovery
+LINUX/android/bootable/recovery
+	<project groups="QC" name="platform/bootable/recovery" path="LINUX/android/bootable/recovery"/>
+
+0
+platform/build
+LINUX/android/build/make
+	<project groups="QC" name="platform/build" path="LINUX/android/build/make">
+
+0
+platform/build/blueprint
+LINUX/android/build/blueprint
+	<project groups="QC" name="platform/build/blueprint" path="LINUX/android/build/blueprint"/>
+
+0
+platform/build/kati
+LINUX/android/build/kati
+	<project groups="QC" name="platform/build/kati" path="LINUX/android/build/kati"/>
+
+0
+platform/build/soong
+LINUX/android/build/soong
+	<project groups="QC" name="platform/build/soong" path="LINUX/android/build/soong">
+
+0
+platform/cts
+LINUX/android/cts
+	<project groups="QC" name="platform/cts" path="LINUX/android/cts"/>
+
+0
+platform/dalvik
+LINUX/android/dalvik
+	<project groups="QC" name="platform/dalvik" path="LINUX/android/dalvik"/>
+
+0
+platform/developers/build
+LINUX/android/developers/build
+	<project groups="QC" name="platform/developers/build" path="LINUX/android/developers/build"/>
+
+0
+platform/development
+LINUX/android/development
+	<project groups="QC" name="platform/development" path="LINUX/android/development"/>
+
+0
+platform/external/ARMComputeLibrary
+LINUX/android/external/ARMComputeLibrary
+	<project groups="QC" name="platform/external/ARMComputeLibrary" path="LINUX/android/external/ARMComputeLibrary"/>
+
+0
+platform/external/ImageMagick
+LINUX/android/external/ImageMagick
+	<project groups="QC" name="platform/external/ImageMagick" path="LINUX/android/external/ImageMagick"/>
+
+0
+platform/external/Microsoft-GSL
+LINUX/android/external/Microsoft-GSL
+	<project groups="QC" name="platform/external/Microsoft-GSL" path="LINUX/android/external/Microsoft-GSL"/>
+
+0
+platform/external/Reactive-Extensions/RxCpp
+LINUX/android/external/Reactive-Extensions/RxCpp
+	<project groups="QC" name="platform/external/Reactive-Extensions/RxCpp" path="LINUX/android/external/Reactive-Extensions/RxCpp"/>
+
+0
+platform/external/aac
+LINUX/android/external/aac
+	<project groups="QC" name="platform/external/aac" path="LINUX/android/external/aac"/>
+
+0
+platform/external/adeb
+LINUX/android/external/adeb
+	<project groups="QC" name="platform/external/adeb" path="LINUX/android/external/adeb"/>
+
+0
+platform/external/adhd
+LINUX/android/external/adhd
+	<project groups="QC" name="platform/external/adhd" path="LINUX/android/external/adhd"/>
+
+0
+platform/external/adt-infra
+LINUX/android/external/adt-infra
+	<project groups="QC" name="platform/external/adt-infra" path="LINUX/android/external/adt-infra"/>
+
+0
+platform/external/android-clat
+LINUX/android/external/android-clat
+	<project groups="QC" name="platform/external/android-clat" path="LINUX/android/external/android-clat"/>
+
+0
+platform/external/androidplot
+LINUX/android/external/androidplot
+	<project groups="QC" name="platform/external/androidplot" path="LINUX/android/external/androidplot"/>
+
+0
+platform/external/ant-glob
+LINUX/android/external/ant-glob
+	<project groups="QC" name="platform/external/ant-glob" path="LINUX/android/external/ant-glob"/>
+
+0
+platform/external/ant-wireless/ant_native
+LINUX/android/external/ant-wireless/ant_native
+	<project groups="QC" name="platform/external/ant-wireless/ant_native" path="LINUX/android/external/ant-wireless/ant_native"/>
+
+0
+platform/external/ant-wireless/ant_service
+LINUX/android/external/ant-wireless/ant_service
+	<project groups="QC" name="platform/external/ant-wireless/ant_service" path="LINUX/android/external/ant-wireless/ant_service"/>
+
+0
+platform/external/antlr
+LINUX/android/external/antlr
+	<project groups="QC" name="platform/external/antlr" path="LINUX/android/external/antlr"/>
+
+0
+platform/external/apache-commons-bcel
+LINUX/android/external/apache-commons-bcel
+	<project groups="QC" name="platform/external/apache-commons-bcel" path="LINUX/android/external/apache-commons-bcel"/>
+
+0
+platform/external/apache-commons-compress
+LINUX/android/external/apache-commons-compress
+	<project groups="QC" name="platform/external/apache-commons-compress" path="LINUX/android/external/apache-commons-compress"/>
+
+0
+platform/external/apache-commons-math
+LINUX/android/external/apache-commons-math
+	<project groups="QC" name="platform/external/apache-commons-math" path="LINUX/android/external/apache-commons-math"/>
+
+0
+platform/external/apache-harmony
+LINUX/android/external/apache-harmony
+	<project groups="QC" name="platform/external/apache-harmony" path="LINUX/android/external/apache-harmony"/>
+
+0
+platform/external/apache-http
+LINUX/android/external/apache-http
+	<project groups="QC" name="platform/external/apache-http" path="LINUX/android/external/apache-http"/>
+
+0
+platform/external/apache-xml
+LINUX/android/external/apache-xml
+	<project groups="QC" name="platform/external/apache-xml" path="LINUX/android/external/apache-xml"/>
+
+0
+platform/external/archive-patcher
+LINUX/android/external/archive-patcher
+	<project groups="QC" name="platform/external/archive-patcher" path="LINUX/android/external/archive-patcher"/>
+
+0
+platform/external/arm-optimized-routines
+LINUX/android/external/arm-optimized-routines
+	<project groups="QC" name="platform/external/arm-optimized-routines" path="LINUX/android/external/arm-optimized-routines"/>
+
+0
+platform/external/autotest
+LINUX/android/external/autotest
+	<project groups="QC" name="platform/external/autotest" path="LINUX/android/external/autotest"/>
+
+0
+platform/external/avb
+LINUX/android/external/avb
+	<project groups="QC" name="platform/external/avb" path="LINUX/android/external/avb"/>
+
+0
+platform/external/bcc
+LINUX/android/external/bcc
+	<project groups="QC" name="platform/external/bcc" path="LINUX/android/external/bcc"/>
+
+0
+platform/external/blktrace
+LINUX/android/external/blktrace
+	<project groups="QC" name="platform/external/blktrace" path="LINUX/android/external/blktrace"/>
+
+0
+platform/external/boringssl
+LINUX/android/external/boringssl
+	<project groups="QC" name="platform/external/boringssl" path="LINUX/android/external/boringssl"/>
+
+0
+platform/external/bouncycastle
+LINUX/android/external/bouncycastle
+	<project groups="QC" name="platform/external/bouncycastle" path="LINUX/android/external/bouncycastle"/>
+
+0
+platform/external/brotli
+LINUX/android/external/brotli
+	<project groups="QC" name="platform/external/brotli" path="LINUX/android/external/brotli"/>
+
+0
+platform/external/bsdiff
+LINUX/android/external/bsdiff
+	<project groups="QC" name="platform/external/bsdiff" path="LINUX/android/external/bsdiff"/>
+
+0
+platform/external/bzip2
+LINUX/android/external/bzip2
+	<project groups="QC" name="platform/external/bzip2" path="LINUX/android/external/bzip2"/>
+
+0
+platform/external/caliper
+LINUX/android/external/caliper
+	<project groups="QC" name="platform/external/caliper" path="LINUX/android/external/caliper"/>
+
+0
+platform/external/capstone
+LINUX/android/external/capstone
+	<project groups="QC" name="platform/external/capstone" path="LINUX/android/external/capstone"/>
+
+0
+platform/external/catch2
+LINUX/android/external/catch2
+	<project groups="QC" name="platform/external/catch2" path="LINUX/android/external/catch2"/>
+
+0
+platform/external/cblas
+LINUX/android/external/cblas
+	<project groups="QC" name="platform/external/cblas" path="LINUX/android/external/cblas"/>
+
+0
+platform/external/chromium-libpac
+LINUX/android/external/chromium-libpac
+	<project groups="QC" name="platform/external/chromium-libpac" path="LINUX/android/external/chromium-libpac"/>
+
+0
+platform/external/chromium-trace
+LINUX/android/external/chromium-trace
+	<project groups="QC" name="platform/external/chromium-trace" path="LINUX/android/external/chromium-trace"/>
+
+0
+platform/external/chromium-webview
+LINUX/android/external/chromium-webview
+	<project groups="QC" name="platform/external/chromium-webview" path="LINUX/android/external/chromium-webview"/>
+
+0
+platform/external/clang
+LINUX/android/external/clang
+	<project groups="QC" name="platform/external/clang" path="LINUX/android/external/clang"/>
+
+0
+platform/external/cldr
+LINUX/android/external/cldr
+	<project groups="QC" name="platform/external/cldr" path="LINUX/android/external/cldr"/>
+
+0
+platform/external/cmockery
+LINUX/android/external/cmockery
+	<project groups="QC" name="platform/external/cmockery" path="LINUX/android/external/cmockery"/>
+
+0
+platform/external/cn-cbor
+LINUX/android/external/cn-cbor
+	<project groups="QC" name="platform/external/cn-cbor" path="LINUX/android/external/cn-cbor"/>
+
+0
+platform/external/compiler-rt
+LINUX/android/external/compiler-rt
+	<project groups="QC" name="platform/external/compiler-rt" path="LINUX/android/external/compiler-rt"/>
+
+0
+platform/external/conscrypt
+LINUX/android/external/conscrypt
+	<project groups="QC" name="platform/external/conscrypt" path="LINUX/android/external/conscrypt"/>
+
+0
+platform/external/crcalc
+LINUX/android/external/crcalc
+	<project groups="QC" name="platform/external/crcalc" path="LINUX/android/external/crcalc"/>
+
+0
+platform/external/cros/system_api
+LINUX/android/external/cros/system_api
+	<project groups="QC" name="platform/external/cros/system_api" path="LINUX/android/external/cros/system_api"/>
+
+0
+platform/external/curl
+LINUX/android/external/curl
+	<project groups="QC" name="platform/external/curl" path="LINUX/android/external/curl"/>
+
+0
+platform/external/dagger2
+LINUX/android/external/dagger2
+	<project groups="QC" name="platform/external/dagger2" path="LINUX/android/external/dagger2"/>
+
+0
+platform/external/deqp
+LINUX/android/external/deqp
+	<project groups="QC" name="platform/external/deqp" path="LINUX/android/external/deqp"/>
+
+0
+platform/external/deqp-deps/SPIRV-Headers
+LINUX/android/external/deqp-deps/SPIRV-Headers
+	<project groups="QC" name="platform/external/deqp-deps/SPIRV-Headers" path="LINUX/android/external/deqp-deps/SPIRV-Headers"/>
+
+0
+platform/external/deqp-deps/SPIRV-Tools
+LINUX/android/external/deqp-deps/SPIRV-Tools
+	<project groups="QC" name="platform/external/deqp-deps/SPIRV-Tools" path="LINUX/android/external/deqp-deps/SPIRV-Tools"/>
+
+0
+platform/external/deqp-deps/glslang
+LINUX/android/external/deqp-deps/glslang
+	<project groups="QC" name="platform/external/deqp-deps/glslang" path="LINUX/android/external/deqp-deps/glslang"/>
+
+0
+platform/external/desugar
+LINUX/android/external/desugar
+	<project groups="QC" name="platform/external/desugar" path="LINUX/android/external/desugar"/>
+
+0
+platform/external/dexmaker
+LINUX/android/external/dexmaker
+	<project groups="QC" name="platform/external/dexmaker" path="LINUX/android/external/dexmaker"/>
+
+0
+platform/external/dlmalloc
+LINUX/android/external/dlmalloc
+	<project groups="QC" name="platform/external/dlmalloc" path="LINUX/android/external/dlmalloc"/>
+
+0
+platform/external/dng_sdk
+LINUX/android/external/dng_sdk
+	<project groups="QC" name="platform/external/dng_sdk" path="LINUX/android/external/dng_sdk"/>
+
+0
+platform/external/dnsmasq
+LINUX/android/external/dnsmasq
+	<project groups="QC" name="platform/external/dnsmasq" path="LINUX/android/external/dnsmasq"/>
+
+0
+platform/external/doclava
+LINUX/android/external/doclava
+	<project groups="QC" name="platform/external/doclava" path="LINUX/android/external/doclava"/>
+
+0
+platform/external/dokka
+LINUX/android/external/dokka
+	<project groups="QC" name="platform/external/dokka" path="LINUX/android/external/dokka"/>
+
+0
+platform/external/drm_hwcomposer
+LINUX/android/external/drm_hwcomposer
+	<project groups="QC" name="platform/external/drm_hwcomposer" path="LINUX/android/external/drm_hwcomposer"/>
+
+0
+platform/external/droiddriver
+LINUX/android/external/droiddriver
+	<project groups="QC" name="platform/external/droiddriver" path="LINUX/android/external/droiddriver"/>
+
+0
+platform/external/drrickorang
+LINUX/android/external/drrickorang
+	<project groups="QC" name="platform/external/drrickorang" path="LINUX/android/external/drrickorang"/>
+
+0
+platform/external/dtc
+LINUX/android/external/dtc
+	<project groups="QC" name="platform/external/dtc" path="LINUX/android/external/dtc"/>
+
+0
+platform/external/dynamic_depth
+LINUX/android/external/dynamic_depth
+	<project groups="QC" name="platform/external/dynamic_depth" path="LINUX/android/external/dynamic_depth"/>
+
+0
+platform/external/e2fsprogs
+LINUX/android/external/e2fsprogs
+	<project groups="QC" name="platform/external/e2fsprogs" path="LINUX/android/external/e2fsprogs"/>
+
+0
+platform/external/easymock
+LINUX/android/external/easymock
+	<project groups="QC" name="platform/external/easymock" path="LINUX/android/external/easymock"/>
+
+0
+platform/external/eigen
+LINUX/android/external/eigen
+	<project groups="QC" name="platform/external/eigen" path="LINUX/android/external/eigen"/>
+
+0
+platform/external/elfutils
+LINUX/android/external/elfutils
+	<project groups="QC" name="platform/external/elfutils" path="LINUX/android/external/elfutils"/>
+
+0
+platform/external/flac
+LINUX/android/external/flac
+	<project groups="QC" name="platform/external/flac" path="LINUX/android/external/flac"/>
+
+0
+platform/external/flatbuffers
+LINUX/android/external/flatbuffers
+	<project groups="QC" name="platform/external/flatbuffers" path="LINUX/android/external/flatbuffers"/>
+
+0
+platform/external/fonttools
+LINUX/android/external/fonttools
+	<project groups="QC" name="platform/external/fonttools" path="LINUX/android/external/fonttools"/>
+
+0
+platform/external/freetype
+LINUX/android/external/freetype
+	<project groups="QC" name="platform/external/freetype" path="LINUX/android/external/freetype"/>
+
+0
+platform/external/fsck_msdos
+LINUX/android/external/fsck_msdos
+	<project groups="QC" name="platform/external/fsck_msdos" path="LINUX/android/external/fsck_msdos"/>
+
+0
+platform/external/fsverity-utils
+LINUX/android/external/fsverity-utils
+	<project groups="QC" name="platform/external/fsverity-utils" path="LINUX/android/external/fsverity-utils"/>
+
+0
+platform/external/gemmlowp
+LINUX/android/external/gemmlowp
+	<project groups="QC" name="platform/external/gemmlowp" path="LINUX/android/external/gemmlowp"/>
+
+0
+platform/external/gflags
+LINUX/android/external/gflags
+	<project groups="QC" name="platform/external/gflags" path="LINUX/android/external/gflags"/>
+
+0
+platform/external/giflib
+LINUX/android/external/giflib
+	<project groups="QC" name="platform/external/giflib" path="LINUX/android/external/giflib"/>
+
+0
+platform/external/glide
+LINUX/android/external/glide
+	<project groups="QC" name="platform/external/glide" path="LINUX/android/external/glide"/>
+
+0
+platform/external/golang-protobuf
+LINUX/android/external/golang-protobuf
+	<project groups="QC" name="platform/external/golang-protobuf" path="LINUX/android/external/golang-protobuf"/>
+
+0
+platform/external/google-benchmark
+LINUX/android/external/google-benchmark
+	<project groups="QC" name="platform/external/google-benchmark" path="LINUX/android/external/google-benchmark"/>
+
+0
+platform/external/google-breakpad
+LINUX/android/external/google-breakpad
+	<project groups="QC" name="platform/external/google-breakpad" path="LINUX/android/external/google-breakpad"/>
+
+0
+platform/external/google-fonts/arbutus-slab
+LINUX/android/external/google-fonts/arbutus-slab
+	<project groups="QC" name="platform/external/google-fonts/arbutus-slab" path="LINUX/android/external/google-fonts/arbutus-slab"/>
+
+0
+platform/external/google-fonts/arvo
+LINUX/android/external/google-fonts/arvo
+	<project groups="QC" name="platform/external/google-fonts/arvo" path="LINUX/android/external/google-fonts/arvo"/>
+
+0
+platform/external/google-fonts/carrois-gothic-sc
+LINUX/android/external/google-fonts/carrois-gothic-sc
+	<project groups="QC" name="platform/external/google-fonts/carrois-gothic-sc" path="LINUX/android/external/google-fonts/carrois-gothic-sc"/>
+
+0
+platform/external/google-fonts/coming-soon
+LINUX/android/external/google-fonts/coming-soon
+	<project groups="QC" name="platform/external/google-fonts/coming-soon" path="LINUX/android/external/google-fonts/coming-soon"/>
+
+0
+platform/external/google-fonts/cutive-mono
+LINUX/android/external/google-fonts/cutive-mono
+	<project groups="QC" name="platform/external/google-fonts/cutive-mono" path="LINUX/android/external/google-fonts/cutive-mono"/>
+
+0
+platform/external/google-fonts/dancing-script
+LINUX/android/external/google-fonts/dancing-script
+	<project groups="QC" name="platform/external/google-fonts/dancing-script" path="LINUX/android/external/google-fonts/dancing-script"/>
+
+0
+platform/external/google-fonts/lato
+LINUX/android/external/google-fonts/lato
+	<project groups="QC" name="platform/external/google-fonts/lato" path="LINUX/android/external/google-fonts/lato"/>
+
+0
+platform/external/google-fonts/rubik
+LINUX/android/external/google-fonts/rubik
+	<project groups="QC" name="platform/external/google-fonts/rubik" path="LINUX/android/external/google-fonts/rubik"/>
+
+0
+platform/external/google-fonts/source-sans-pro
+LINUX/android/external/google-fonts/source-sans-pro
+	<project groups="QC" name="platform/external/google-fonts/source-sans-pro" path="LINUX/android/external/google-fonts/source-sans-pro"/>
+
+0
+platform/external/google-fonts/zilla-slab
+LINUX/android/external/google-fonts/zilla-slab
+	<project groups="QC" name="platform/external/google-fonts/zilla-slab" path="LINUX/android/external/google-fonts/zilla-slab"/>
+
+0
+platform/external/google-fruit
+LINUX/android/external/google-fruit
+	<project groups="QC" name="platform/external/google-fruit" path="LINUX/android/external/google-fruit"/>
+
+0
+platform/external/google-styleguide
+LINUX/android/external/google-styleguide
+	<project groups="QC" name="platform/external/google-styleguide" path="LINUX/android/external/google-styleguide"/>
+
+0
+platform/external/googletest
+LINUX/android/external/googletest
+	<project groups="QC" name="platform/external/googletest" path="LINUX/android/external/googletest"/>
+
+0
+platform/external/gptfdisk
+LINUX/android/external/gptfdisk
+	<project groups="QC" name="platform/external/gptfdisk" path="LINUX/android/external/gptfdisk"/>
+
+0
+platform/external/grpc-grpc
+LINUX/android/external/grpc-grpc
+	<project groups="QC" name="platform/external/grpc-grpc" path="LINUX/android/external/grpc-grpc"/>
+
+0
+platform/external/grpc-grpc-java
+LINUX/android/external/grpc-grpc-java
+	<project groups="QC" name="platform/external/grpc-grpc-java" path="LINUX/android/external/grpc-grpc-java"/>
+
+0
+platform/external/guava
+LINUX/android/external/guava
+	<project groups="QC" name="platform/external/guava" path="LINUX/android/external/guava"/>
+
+0
+platform/external/guice
+LINUX/android/external/guice
+	<project groups="QC" name="platform/external/guice" path="LINUX/android/external/guice"/>
+
+0
+platform/external/hamcrest
+LINUX/android/external/hamcrest
+	<project groups="QC" name="platform/external/hamcrest" path="LINUX/android/external/hamcrest"/>
+
+0
+platform/external/harfbuzz_ng
+LINUX/android/external/harfbuzz_ng
+	<project groups="QC" name="platform/external/harfbuzz_ng" path="LINUX/android/external/harfbuzz_ng"/>
+
+0
+platform/external/honggfuzz
+LINUX/android/external/honggfuzz
+	<project groups="QC" name="platform/external/honggfuzz" path="LINUX/android/external/honggfuzz"/>
+
+0
+platform/external/hyphenation-patterns
+LINUX/android/external/hyphenation-patterns
+	<project groups="QC" name="platform/external/hyphenation-patterns" path="LINUX/android/external/hyphenation-patterns"/>
+
+0
+platform/external/icu
+LINUX/android/external/icu
+	<project groups="QC" name="platform/external/icu" path="LINUX/android/external/icu"/>
+
+0
+platform/external/image_io
+LINUX/android/external/image_io
+	<project groups="QC" name="platform/external/image_io" path="LINUX/android/external/image_io"/>
+
+0
+platform/external/ims
+LINUX/android/external/ims
+	<project groups="QC" name="platform/external/ims" path="LINUX/android/external/ims"/>
+
+0
+platform/external/iperf3
+LINUX/android/external/iperf3
+	<project groups="QC" name="platform/external/iperf3" path="LINUX/android/external/iperf3"/>
+
+0
+platform/external/iproute2
+LINUX/android/external/iproute2
+	<project groups="QC" name="platform/external/iproute2" path="LINUX/android/external/iproute2"/>
+
+0
+platform/external/ipsec-tools
+LINUX/android/external/ipsec-tools
+	<project groups="QC" name="platform/external/ipsec-tools" path="LINUX/android/external/ipsec-tools"/>
+
+0
+platform/external/iptables
+LINUX/android/external/iptables
+	<project groups="QC" name="platform/external/iptables" path="LINUX/android/external/iptables"/>
+
+0
+platform/external/iputils
+LINUX/android/external/iputils
+	<project groups="QC" name="platform/external/iputils" path="LINUX/android/external/iputils"/>
+
+0
+platform/external/iw
+LINUX/android/external/iw
+	<project groups="QC" name="platform/external/iw" path="LINUX/android/external/iw"/>
+
+0
+platform/external/jacoco
+LINUX/android/external/jacoco
+	<project groups="QC" name="platform/external/jacoco" path="LINUX/android/external/jacoco"/>
+
+0
+platform/external/jarjar
+LINUX/android/external/jarjar
+	<project groups="QC" name="platform/external/jarjar" path="LINUX/android/external/jarjar"/>
+
+0
+platform/external/javaparser
+LINUX/android/external/javaparser
+	<project groups="QC" name="platform/external/javaparser" path="LINUX/android/external/javaparser"/>
+
+0
+platform/external/javapoet
+LINUX/android/external/javapoet
+	<project groups="QC" name="platform/external/javapoet" path="LINUX/android/external/javapoet"/>
+
+0
+platform/external/javasqlite
+LINUX/android/external/javasqlite
+	<project groups="QC" name="platform/external/javasqlite" path="LINUX/android/external/javasqlite"/>
+
+0
+platform/external/jcommander
+LINUX/android/external/jcommander
+	<project groups="QC" name="platform/external/jcommander" path="LINUX/android/external/jcommander"/>
+
+0
+platform/external/jdiff
+LINUX/android/external/jdiff
+	<project groups="QC" name="platform/external/jdiff" path="LINUX/android/external/jdiff"/>
+
+0
+platform/external/jemalloc
+LINUX/android/external/jemalloc
+	<project groups="QC" name="platform/external/jemalloc" path="LINUX/android/external/jemalloc"/>
+
+0
+platform/external/jemalloc_new
+LINUX/android/external/jemalloc_new
+	<project groups="QC" name="platform/external/jemalloc_new" path="LINUX/android/external/jemalloc_new"/>
+
+0
+platform/external/jline
+LINUX/android/external/jline
+	<project groups="QC" name="platform/external/jline" path="LINUX/android/external/jline"/>
+
+0
+platform/external/jsilver
+LINUX/android/external/jsilver
+	<project groups="QC" name="platform/external/jsilver" path="LINUX/android/external/jsilver"/>
+
+0
+platform/external/jsmn
+LINUX/android/external/jsmn
+	<project groups="QC" name="platform/external/jsmn" path="LINUX/android/external/jsmn"/>
+
+0
+platform/external/json-c
+LINUX/android/external/json-c
+	<project groups="QC" name="platform/external/json-c" path="LINUX/android/external/json-c"/>
+
+0
+platform/external/jsoncpp
+LINUX/android/external/jsoncpp
+	<project groups="QC" name="platform/external/jsoncpp" path="LINUX/android/external/jsoncpp"/>
+
+0
+platform/external/jsr305
+LINUX/android/external/jsr305
+	<project groups="QC" name="platform/external/jsr305" path="LINUX/android/external/jsr305"/>
+
+0
+platform/external/jsr330
+LINUX/android/external/jsr330
+	<project groups="QC" name="platform/external/jsr330" path="LINUX/android/external/jsr330"/>
+
+0
+platform/external/junit
+LINUX/android/external/junit
+	<project groups="QC" name="platform/external/junit" path="LINUX/android/external/junit"/>
+
+0
+platform/external/junit-params
+LINUX/android/external/junit-params
+	<project groups="QC" name="platform/external/junit-params" path="LINUX/android/external/junit-params"/>
+
+0
+platform/external/kernel-headers
+LINUX/android/external/kernel-headers
+	<project groups="QC" name="platform/external/kernel-headers" path="LINUX/android/external/kernel-headers"/>
+
+0
+platform/external/kmod
+LINUX/android/external/kmod
+	<project groups="QC" name="platform/external/kmod" path="LINUX/android/external/kmod"/>
+
+0
+platform/external/kotlinc
+LINUX/android/external/kotlinc
+	<project groups="QC" name="platform/external/kotlinc" path="LINUX/android/external/kotlinc"/>
+
+0
+platform/external/ksoap2
+LINUX/android/external/ksoap2
+	<project groups="QC" name="platform/external/ksoap2" path="LINUX/android/external/ksoap2"/>
+
+0
+platform/external/libaom
+LINUX/android/external/libaom
+	<project groups="QC" name="platform/external/libaom" path="LINUX/android/external/libaom"/>
+
+0
+platform/external/libavc
+LINUX/android/external/libavc
+	<project groups="QC" name="platform/external/libavc" path="LINUX/android/external/libavc"/>
+
+0
+platform/external/libbackup
+LINUX/android/external/libbackup
+	<project groups="QC" name="platform/external/libbackup" path="LINUX/android/external/libbackup"/>
+
+0
+platform/external/libbrillo
+LINUX/android/external/libbrillo
+	<project groups="QC" name="platform/external/libbrillo" path="LINUX/android/external/libbrillo"/>
+
+0
+platform/external/libcap
+LINUX/android/external/libcap
+	<project groups="QC" name="platform/external/libcap" path="LINUX/android/external/libcap"/>
+
+0
+platform/external/libcap-ng
+LINUX/android/external/libcap-ng
+	<project groups="QC" name="platform/external/libcap-ng" path="LINUX/android/external/libcap-ng"/>
+
+0
+platform/external/libchrome
+LINUX/android/external/libchrome
+	<project groups="QC" name="platform/external/libchrome" path="LINUX/android/external/libchrome"/>
+
+0
+platform/external/libcups
+LINUX/android/external/libcups
+	<project groups="QC" name="platform/external/libcups" path="LINUX/android/external/libcups"/>
+
+0
+platform/external/libcxx
+LINUX/android/external/libcxx
+	<project groups="QC" name="platform/external/libcxx" path="LINUX/android/external/libcxx"/>
+
+0
+platform/external/libcxxabi
+LINUX/android/external/libcxxabi
+	<project groups="QC" name="platform/external/libcxxabi" path="LINUX/android/external/libcxxabi"/>
+
+0
+platform/external/libdaemon
+LINUX/android/external/libdaemon
+	<project groups="QC" name="platform/external/libdaemon" path="LINUX/android/external/libdaemon"/>
+
+0
+platform/external/libdivsufsort
+LINUX/android/external/libdivsufsort
+	<project groups="QC" name="platform/external/libdivsufsort" path="LINUX/android/external/libdivsufsort"/>
+
+0
+platform/external/libdrm
+LINUX/android/external/libdrm
+	<project groups="QC" name="platform/external/libdrm" path="LINUX/android/external/libdrm"/>
+
+0
+platform/external/libese
+LINUX/android/external/libese
+	<project groups="QC" name="platform/external/libese" path="LINUX/android/external/libese"/>
+
+0
+platform/external/libevent
+LINUX/android/external/libevent
+	<project groups="QC" name="platform/external/libevent" path="LINUX/android/external/libevent"/>
+
+0
+platform/external/libexif
+LINUX/android/external/libexif
+	<project groups="QC" name="platform/external/libexif" path="LINUX/android/external/libexif"/>
+
+0
+platform/external/libffi
+LINUX/android/external/libffi
+	<project groups="QC" name="platform/external/libffi" path="LINUX/android/external/libffi"/>
+
+0
+platform/external/libgsm
+LINUX/android/external/libgsm
+	<project groups="QC" name="platform/external/libgsm" path="LINUX/android/external/libgsm"/>
+
+0
+platform/external/libhevc
+LINUX/android/external/libhevc
+	<project groups="QC" name="platform/external/libhevc" path="LINUX/android/external/libhevc"/>
+
+0
+platform/external/libjpeg-turbo
+LINUX/android/external/libjpeg-turbo
+	<project groups="QC" name="platform/external/libjpeg-turbo" path="LINUX/android/external/libjpeg-turbo"/>
+
+0
+platform/external/libkmsxx
+LINUX/android/external/libkmsxx
+	<project groups="QC" name="platform/external/libkmsxx" path="LINUX/android/external/libkmsxx"/>
+
+0
+platform/external/libldac
+LINUX/android/external/libldac
+	<project groups="QC" name="platform/external/libldac" path="LINUX/android/external/libldac"/>
+
+0
+platform/external/libmpeg2
+LINUX/android/external/libmpeg2
+	<project groups="QC" name="platform/external/libmpeg2" path="LINUX/android/external/libmpeg2"/>
+
+0
+platform/external/libmtp
+LINUX/android/external/libmtp
+	<project groups="QC" name="platform/external/libmtp" path="LINUX/android/external/libmtp"/>
+
+0
+platform/external/libnetfilter_conntrack
+LINUX/android/external/libnetfilter_conntrack
+	<project groups="QC" name="platform/external/libnetfilter_conntrack" path="LINUX/android/external/libnetfilter_conntrack"/>
+
+0
+platform/external/libnfnetlink
+LINUX/android/external/libnfnetlink
+	<project groups="QC" name="platform/external/libnfnetlink" path="LINUX/android/external/libnfnetlink"/>
+
+0
+platform/external/libnl
+LINUX/android/external/libnl
+	<project groups="QC" name="platform/external/libnl" path="LINUX/android/external/libnl"/>
+
+0
+platform/external/libogg
+LINUX/android/external/libogg
+	<project groups="QC" name="platform/external/libogg" path="LINUX/android/external/libogg"/>
+
+0
+platform/external/libopus
+LINUX/android/external/libopus
+	<project groups="QC" name="platform/external/libopus" path="LINUX/android/external/libopus"/>
+
+0
+platform/external/libpcap
+LINUX/android/external/libpcap
+	<project groups="QC" name="platform/external/libpcap" path="LINUX/android/external/libpcap"/>
+
+0
+platform/external/libphonenumber
+LINUX/android/external/libphonenumber
+	<project groups="QC" name="platform/external/libphonenumber" path="LINUX/android/external/libphonenumber"/>
+
+0
+platform/external/libpng
+LINUX/android/external/libpng
+	<project groups="QC" name="platform/external/libpng" path="LINUX/android/external/libpng"/>
+
+0
+platform/external/libprotobuf-mutator
+LINUX/android/external/libprotobuf-mutator
+	<project groups="QC" name="platform/external/libprotobuf-mutator" path="LINUX/android/external/libprotobuf-mutator"/>
+
+0
+platform/external/libtextclassifier
+LINUX/android/external/libtextclassifier
+	<project groups="QC" name="platform/external/libtextclassifier" path="LINUX/android/external/libtextclassifier"/>
+
+0
+platform/external/libunwind
+LINUX/android/external/libunwind
+	<project groups="QC" name="platform/external/libunwind" path="LINUX/android/external/libunwind"/>
+
+0
+platform/external/libunwind_llvm
+LINUX/android/external/libunwind_llvm
+	<project groups="QC" name="platform/external/libunwind_llvm" path="LINUX/android/external/libunwind_llvm"/>
+
+0
+platform/external/libusb
+LINUX/android/external/libusb
+	<project groups="QC" name="platform/external/libusb" path="LINUX/android/external/libusb"/>
+
+0
+platform/external/libusb-compat
+LINUX/android/external/libusb-compat
+	<project groups="QC" name="platform/external/libusb-compat" path="LINUX/android/external/libusb-compat"/>
+
+0
+platform/external/libutf
+LINUX/android/external/libutf
+	<project groups="QC" name="platform/external/libutf" path="LINUX/android/external/libutf"/>
+
+0
+platform/external/libvpx
+LINUX/android/external/libvpx
+	<project groups="QC" name="platform/external/libvpx" path="LINUX/android/external/libvpx"/>
+
+0
+platform/external/libvterm
+LINUX/android/external/libvterm
+	<project groups="QC" name="platform/external/libvterm" path="LINUX/android/external/libvterm"/>
+
+0
+platform/external/libxaac
+LINUX/android/external/libxaac
+	<project groups="QC" name="platform/external/libxaac" path="LINUX/android/external/libxaac"/>
+
+0
+platform/external/libxcam
+LINUX/android/external/libxcam
+	<project groups="QC" name="platform/external/libxcam" path="LINUX/android/external/libxcam"/>
+
+0
+platform/external/libxkbcommon
+LINUX/android/external/libxkbcommon
+	<project groups="QC" name="platform/external/libxkbcommon" path="LINUX/android/external/libxkbcommon"/>
+
+0
+platform/external/libxml2
+LINUX/android/external/libxml2
+	<project groups="QC" name="platform/external/libxml2" path="LINUX/android/external/libxml2"/>
+
+0
+platform/external/libyuv
+LINUX/android/external/libyuv
+	<project groups="QC" name="platform/external/libyuv" path="LINUX/android/external/libyuv"/>
+
+0
+platform/external/linux-kselftest
+LINUX/android/external/linux-kselftest
+	<project groups="QC" name="platform/external/linux-kselftest" path="LINUX/android/external/linux-kselftest"/>
+
+0
+platform/external/llvm
+LINUX/android/external/llvm
+	<project groups="QC" name="platform/external/llvm" path="LINUX/android/external/llvm"/>
+
+0
+platform/external/lmfit
+LINUX/android/external/lmfit
+	<project groups="QC" name="platform/external/lmfit" path="LINUX/android/external/lmfit"/>
+
+0
+platform/external/ltp
+LINUX/android/external/ltp
+	<project groups="QC" name="platform/external/ltp" path="LINUX/android/external/ltp"/>
+
+0
+platform/external/lua
+LINUX/android/external/lua
+	<project groups="QC" name="platform/external/lua" path="LINUX/android/external/lua"/>
+
+0
+platform/external/lz4
+LINUX/android/external/lz4
+	<project groups="QC" name="platform/external/lz4" path="LINUX/android/external/lz4"/>
+
+0
+platform/external/lzma
+LINUX/android/external/lzma
+	<project groups="QC" name="platform/external/lzma" path="LINUX/android/external/lzma"/>
+
+0
+platform/external/markdown
+LINUX/android/external/markdown
+	<project groups="QC" name="platform/external/markdown" path="LINUX/android/external/markdown"/>
+
+0
+platform/external/mdnsresponder
+LINUX/android/external/mdnsresponder
+	<project groups="QC" name="platform/external/mdnsresponder" path="LINUX/android/external/mdnsresponder"/>
+
+0
+platform/external/mesa3d
+LINUX/android/external/mesa3d
+	<project groups="QC" name="platform/external/mesa3d" path="LINUX/android/external/mesa3d"/>
+
+0
+platform/external/minigbm
+LINUX/android/external/minigbm
+	<project groups="QC" name="platform/external/minigbm" path="LINUX/android/external/minigbm"/>
+
+0
+platform/external/minijail
+LINUX/android/external/minijail
+	<project groups="QC" name="platform/external/minijail" path="LINUX/android/external/minijail"/>
+
+0
+platform/external/mksh
+LINUX/android/external/mksh
+	<project groups="QC" name="platform/external/mksh" path="LINUX/android/external/mksh"/>
+
+0
+platform/external/mockftpserver
+LINUX/android/external/mockftpserver
+	<project groups="QC" name="platform/external/mockftpserver" path="LINUX/android/external/mockftpserver"/>
+
+0
+platform/external/mockito
+LINUX/android/external/mockito
+	<project groups="QC" name="platform/external/mockito" path="LINUX/android/external/mockito"/>
+
+0
+platform/external/mockwebserver
+LINUX/android/external/mockwebserver
+	<project groups="QC" name="platform/external/mockwebserver" path="LINUX/android/external/mockwebserver"/>
+
+0
+platform/external/modp_b64
+LINUX/android/external/modp_b64
+	<project groups="QC" name="platform/external/modp_b64" path="LINUX/android/external/modp_b64"/>
+
+0
+platform/external/mp4parser
+LINUX/android/external/mp4parser
+	<project groups="QC" name="platform/external/mp4parser" path="LINUX/android/external/mp4parser"/>
+
+0
+platform/external/mtpd
+LINUX/android/external/mtpd
+	<project groups="QC" name="platform/external/mtpd" path="LINUX/android/external/mtpd"/>
+
+0
+platform/external/nanohttpd
+LINUX/android/external/nanohttpd
+	<project groups="QC" name="platform/external/nanohttpd" path="LINUX/android/external/nanohttpd"/>
+
+0
+platform/external/nanopb-c
+LINUX/android/external/nanopb-c
+	<project groups="QC" name="platform/external/nanopb-c" path="LINUX/android/external/nanopb-c"/>
+
+0
+platform/external/naver-fonts
+LINUX/android/external/naver-fonts
+	<project groups="QC" name="platform/external/naver-fonts" path="LINUX/android/external/naver-fonts"/>
+
+0
+platform/external/neon_2_sse
+LINUX/android/external/neon_2_sse
+	<project groups="QC" name="platform/external/neon_2_sse" path="LINUX/android/external/neon_2_sse"/>
+
+0
+platform/external/neven
+LINUX/android/external/neven
+	<project groups="QC" name="platform/external/neven" path="LINUX/android/external/neven"/>
+
+0
+platform/external/newfs_msdos
+LINUX/android/external/newfs_msdos
+	<project groups="QC" name="platform/external/newfs_msdos" path="LINUX/android/external/newfs_msdos"/>
+
+0
+platform/external/nfacct
+LINUX/android/external/nfacct
+	<project groups="QC" name="platform/external/nfacct" path="LINUX/android/external/nfacct"/>
+
+0
+platform/external/nist-pkits
+LINUX/android/external/nist-pkits
+	<project groups="QC" name="platform/external/nist-pkits" path="LINUX/android/external/nist-pkits"/>
+
+0
+platform/external/nist-sip
+LINUX/android/external/nist-sip
+	<project groups="QC" name="platform/external/nist-sip" path="LINUX/android/external/nist-sip"/>
+
+0
+platform/external/noto-fonts
+LINUX/android/external/noto-fonts
+	<project groups="QC" name="platform/external/noto-fonts" path="LINUX/android/external/noto-fonts"/>
+
+0
+platform/external/oauth
+LINUX/android/external/oauth
+	<project groups="QC" name="platform/external/oauth" path="LINUX/android/external/oauth"/>
+
+0
+platform/external/objenesis
+LINUX/android/external/objenesis
+	<project groups="QC" name="platform/external/objenesis" path="LINUX/android/external/objenesis"/>
+
+0
+platform/external/oj-libjdwp
+LINUX/android/external/oj-libjdwp
+	<project groups="QC" name="platform/external/oj-libjdwp" path="LINUX/android/external/oj-libjdwp"/>
+
+0
+platform/external/okhttp
+LINUX/android/external/okhttp
+	<project groups="QC" name="platform/external/okhttp" path="LINUX/android/external/okhttp"/>
+
+0
+platform/external/one-true-awk
+LINUX/android/external/one-true-awk
+	<project groups="QC" name="platform/external/one-true-awk" path="LINUX/android/external/one-true-awk"/>
+
+0
+platform/external/opencensus-java
+LINUX/android/external/opencensus-java
+	<project groups="QC" name="platform/external/opencensus-java" path="LINUX/android/external/opencensus-java"/>
+
+0
+platform/external/openssh
+LINUX/android/external/openssh
+	<project groups="QC" name="platform/external/openssh" path="LINUX/android/external/openssh"/>
+
+0
+platform/external/owasp/sanitizer
+LINUX/android/external/owasp/sanitizer
+	<project groups="QC" name="platform/external/owasp/sanitizer" path="LINUX/android/external/owasp/sanitizer"/>
+
+0
+platform/external/parameter-framework
+LINUX/android/external/parameter-framework
+	<project groups="QC" name="platform/external/parameter-framework" path="LINUX/android/external/parameter-framework"/>
+
+0
+platform/external/pcre
+LINUX/android/external/pcre
+	<project groups="QC" name="platform/external/pcre" path="LINUX/android/external/pcre"/>
+
+0
+platform/external/pdfium
+LINUX/android/external/pdfium
+	<project groups="QC" name="platform/external/pdfium" path="LINUX/android/external/pdfium"/>
+
+0
+platform/external/perf_data_converter
+LINUX/android/external/perf_data_converter
+	<project groups="QC" name="platform/external/perf_data_converter" path="LINUX/android/external/perf_data_converter"/>
+
+0
+platform/external/perfetto
+LINUX/android/external/perfetto
+	<project groups="QC" name="platform/external/perfetto" path="LINUX/android/external/perfetto"/>
+
+0
+platform/external/piex
+LINUX/android/external/piex
+	<project groups="QC" name="platform/external/piex" path="LINUX/android/external/piex"/>
+
+0
+platform/external/ply
+LINUX/android/external/ply
+	<project groups="QC" name="platform/external/ply" path="LINUX/android/external/ply"/>
+
+0
+platform/external/ppp
+LINUX/android/external/ppp
+	<project groups="QC" name="platform/external/ppp" path="LINUX/android/external/ppp"/>
+
+0
+platform/external/proguard
+LINUX/android/external/proguard
+	<project groups="QC" name="platform/external/proguard" path="LINUX/android/external/proguard"/>
+
+0
+platform/external/protobuf
+LINUX/android/external/protobuf
+	<project groups="QC" name="platform/external/protobuf" path="LINUX/android/external/protobuf"/>
+
+0
+platform/external/protobuf-javalite
+LINUX/android/external/protobuf-javalite
+	<project groups="QC" name="platform/external/protobuf-javalite" path="LINUX/android/external/protobuf-javalite"/>
+
+0
+platform/external/puffin
+LINUX/android/external/puffin
+	<project groups="QC" name="platform/external/puffin" path="LINUX/android/external/puffin"/>
+
+0
+platform/external/python/Pillow
+LINUX/android/external/python/Pillow
+	<project groups="QC" name="platform/external/python/Pillow" path="LINUX/android/external/python/Pillow"/>
+
+0
+platform/external/python/apitools
+LINUX/android/external/python/apitools
+	<project groups="QC" name="platform/external/python/apitools" path="LINUX/android/external/python/apitools"/>
+
+0
+platform/external/python/appdirs
+LINUX/android/external/python/appdirs
+	<project groups="QC" name="platform/external/python/appdirs" path="LINUX/android/external/python/appdirs"/>
+
+0
+platform/external/python/asn1crypto
+LINUX/android/external/python/asn1crypto
+	<project groups="QC" name="platform/external/python/asn1crypto" path="LINUX/android/external/python/asn1crypto"/>
+
+0
+platform/external/python/atomicwrites
+LINUX/android/external/python/atomicwrites
+	<project groups="QC" name="platform/external/python/atomicwrites" path="LINUX/android/external/python/atomicwrites"/>
+
+0
+platform/external/python/attrs
+LINUX/android/external/python/attrs
+	<project groups="QC" name="platform/external/python/attrs" path="LINUX/android/external/python/attrs"/>
+
+0
+platform/external/python/cachetools
+LINUX/android/external/python/cachetools
+	<project groups="QC" name="platform/external/python/cachetools" path="LINUX/android/external/python/cachetools"/>
+
+0
+platform/external/python/cffi
+LINUX/android/external/python/cffi
+	<project groups="QC" name="platform/external/python/cffi" path="LINUX/android/external/python/cffi"/>
+
+0
+platform/external/python/cpython2
+LINUX/android/external/python/cpython2
+	<project groups="QC" name="platform/external/python/cpython2" path="LINUX/android/external/python/cpython2"/>
+
+0
+platform/external/python/cpython3
+LINUX/android/external/python/cpython3
+	<project groups="QC" name="platform/external/python/cpython3" path="LINUX/android/external/python/cpython3"/>
+
+0
+platform/external/python/cryptography
+LINUX/android/external/python/cryptography
+	<project groups="QC" name="platform/external/python/cryptography" path="LINUX/android/external/python/cryptography"/>
+
+0
+platform/external/python/dateutil
+LINUX/android/external/python/dateutil
+	<project groups="QC" name="platform/external/python/dateutil" path="LINUX/android/external/python/dateutil"/>
+
+0
+platform/external/python/dill
+LINUX/android/external/python/dill
+	<project groups="QC" name="platform/external/python/dill" path="LINUX/android/external/python/dill"/>
+
+0
+platform/external/python/enum
+LINUX/android/external/python/enum
+	<project groups="QC" name="platform/external/python/enum" path="LINUX/android/external/python/enum"/>
+
+0
+platform/external/python/enum34
+LINUX/android/external/python/enum34
+	<project groups="QC" name="platform/external/python/enum34" path="LINUX/android/external/python/enum34"/>
+
+0
+platform/external/python/funcsigs
+LINUX/android/external/python/funcsigs
+	<project groups="QC" name="platform/external/python/funcsigs" path="LINUX/android/external/python/funcsigs"/>
+
+0
+platform/external/python/future
+LINUX/android/external/python/future
+	<project groups="QC" name="platform/external/python/future" path="LINUX/android/external/python/future"/>
+
+0
+platform/external/python/futures
+LINUX/android/external/python/futures
+	<project groups="QC" name="platform/external/python/futures" path="LINUX/android/external/python/futures"/>
+
+0
+platform/external/python/gapic-google-cloud-pubsub-v1
+LINUX/android/external/python/gapic-google-cloud-pubsub-v1
+	<project groups="QC" name="platform/external/python/gapic-google-cloud-pubsub-v1" path="LINUX/android/external/python/gapic-google-cloud-pubsub-v1"/>
+
+0
+platform/external/python/google-api-python-client
+LINUX/android/external/python/google-api-python-client
+	<project groups="QC" name="platform/external/python/google-api-python-client" path="LINUX/android/external/python/google-api-python-client"/>
+
+0
+platform/external/python/google-auth
+LINUX/android/external/python/google-auth
+	<project groups="QC" name="platform/external/python/google-auth" path="LINUX/android/external/python/google-auth"/>
+
+0
+platform/external/python/google-auth-httplib2
+LINUX/android/external/python/google-auth-httplib2
+	<project groups="QC" name="platform/external/python/google-auth-httplib2" path="LINUX/android/external/python/google-auth-httplib2"/>
+
+0
+platform/external/python/google-cloud-core
+LINUX/android/external/python/google-cloud-core
+	<project groups="QC" name="platform/external/python/google-cloud-core" path="LINUX/android/external/python/google-cloud-core"/>
+
+0
+platform/external/python/google-cloud-pubsub
+LINUX/android/external/python/google-cloud-pubsub
+	<project groups="QC" name="platform/external/python/google-cloud-pubsub" path="LINUX/android/external/python/google-cloud-pubsub"/>
+
+0
+platform/external/python/google-gax
+LINUX/android/external/python/google-gax
+	<project groups="QC" name="platform/external/python/google-gax" path="LINUX/android/external/python/google-gax"/>
+
+0
+platform/external/python/googleapis
+LINUX/android/external/python/googleapis
+	<project groups="QC" name="platform/external/python/googleapis" path="LINUX/android/external/python/googleapis"/>
+
+0
+platform/external/python/grpc-google-iam-v1
+LINUX/android/external/python/grpc-google-iam-v1
+	<project groups="QC" name="platform/external/python/grpc-google-iam-v1" path="LINUX/android/external/python/grpc-google-iam-v1"/>
+
+0
+platform/external/python/grpcio
+LINUX/android/external/python/grpcio
+	<project groups="QC" name="platform/external/python/grpcio" path="LINUX/android/external/python/grpcio"/>
+
+0
+platform/external/python/httplib2
+LINUX/android/external/python/httplib2
+	<project groups="QC" name="platform/external/python/httplib2" path="LINUX/android/external/python/httplib2"/>
+
+0
+platform/external/python/matplotlib
+LINUX/android/external/python/matplotlib
+	<project groups="QC" name="platform/external/python/matplotlib" path="LINUX/android/external/python/matplotlib"/>
+
+0
+platform/external/python/mock
+LINUX/android/external/python/mock
+	<project groups="QC" name="platform/external/python/mock" path="LINUX/android/external/python/mock"/>
+
+0
+platform/external/python/more-itertools
+LINUX/android/external/python/more-itertools
+	<project groups="QC" name="platform/external/python/more-itertools" path="LINUX/android/external/python/more-itertools"/>
+
+0
+platform/external/python/numpy
+LINUX/android/external/python/numpy
+	<project groups="QC" name="platform/external/python/numpy" path="LINUX/android/external/python/numpy"/>
+
+0
+platform/external/python/oauth2client
+LINUX/android/external/python/oauth2client
+	<project groups="QC" name="platform/external/python/oauth2client" path="LINUX/android/external/python/oauth2client"/>
+
+0
+platform/external/python/olefile
+LINUX/android/external/python/olefile
+	<project groups="QC" name="platform/external/python/olefile" path="LINUX/android/external/python/olefile"/>
+
+0
+platform/external/python/packaging
+LINUX/android/external/python/packaging
+	<project groups="QC" name="platform/external/python/packaging" path="LINUX/android/external/python/packaging"/>
+
+0
+platform/external/python/parse
+LINUX/android/external/python/parse
+	<project groups="QC" name="platform/external/python/parse" path="LINUX/android/external/python/parse"/>
+
+0
+platform/external/python/pluggy
+LINUX/android/external/python/pluggy
+	<project groups="QC" name="platform/external/python/pluggy" path="LINUX/android/external/python/pluggy"/>
+
+0
+platform/external/python/ply
+LINUX/android/external/python/ply
+	<project groups="QC" name="platform/external/python/ply" path="LINUX/android/external/python/ply"/>
+
+0
+platform/external/python/proto-google-cloud-pubsub-v1
+LINUX/android/external/python/proto-google-cloud-pubsub-v1
+	<project groups="QC" name="platform/external/python/proto-google-cloud-pubsub-v1" path="LINUX/android/external/python/proto-google-cloud-pubsub-v1"/>
+
+0
+platform/external/python/protobuf
+LINUX/android/external/python/protobuf
+	<project groups="QC" name="platform/external/python/protobuf" path="LINUX/android/external/python/protobuf"/>
+
+0
+platform/external/python/py
+LINUX/android/external/python/py
+	<project groups="QC" name="platform/external/python/py" path="LINUX/android/external/python/py"/>
+
+0
+platform/external/python/pyasn1
+LINUX/android/external/python/pyasn1
+	<project groups="QC" name="platform/external/python/pyasn1" path="LINUX/android/external/python/pyasn1"/>
+
+0
+platform/external/python/pyasn1-modules
+LINUX/android/external/python/pyasn1-modules
+	<project groups="QC" name="platform/external/python/pyasn1-modules" path="LINUX/android/external/python/pyasn1-modules"/>
+
+0
+platform/external/python/pycparser
+LINUX/android/external/python/pycparser
+	<project groups="QC" name="platform/external/python/pycparser" path="LINUX/android/external/python/pycparser"/>
+
+0
+platform/external/python/pyopenssl
+LINUX/android/external/python/pyopenssl
+	<project groups="QC" name="platform/external/python/pyopenssl" path="LINUX/android/external/python/pyopenssl"/>
+
+0
+platform/external/python/pyparsing
+LINUX/android/external/python/pyparsing
+	<project groups="QC" name="platform/external/python/pyparsing" path="LINUX/android/external/python/pyparsing"/>
+
+0
+platform/external/python/pytest
+LINUX/android/external/python/pytest
+	<project groups="QC" name="platform/external/python/pytest" path="LINUX/android/external/python/pytest"/>
+
+0
+platform/external/python/requests
+LINUX/android/external/python/requests
+	<project groups="QC" name="platform/external/python/requests" path="LINUX/android/external/python/requests"/>
+
+0
+platform/external/python/rsa
+LINUX/android/external/python/rsa
+	<project groups="QC" name="platform/external/python/rsa" path="LINUX/android/external/python/rsa"/>
+
+0
+platform/external/python/scipy
+LINUX/android/external/python/scipy
+	<project groups="QC" name="platform/external/python/scipy" path="LINUX/android/external/python/scipy"/>
+
+0
+platform/external/python/setuptools
+LINUX/android/external/python/setuptools
+	<project groups="QC" name="platform/external/python/setuptools" path="LINUX/android/external/python/setuptools"/>
+
+0
+platform/external/python/six
+LINUX/android/external/python/six
+	<project groups="QC" name="platform/external/python/six" path="LINUX/android/external/python/six"/>
+
+0
+platform/external/python/uritemplates
+LINUX/android/external/python/uritemplates
+	<project groups="QC" name="platform/external/python/uritemplates" path="LINUX/android/external/python/uritemplates"/>
+
+0
+platform/external/rapidjson
+LINUX/android/external/rapidjson
+	<project groups="QC" name="platform/external/rapidjson" path="LINUX/android/external/rapidjson"/>
+
+0
+platform/external/rappor
+LINUX/android/external/rappor
+	<project groups="QC" name="platform/external/rappor" path="LINUX/android/external/rappor"/>
+
+0
+platform/external/replicaisland
+LINUX/android/external/replicaisland
+	<project groups="QC" name="platform/external/replicaisland" path="LINUX/android/external/replicaisland"/>
+
+0
+platform/external/rmi4utils
+LINUX/android/external/rmi4utils
+	<project groups="QC" name="platform/external/rmi4utils" path="LINUX/android/external/rmi4utils"/>
+
+0
+platform/external/robolectric
+LINUX/android/external/robolectric
+	<project groups="QC" name="platform/external/robolectric" path="LINUX/android/external/robolectric"/>
+
+0
+platform/external/robolectric-shadows
+LINUX/android/external/robolectric-shadows
+	<project groups="QC" name="platform/external/robolectric-shadows" path="LINUX/android/external/robolectric-shadows"/>
+
+0
+platform/external/roboto-fonts
+LINUX/android/external/roboto-fonts
+	<project groups="QC" name="platform/external/roboto-fonts" path="LINUX/android/external/roboto-fonts"/>
+
+0
+platform/external/rootdev
+LINUX/android/external/rootdev
+	<project groups="QC" name="platform/external/rootdev" path="LINUX/android/external/rootdev"/>
+
+0
+platform/external/scapy
+LINUX/android/external/scapy
+	<project groups="QC" name="platform/external/scapy" path="LINUX/android/external/scapy"/>
+
+0
+platform/external/scrypt
+LINUX/android/external/scrypt
+	<project groups="QC" name="platform/external/scrypt" path="LINUX/android/external/scrypt"/>
+
+0
+platform/external/seccomp-tests
+LINUX/android/external/seccomp-tests
+	<project groups="QC" name="platform/external/seccomp-tests" path="LINUX/android/external/seccomp-tests"/>
+
+0
+platform/external/selinux
+LINUX/android/external/selinux
+	<project groups="QC" name="platform/external/selinux" path="LINUX/android/external/selinux"/>
+
+0
+platform/external/setupcompat
+LINUX/android/external/setupcompat
+	<project groups="QC" name="platform/external/setupcompat" path="LINUX/android/external/setupcompat"/>
+
+0
+platform/external/setupdesign
+LINUX/android/external/setupdesign
+	<project groups="QC" name="platform/external/setupdesign" path="LINUX/android/external/setupdesign"/>
+
+0
+platform/external/sfntly
+LINUX/android/external/sfntly
+	<project groups="QC" name="platform/external/sfntly" path="LINUX/android/external/sfntly"/>
+
+0
+platform/external/shaderc/spirv-headers
+LINUX/android/external/shaderc/spirv-headers
+	<project groups="QC" name="platform/external/shaderc/spirv-headers" path="LINUX/android/external/shaderc/spirv-headers"/>
+
+0
+platform/external/shflags
+LINUX/android/external/shflags
+	<project groups="QC" name="platform/external/shflags" path="LINUX/android/external/shflags"/>
+
+0
+platform/external/skia
+LINUX/android/external/skia
+	<project groups="QC" name="platform/external/skia" path="LINUX/android/external/skia"/>
+
+0
+platform/external/sl4a
+LINUX/android/external/sl4a
+	<project groups="QC" name="platform/external/sl4a" path="LINUX/android/external/sl4a"/>
+
+0
+platform/external/slf4j
+LINUX/android/external/slf4j
+	<project groups="QC" name="platform/external/slf4j" path="LINUX/android/external/slf4j"/>
+
+0
+platform/external/smali
+LINUX/android/external/smali
+	<project groups="QC" name="platform/external/smali" path="LINUX/android/external/smali"/>
+
+0
+platform/external/snakeyaml
+LINUX/android/external/snakeyaml
+	<project groups="QC" name="platform/external/snakeyaml" path="LINUX/android/external/snakeyaml"/>
+
+0
+platform/external/sonic
+LINUX/android/external/sonic
+	<project groups="QC" name="platform/external/sonic" path="LINUX/android/external/sonic"/>
+
+0
+platform/external/sonivox
+LINUX/android/external/sonivox
+	<project groups="QC" name="platform/external/sonivox" path="LINUX/android/external/sonivox"/>
+
+0
+platform/external/speex
+LINUX/android/external/speex
+	<project groups="QC" name="platform/external/speex" path="LINUX/android/external/speex"/>
+
+0
+platform/external/spirv-llvm
+LINUX/android/external/spirv-llvm
+	<project groups="QC" name="platform/external/spirv-llvm" path="LINUX/android/external/spirv-llvm"/>
+
+0
+platform/external/sqlite
+LINUX/android/external/sqlite
+	<project groups="QC" name="platform/external/sqlite" path="LINUX/android/external/sqlite"/>
+
+0
+platform/external/squashfs-tools
+LINUX/android/external/squashfs-tools
+	<project groups="QC" name="platform/external/squashfs-tools" path="LINUX/android/external/squashfs-tools"/>
+
+0
+platform/external/strace
+LINUX/android/external/strace
+	<project groups="QC" name="platform/external/strace" path="LINUX/android/external/strace"/>
+
+0
+platform/external/stressapptest
+LINUX/android/external/stressapptest
+	<project groups="QC" name="platform/external/stressapptest" path="LINUX/android/external/stressapptest"/>
+
+0
+platform/external/subsampling-scale-image-view
+LINUX/android/external/subsampling-scale-image-view
+	<project groups="QC" name="platform/external/subsampling-scale-image-view" path="LINUX/android/external/subsampling-scale-image-view"/>
+
+0
+platform/external/swiftshader
+LINUX/android/external/swiftshader
+	<project groups="QC" name="platform/external/swiftshader" path="LINUX/android/external/swiftshader"/>
+
+0
+platform/external/syzkaller
+LINUX/android/external/syzkaller
+	<project groups="QC" name="platform/external/syzkaller" path="LINUX/android/external/syzkaller"/>
+
+0
+platform/external/tagsoup
+LINUX/android/external/tagsoup
+	<project groups="QC" name="platform/external/tagsoup" path="LINUX/android/external/tagsoup"/>
+
+0
+platform/external/tcpdump
+LINUX/android/external/tcpdump
+	<project groups="QC" name="platform/external/tcpdump" path="LINUX/android/external/tcpdump"/>
+
+0
+platform/external/tensorflow
+LINUX/android/external/tensorflow
+	<project groups="QC" name="platform/external/tensorflow" path="LINUX/android/external/tensorflow"/>
+
+0
+platform/external/testng
+LINUX/android/external/testng
+	<project groups="QC" name="platform/external/testng" path="LINUX/android/external/testng"/>
+
+0
+platform/external/tinyalsa
+LINUX/android/external/tinyalsa
+	<project groups="QC" name="platform/external/tinyalsa" path="LINUX/android/external/tinyalsa"/>
+
+0
+platform/external/tinycompress
+LINUX/android/external/tinycompress
+	<project groups="QC" name="platform/external/tinycompress" path="LINUX/android/external/tinycompress"/>
+
+0
+platform/external/tinyxml
+LINUX/android/external/tinyxml
+	<project groups="QC" name="platform/external/tinyxml" path="LINUX/android/external/tinyxml"/>
+
+0
+platform/external/tinyxml2
+LINUX/android/external/tinyxml2
+	<project groups="QC" name="platform/external/tinyxml2" path="LINUX/android/external/tinyxml2"/>
+
+0
+platform/external/toybox
+LINUX/android/external/toybox
+	<project groups="QC" name="platform/external/toybox" path="LINUX/android/external/toybox"/>
+
+0
+platform/external/tremolo
+LINUX/android/external/tremolo
+	<project groups="QC" name="platform/external/tremolo" path="LINUX/android/external/tremolo"/>
+
+0
+platform/external/turbine
+LINUX/android/external/turbine
+	<project groups="QC" name="platform/external/turbine" path="LINUX/android/external/turbine"/>
+
+0
+platform/external/u-boot
+LINUX/android/external/u-boot
+	<project groups="QC" name="platform/external/u-boot" path="LINUX/android/external/u-boot"/>
+
+0
+platform/external/ukey2
+LINUX/android/external/ukey2
+	<project groups="QC" name="platform/external/ukey2" path="LINUX/android/external/ukey2"/>
+
+0
+platform/external/unicode
+LINUX/android/external/unicode
+	<project groups="QC" name="platform/external/unicode" path="LINUX/android/external/unicode"/>
+
+0
+platform/external/v4l2_codec2
+LINUX/android/external/v4l2_codec2
+	<project groups="QC" name="platform/external/v4l2_codec2" path="LINUX/android/external/v4l2_codec2"/>
+
+0
+platform/external/v8
+LINUX/android/external/v8
+	<project groups="QC" name="platform/external/v8" path="LINUX/android/external/v8"/>
+
+0
+platform/external/vboot_reference
+LINUX/android/external/vboot_reference
+	<project groups="QC" name="platform/external/vboot_reference" path="LINUX/android/external/vboot_reference"/>
+
+0
+platform/external/virglrenderer
+LINUX/android/external/virglrenderer
+	<project groups="QC" name="platform/external/virglrenderer" path="LINUX/android/external/virglrenderer"/>
+
+0
+platform/external/vixl
+LINUX/android/external/vixl
+	<project groups="QC" name="platform/external/vixl" path="LINUX/android/external/vixl"/>
+
+0
+platform/external/vogar
+LINUX/android/external/vogar
+	<project groups="QC" name="platform/external/vogar" path="LINUX/android/external/vogar"/>
+
+0
+platform/external/volley
+LINUX/android/external/volley
+	<project groups="QC" name="platform/external/volley" path="LINUX/android/external/volley"/>
+
+0
+platform/external/vulkan-headers
+LINUX/android/external/vulkan-headers
+	<project groups="QC" name="platform/external/vulkan-headers" path="LINUX/android/external/vulkan-headers"/>
+
+0
+platform/external/vulkan-validation-layers
+LINUX/android/external/vulkan-validation-layers
+	<project groups="QC" name="platform/external/vulkan-validation-layers" path="LINUX/android/external/vulkan-validation-layers"/>
+
+0
+platform/external/walt
+LINUX/android/external/walt
+	<project groups="QC" name="platform/external/walt" path="LINUX/android/external/walt"/>
+
+0
+platform/external/wayland
+LINUX/android/external/wayland
+	<project groups="QC" name="platform/external/wayland" path="LINUX/android/external/wayland"/>
+
+0
+platform/external/wayland-protocols
+LINUX/android/external/wayland-protocols
+	<project groups="QC" name="platform/external/wayland-protocols" path="LINUX/android/external/wayland-protocols"/>
+
+0
+platform/external/webp
+LINUX/android/external/webp
+	<project groups="QC" name="platform/external/webp" path="LINUX/android/external/webp"/>
+
+0
+platform/external/webrtc
+LINUX/android/external/webrtc
+	<project groups="QC" name="platform/external/webrtc" path="LINUX/android/external/webrtc"/>
+
+0
+platform/external/wpa_supplicant_8
+LINUX/android/external/wpa_supplicant_8
+	<project groups="QC" name="platform/external/wpa_supplicant_8" path="LINUX/android/external/wpa_supplicant_8"/>
+
+0
+platform/external/wycheproof
+LINUX/android/external/wycheproof
+	<project groups="QC" name="platform/external/wycheproof" path="LINUX/android/external/wycheproof"/>
+
+0
+platform/external/xmp_toolkit
+LINUX/android/external/xmp_toolkit
+	<project groups="QC" name="platform/external/xmp_toolkit" path="LINUX/android/external/xmp_toolkit"/>
+
+0
+platform/external/xz-embedded
+LINUX/android/external/xz-embedded
+	<project groups="QC" name="platform/external/xz-embedded" path="LINUX/android/external/xz-embedded"/>
+
+0
+platform/external/xz-java
+LINUX/android/external/xz-java
+	<project groups="QC" name="platform/external/xz-java" path="LINUX/android/external/xz-java"/>
+
+0
+platform/external/yapf
+LINUX/android/external/yapf
+	<project groups="QC" name="platform/external/yapf" path="LINUX/android/external/yapf"/>
+
+0
+platform/external/zlib
+LINUX/android/external/zlib
+	<project groups="QC" name="platform/external/zlib" path="LINUX/android/external/zlib"/>
+
+0
+platform/external/zopfli
+LINUX/android/external/zopfli
+	<project groups="QC" name="platform/external/zopfli" path="LINUX/android/external/zopfli"/>
+
+0
+platform/external/zxing
+LINUX/android/external/zxing
+	<project groups="QC" name="platform/external/zxing" path="LINUX/android/external/zxing"/>
+
+0
+platform/frameworks/av
+LINUX/android/frameworks/av
+	<project groups="QC" name="platform/frameworks/av" path="LINUX/android/frameworks/av"/>
+
+0
+platform/frameworks/base
+LINUX/android/frameworks/base
+	<project groups="QC" name="platform/frameworks/base" path="LINUX/android/frameworks/base"/>
+
+0
+platform/frameworks/compile/libbcc
+LINUX/android/frameworks/compile/libbcc
+	<project groups="QC" name="platform/frameworks/compile/libbcc" path="LINUX/android/frameworks/compile/libbcc"/>
+
+0
+platform/frameworks/compile/mclinker
+LINUX/android/frameworks/compile/mclinker
+	<project groups="QC" name="platform/frameworks/compile/mclinker" path="LINUX/android/frameworks/compile/mclinker"/>
+
+0
+platform/frameworks/compile/slang
+LINUX/android/frameworks/compile/slang
+	<project groups="QC" name="platform/frameworks/compile/slang" path="LINUX/android/frameworks/compile/slang"/>
+
+0
+platform/frameworks/ex
+LINUX/android/frameworks/ex
+	<project groups="QC" name="platform/frameworks/ex" path="LINUX/android/frameworks/ex"/>
+
+0
+platform/frameworks/hardware/interfaces
+LINUX/android/frameworks/hardware/interfaces
+	<project groups="QC" name="platform/frameworks/hardware/interfaces" path="LINUX/android/frameworks/hardware/interfaces"/>
+
+0
+platform/frameworks/layoutlib
+LINUX/android/frameworks/layoutlib
+	<project groups="QC" name="platform/frameworks/layoutlib" path="LINUX/android/frameworks/layoutlib"/>
+
+0
+platform/frameworks/minikin
+LINUX/android/frameworks/minikin
+	<project groups="QC" name="platform/frameworks/minikin" path="LINUX/android/frameworks/minikin"/>
+
+0
+platform/frameworks/ml
+LINUX/android/frameworks/ml
+	<project groups="QC" name="platform/frameworks/ml" path="LINUX/android/frameworks/ml"/>
+
+0
+platform/frameworks/multidex
+LINUX/android/frameworks/multidex
+	<project groups="QC" name="platform/frameworks/multidex" path="LINUX/android/frameworks/multidex"/>
+
+0
+platform/frameworks/native
+LINUX/android/frameworks/native
+	<project groups="QC" name="platform/frameworks/native" path="LINUX/android/frameworks/native"/>
+
+0
+platform/frameworks/opt/bitmap
+LINUX/android/frameworks/opt/bitmap
+	<project groups="QC" name="platform/frameworks/opt/bitmap" path="LINUX/android/frameworks/opt/bitmap"/>
+
+0
+platform/frameworks/opt/calendar
+LINUX/android/frameworks/opt/calendar
+	<project groups="QC" name="platform/frameworks/opt/calendar" path="LINUX/android/frameworks/opt/calendar"/>
+
+0
+platform/frameworks/opt/car/services
+LINUX/android/frameworks/opt/car/services
+	<project groups="QC" name="platform/frameworks/opt/car/services" path="LINUX/android/frameworks/opt/car/services"/>
+
+0
+platform/frameworks/opt/car/setupwizard
+LINUX/android/frameworks/opt/car/setupwizard
+	<project groups="QC" name="platform/frameworks/opt/car/setupwizard" path="LINUX/android/frameworks/opt/car/setupwizard"/>
+
+0
+platform/frameworks/opt/chips
+LINUX/android/frameworks/opt/chips
+	<project groups="QC" name="platform/frameworks/opt/chips" path="LINUX/android/frameworks/opt/chips"/>
+
+0
+platform/frameworks/opt/colorpicker
+LINUX/android/frameworks/opt/colorpicker
+	<project groups="QC" name="platform/frameworks/opt/colorpicker" path="LINUX/android/frameworks/opt/colorpicker"/>
+
+0
+platform/frameworks/opt/datetimepicker
+LINUX/android/frameworks/opt/datetimepicker
+	<project groups="QC" name="platform/frameworks/opt/datetimepicker" path="LINUX/android/frameworks/opt/datetimepicker"/>
+
+0
+platform/frameworks/opt/net/ethernet
+LINUX/android/frameworks/opt/net/ethernet
+	<project groups="QC" name="platform/frameworks/opt/net/ethernet" path="LINUX/android/frameworks/opt/net/ethernet"/>
+
+0
+platform/frameworks/opt/net/ike
+LINUX/android/frameworks/opt/net/ike
+	<project groups="QC" name="platform/frameworks/opt/net/ike" path="LINUX/android/frameworks/opt/net/ike"/>
+
+0
+platform/frameworks/opt/net/ims
+LINUX/android/frameworks/opt/net/ims
+	<project groups="QC" name="platform/frameworks/opt/net/ims" path="LINUX/android/frameworks/opt/net/ims"/>
+
+0
+platform/frameworks/opt/net/voip
+LINUX/android/frameworks/opt/net/voip
+	<project groups="QC" name="platform/frameworks/opt/net/voip" path="LINUX/android/frameworks/opt/net/voip"/>
+
+0
+platform/frameworks/opt/net/wifi
+LINUX/android/frameworks/opt/net/wifi
+	<project groups="QC" name="platform/frameworks/opt/net/wifi" path="LINUX/android/frameworks/opt/net/wifi"/>
+
+0
+platform/frameworks/opt/photoviewer
+LINUX/android/frameworks/opt/photoviewer
+	<project groups="QC" name="platform/frameworks/opt/photoviewer" path="LINUX/android/frameworks/opt/photoviewer"/>
+
+0
+platform/frameworks/opt/setupwizard
+LINUX/android/frameworks/opt/setupwizard
+	<project groups="QC" name="platform/frameworks/opt/setupwizard" path="LINUX/android/frameworks/opt/setupwizard"/>
+
+0
+platform/frameworks/opt/telephony
+LINUX/android/frameworks/opt/telephony
+	<project groups="QC" name="platform/frameworks/opt/telephony" path="LINUX/android/frameworks/opt/telephony"/>
+
+0
+platform/frameworks/opt/timezonepicker
+LINUX/android/frameworks/opt/timezonepicker
+	<project groups="QC" name="platform/frameworks/opt/timezonepicker" path="LINUX/android/frameworks/opt/timezonepicker"/>
+
+0
+platform/frameworks/opt/vcard
+LINUX/android/frameworks/opt/vcard
+	<project groups="QC" name="platform/frameworks/opt/vcard" path="LINUX/android/frameworks/opt/vcard"/>
+
+0
+platform/frameworks/rs
+LINUX/android/frameworks/rs
+	<project groups="QC" name="platform/frameworks/rs" path="LINUX/android/frameworks/rs"/>
+
+0
+platform/frameworks/wilhelm
+LINUX/android/frameworks/wilhelm
+	<project groups="QC" name="platform/frameworks/wilhelm" path="LINUX/android/frameworks/wilhelm"/>
+
+0
+platform/hardware/google/apf
+LINUX/android/hardware/google/apf
+	<project groups="QC" name="platform/hardware/google/apf" path="LINUX/android/hardware/google/apf"/>
+
+0
+platform/hardware/google/av
+LINUX/android/hardware/google/av
+	<project groups="QC" name="platform/hardware/google/av" path="LINUX/android/hardware/google/av"/>
+
+0
+platform/hardware/google/easel
+LINUX/android/hardware/google/easel
+	<project groups="QC" name="platform/hardware/google/easel" path="LINUX/android/hardware/google/easel"/>
+
+0
+platform/hardware/google/interfaces
+LINUX/android/hardware/google/interfaces
+	<project groups="QC" name="platform/hardware/google/interfaces" path="LINUX/android/hardware/google/interfaces"/>
+
+0
+platform/hardware/interfaces
+LINUX/android/hardware/interfaces
+	<project groups="QC" name="platform/hardware/interfaces" path="LINUX/android/hardware/interfaces"/>
+
+0
+platform/hardware/libhardware
+LINUX/android/hardware/libhardware
+	<project groups="QC" name="platform/hardware/libhardware" path="LINUX/android/hardware/libhardware"/>
+
+0
+platform/hardware/libhardware_legacy
+LINUX/android/hardware/libhardware_legacy
+	<project groups="QC" name="platform/hardware/libhardware_legacy" path="LINUX/android/hardware/libhardware_legacy"/>
+
+0
+platform/hardware/nxp/nfc
+LINUX/android/hardware/nxp/nfc
+	<project groups="QC" name="platform/hardware/nxp/nfc" path="LINUX/android/hardware/nxp/nfc"/>
+
+0
+platform/hardware/nxp/secure_element
+LINUX/android/hardware/nxp/secure_element
+	<project groups="QC" name="platform/hardware/nxp/secure_element" path="LINUX/android/hardware/nxp/secure_element"/>
+
+0
+platform/hardware/qcom/audio
+LINUX/android/vendor/qcom/opensource/audio-hal/primary-hal
+	<project groups="QC" name="platform/hardware/qcom/audio" path="LINUX/android/vendor/qcom/opensource/audio-hal/primary-hal"/>
+
+0
+platform/hardware/qcom/bootctrl
+LINUX/android/hardware/qcom/bootctrl
+	<project groups="QC" name="platform/hardware/qcom/bootctrl" path="LINUX/android/hardware/qcom/bootctrl"/>
+
+0
+platform/hardware/qcom/camera
+LINUX/android/hardware/qcom/camera
+	<project groups="QC" name="platform/hardware/qcom/camera" path="LINUX/android/hardware/qcom/camera"/>
+
+0
+platform/hardware/qcom/display
+LINUX/android/hardware/qcom/display
+	<project groups="QC" name="platform/hardware/qcom/display" path="LINUX/android/hardware/qcom/display"/>
+
+0
+platform/hardware/qcom/gps
+LINUX/android/hardware/qcom/gps
+	<project groups="QC" name="platform/hardware/qcom/gps" path="LINUX/android/hardware/qcom/gps">
+
+0
+platform/hardware/qcom/media
+LINUX/android/hardware/qcom/media
+	<project groups="QC" name="platform/hardware/qcom/media" path="LINUX/android/hardware/qcom/media"/>
+
+0
+platform/hardware/qcom/thermal
+LINUX/android/vendor/qcom/opensource/thermal-hal
+	<project groups="QC" name="platform/hardware/qcom/thermal" path="LINUX/android/vendor/qcom/opensource/thermal-hal"/>
+
+0
+platform/hardware/qcom/vr
+LINUX/android/hardware/qcom/vr
+	<project groups="QC" name="platform/hardware/qcom/vr" path="LINUX/android/hardware/qcom/vr"/>
+
+0
+platform/hardware/qcom/wlan
+LINUX/android/hardware/qcom/wlan
+	<project groups="QC" name="platform/hardware/qcom/wlan" path="LINUX/android/hardware/qcom/wlan"/>
+
+0
+platform/hardware/ril
+LINUX/android/hardware/ril
+	<project groups="QC" name="platform/hardware/ril" path="LINUX/android/hardware/ril"/>
+
+0
+platform/hardware/ti/am57x
+LINUX/android/hardware/ti/am57x
+	<project groups="QC" name="platform/hardware/ti/am57x" path="LINUX/android/hardware/ti/am57x"/>
+
+0
+platform/libcore
+LINUX/android/libcore
+	<project groups="QC" name="platform/libcore" path="LINUX/android/libcore"/>
+
+0
+platform/libnativehelper
+LINUX/android/libnativehelper
+	<project groups="QC" name="platform/libnativehelper" path="LINUX/android/libnativehelper"/>
+
+0
+platform/packages/apps/BasicSmsReceiver
+LINUX/android/packages/apps/BasicSmsReceiver
+	<project groups="QC" name="platform/packages/apps/BasicSmsReceiver" path="LINUX/android/packages/apps/BasicSmsReceiver"/>
+
+0
+platform/packages/apps/Bluetooth
+LINUX/android/packages/apps/Bluetooth
+	<project groups="QC" name="platform/packages/apps/Bluetooth" path="LINUX/android/packages/apps/Bluetooth"/>
+
+0
+platform/packages/apps/Browser2
+LINUX/android/packages/apps/Browser2
+	<project groups="QC" name="platform/packages/apps/Browser2" path="LINUX/android/packages/apps/Browser2"/>
+
+0
+platform/packages/apps/Calendar
+LINUX/android/packages/apps/Calendar
+	<project groups="QC" name="platform/packages/apps/Calendar" path="LINUX/android/packages/apps/Calendar"/>
+
+0
+platform/packages/apps/Camera2
+LINUX/android/packages/apps/Camera2
+	<project groups="QC" name="platform/packages/apps/Camera2" path="LINUX/android/packages/apps/Camera2"/>
+
+0
+platform/packages/apps/Car/Cluster
+LINUX/android/packages/apps/Car/Cluster
+	<project groups="QC" name="platform/packages/apps/Car/Cluster" path="LINUX/android/packages/apps/Car/Cluster"/>
+
+0
+platform/packages/apps/Car/Dialer
+LINUX/android/packages/apps/Car/Dialer
+	<project groups="QC" name="platform/packages/apps/Car/Dialer" path="LINUX/android/packages/apps/Car/Dialer"/>
+
+0
+platform/packages/apps/Car/Hvac
+LINUX/android/packages/apps/Car/Hvac
+	<project groups="QC" name="platform/packages/apps/Car/Hvac" path="LINUX/android/packages/apps/Car/Hvac"/>
+
+0
+platform/packages/apps/Car/LatinIME
+LINUX/android/packages/apps/Car/LatinIME
+	<project groups="QC" name="platform/packages/apps/Car/LatinIME" path="LINUX/android/packages/apps/Car/LatinIME"/>
+
+0
+platform/packages/apps/Car/Launcher
+LINUX/android/packages/apps/Car/Launcher
+	<project groups="QC" name="platform/packages/apps/Car/Launcher" path="LINUX/android/packages/apps/Car/Launcher"/>
+
+0
+platform/packages/apps/Car/LensPicker
+LINUX/android/packages/apps/Car/LensPicker
+	<project groups="QC" name="platform/packages/apps/Car/LensPicker" path="LINUX/android/packages/apps/Car/LensPicker"/>
+
+0
+platform/packages/apps/Car/LinkViewer
+LINUX/android/packages/apps/Car/LinkViewer
+	<project groups="QC" name="platform/packages/apps/Car/LinkViewer" path="LINUX/android/packages/apps/Car/LinkViewer"/>
+
+0
+platform/packages/apps/Car/LocalMediaPlayer
+LINUX/android/packages/apps/Car/LocalMediaPlayer
+	<project groups="QC" name="platform/packages/apps/Car/LocalMediaPlayer" path="LINUX/android/packages/apps/Car/LocalMediaPlayer"/>
+
+0
+platform/packages/apps/Car/Media
+LINUX/android/packages/apps/Car/Media
+	<project groups="QC" name="platform/packages/apps/Car/Media" path="LINUX/android/packages/apps/Car/Media"/>
+
+0
+platform/packages/apps/Car/Messenger
+LINUX/android/packages/apps/Car/Messenger
+	<project groups="QC" name="platform/packages/apps/Car/Messenger" path="LINUX/android/packages/apps/Car/Messenger"/>
+
+0
+platform/packages/apps/Car/Notification
+LINUX/android/packages/apps/Car/Notification
+	<project groups="QC" name="platform/packages/apps/Car/Notification" path="LINUX/android/packages/apps/Car/Notification"/>
+
+0
+platform/packages/apps/Car/Overview
+LINUX/android/packages/apps/Car/Overview
+	<project groups="QC" name="platform/packages/apps/Car/Overview" path="LINUX/android/packages/apps/Car/Overview"/>
+
+0
+platform/packages/apps/Car/Radio
+LINUX/android/packages/apps/Car/Radio
+	<project groups="QC" name="platform/packages/apps/Car/Radio" path="LINUX/android/packages/apps/Car/Radio"/>
+
+0
+platform/packages/apps/Car/Settings
+LINUX/android/packages/apps/Car/Settings
+	<project groups="QC" name="platform/packages/apps/Car/Settings" path="LINUX/android/packages/apps/Car/Settings"/>
+
+0
+platform/packages/apps/Car/Stream
+LINUX/android/packages/apps/Car/Stream
+	<project groups="QC" name="platform/packages/apps/Car/Stream" path="LINUX/android/packages/apps/Car/Stream"/>
+
+0
+platform/packages/apps/Car/SystemUpdater
+LINUX/android/packages/apps/Car/SystemUpdater
+	<project groups="QC" name="platform/packages/apps/Car/SystemUpdater" path="LINUX/android/packages/apps/Car/SystemUpdater"/>
+
+0
+platform/packages/apps/Car/externallibs
+LINUX/android/packages/apps/Car/externallibs
+	<project groups="QC" name="platform/packages/apps/Car/externallibs" path="LINUX/android/packages/apps/Car/externallibs"/>
+
+0
+platform/packages/apps/Car/libs
+LINUX/android/packages/apps/Car/libs
+	<project groups="QC" name="platform/packages/apps/Car/libs" path="LINUX/android/packages/apps/Car/libs"/>
+
+0
+platform/packages/apps/Car/tests
+LINUX/android/packages/apps/Car/tests
+	<project groups="QC" name="platform/packages/apps/Car/tests" path="LINUX/android/packages/apps/Car/tests"/>
+
+0
+platform/packages/apps/CarrierConfig
+LINUX/android/packages/apps/CarrierConfig
+	<project groups="QC" name="platform/packages/apps/CarrierConfig" path="LINUX/android/packages/apps/CarrierConfig"/>
+
+0
+platform/packages/apps/CellBroadcastReceiver
+LINUX/android/packages/apps/CellBroadcastReceiver
+	<project groups="QC" name="platform/packages/apps/CellBroadcastReceiver" path="LINUX/android/packages/apps/CellBroadcastReceiver"/>
+
+0
+platform/packages/apps/CertInstaller
+LINUX/android/packages/apps/CertInstaller
+	<project groups="QC" name="platform/packages/apps/CertInstaller" path="LINUX/android/packages/apps/CertInstaller"/>
+
+0
+platform/packages/apps/Contacts
+LINUX/android/packages/apps/Contacts
+	<project groups="QC" name="platform/packages/apps/Contacts" path="LINUX/android/packages/apps/Contacts"/>
+
+0
+platform/packages/apps/DeskClock
+LINUX/android/packages/apps/DeskClock
+	<project groups="QC" name="platform/packages/apps/DeskClock" path="LINUX/android/packages/apps/DeskClock"/>
+
+0
+platform/packages/apps/DevCamera
+LINUX/android/packages/apps/DevCamera
+	<project groups="QC" name="platform/packages/apps/DevCamera" path="LINUX/android/packages/apps/DevCamera"/>
+
+0
+platform/packages/apps/Dialer
+LINUX/android/packages/apps/Dialer
+	<project groups="QC" name="platform/packages/apps/Dialer" path="LINUX/android/packages/apps/Dialer"/>
+
+0
+platform/packages/apps/DocumentsUI
+LINUX/android/packages/apps/DocumentsUI
+	<project groups="QC" name="platform/packages/apps/DocumentsUI" path="LINUX/android/packages/apps/DocumentsUI"/>
+
+0
+platform/packages/apps/Email
+LINUX/android/packages/apps/Email
+	<project groups="QC" name="platform/packages/apps/Email" path="LINUX/android/packages/apps/Email"/>
+
+0
+platform/packages/apps/EmergencyInfo
+LINUX/android/packages/apps/EmergencyInfo
+	<project groups="QC" name="platform/packages/apps/EmergencyInfo" path="LINUX/android/packages/apps/EmergencyInfo"/>
+
+0
+platform/packages/apps/Gallery
+LINUX/android/packages/apps/Gallery
+	<project groups="QC" name="platform/packages/apps/Gallery" path="LINUX/android/packages/apps/Gallery"/>
+
+0
+platform/packages/apps/Gallery2
+LINUX/android/packages/apps/Gallery2
+	<project groups="QC" name="platform/packages/apps/Gallery2" path="LINUX/android/packages/apps/Gallery2"/>
+
+0
+platform/packages/apps/HTMLViewer
+LINUX/android/packages/apps/HTMLViewer
+	<project groups="QC" name="platform/packages/apps/HTMLViewer" path="LINUX/android/packages/apps/HTMLViewer"/>
+
+0
+platform/packages/apps/KeyChain
+LINUX/android/packages/apps/KeyChain
+	<project groups="QC" name="platform/packages/apps/KeyChain" path="LINUX/android/packages/apps/KeyChain"/>
+
+0
+platform/packages/apps/Launcher3
+LINUX/android/packages/apps/Launcher3
+	<project groups="QC" name="platform/packages/apps/Launcher3" path="LINUX/android/packages/apps/Launcher3"/>
+
+0
+platform/packages/apps/LegacyCamera
+LINUX/android/packages/apps/LegacyCamera
+	<project groups="QC" name="platform/packages/apps/LegacyCamera" path="LINUX/android/packages/apps/LegacyCamera"/>
+
+0
+platform/packages/apps/ManagedProvisioning
+LINUX/android/packages/apps/ManagedProvisioning
+	<project groups="QC" name="platform/packages/apps/ManagedProvisioning" path="LINUX/android/packages/apps/ManagedProvisioning"/>
+
+0
+platform/packages/apps/Messaging
+LINUX/android/packages/apps/Messaging
+	<project groups="QC" name="platform/packages/apps/Messaging" path="LINUX/android/packages/apps/Messaging"/>
+
+0
+platform/packages/apps/Mms
+LINUX/android/vendor/codeaurora/commonsys/packages/apps/Mms
+	<project groups="QC" name="platform/packages/apps/Mms" path="LINUX/android/vendor/codeaurora/commonsys/packages/apps/Mms">
+
+0
+platform/packages/apps/Music
+LINUX/android/packages/apps/Music
+	<project groups="QC" name="platform/packages/apps/Music" path="LINUX/android/packages/apps/Music"/>
+
+0
+platform/packages/apps/MusicFX
+LINUX/android/packages/apps/MusicFX
+	<project groups="QC" name="platform/packages/apps/MusicFX" path="LINUX/android/packages/apps/MusicFX"/>
+
+0
+platform/packages/apps/Nfc
+LINUX/android/packages/apps/Nfc
+	<project groups="QC" name="platform/packages/apps/Nfc" path="LINUX/android/packages/apps/Nfc"/>
+
+0
+platform/packages/apps/OneTimeInitializer
+LINUX/android/packages/apps/OneTimeInitializer
+	<project groups="QC" name="platform/packages/apps/OneTimeInitializer" path="LINUX/android/packages/apps/OneTimeInitializer"/>
+
+0
+platform/packages/apps/PackageInstaller
+LINUX/android/packages/apps/PermissionController
+	<project groups="QC" name="platform/packages/apps/PackageInstaller" path="LINUX/android/packages/apps/PermissionController"/>
+
+0
+platform/packages/apps/PhoneCommon
+LINUX/android/packages/apps/PhoneCommon
+	<project groups="QC" name="platform/packages/apps/PhoneCommon" path="LINUX/android/packages/apps/PhoneCommon"/>
+
+0
+platform/packages/apps/Protips
+LINUX/android/packages/apps/Protips
+	<project groups="QC" name="platform/packages/apps/Protips" path="LINUX/android/packages/apps/Protips"/>
+
+0
+platform/packages/apps/Provision
+LINUX/android/packages/apps/Provision
+	<project groups="QC" name="platform/packages/apps/Provision" path="LINUX/android/packages/apps/Provision"/>
+
+0
+platform/packages/apps/QuickSearchBox
+LINUX/android/packages/apps/QuickSearchBox
+	<project groups="QC" name="platform/packages/apps/QuickSearchBox" path="LINUX/android/packages/apps/QuickSearchBox"/>
+
+0
+platform/packages/apps/SafetyRegulatoryInfo
+LINUX/android/packages/apps/SafetyRegulatoryInfo
+	<project groups="QC" name="platform/packages/apps/SafetyRegulatoryInfo" path="LINUX/android/packages/apps/SafetyRegulatoryInfo"/>
+
+0
+platform/packages/apps/SampleLocationAttribution
+LINUX/android/packages/apps/SampleLocationAttribution
+	<project groups="QC" name="platform/packages/apps/SampleLocationAttribution" path="LINUX/android/packages/apps/SampleLocationAttribution"/>
+
+0
+platform/packages/apps/SecureElement
+LINUX/android/packages/apps/SecureElement
+	<project groups="QC" name="platform/packages/apps/SecureElement" path="LINUX/android/packages/apps/SecureElement"/>
+
+0
+platform/packages/apps/Settings
+LINUX/android/packages/apps/Settings
+	<project groups="QC" name="platform/packages/apps/Settings" path="LINUX/android/packages/apps/Settings"/>
+
+0
+platform/packages/apps/SettingsIntelligence
+LINUX/android/packages/apps/SettingsIntelligence
+	<project groups="QC" name="platform/packages/apps/SettingsIntelligence" path="LINUX/android/packages/apps/SettingsIntelligence"/>
+
+0
+platform/packages/apps/SnapdragonCamera
+LINUX/android/packages/apps/SnapdragonCamera
+	<project groups="QC" name="platform/packages/apps/SnapdragonCamera" path="LINUX/android/packages/apps/SnapdragonCamera"/>
+
+0
+platform/packages/apps/SnapdragonGallery
+LINUX/android/packages/apps/SnapdragonGallery
+	<project groups="QC" name="platform/packages/apps/SnapdragonGallery" path="LINUX/android/packages/apps/SnapdragonGallery"/>
+
+0
+platform/packages/apps/SnapdragonMusic
+LINUX/android/vendor/codeaurora/commonsys/packages/apps/SnapdragonMusic
+	<project groups="QC" name="platform/packages/apps/SnapdragonMusic" path="LINUX/android/vendor/codeaurora/commonsys/packages/apps/SnapdragonMusic">
+
+0
+platform/packages/apps/SoundRecorder
+LINUX/android/packages/apps/SoundRecorder
+	<project groups="QC" name="platform/packages/apps/SoundRecorder" path="LINUX/android/packages/apps/SoundRecorder"/>
+
+0
+platform/packages/apps/SpareParts
+LINUX/android/packages/apps/SpareParts
+	<project groups="QC" name="platform/packages/apps/SpareParts" path="LINUX/android/packages/apps/SpareParts"/>
+
+0
+platform/packages/apps/Stk
+LINUX/android/packages/apps/Stk
+	<project groups="QC" name="platform/packages/apps/Stk" path="LINUX/android/packages/apps/Stk"/>
+
+0
+platform/packages/apps/StorageManager
+LINUX/android/packages/apps/StorageManager
+	<project groups="QC" name="platform/packages/apps/StorageManager" path="LINUX/android/packages/apps/StorageManager"/>
+
+0
+platform/packages/apps/TV
+LINUX/android/packages/apps/TV
+	<project groups="QC" name="platform/packages/apps/TV" path="LINUX/android/packages/apps/TV"/>
+
+0
+platform/packages/apps/Tag
+LINUX/android/packages/apps/Tag
+	<project groups="QC" name="platform/packages/apps/Tag" path="LINUX/android/packages/apps/Tag"/>
+
+0
+platform/packages/apps/Terminal
+LINUX/android/packages/apps/Terminal
+	<project groups="QC" name="platform/packages/apps/Terminal" path="LINUX/android/packages/apps/Terminal"/>
+
+0
+platform/packages/apps/Test/connectivity
+LINUX/android/packages/apps/Test/connectivity
+	<project groups="QC" name="platform/packages/apps/Test/connectivity" path="LINUX/android/packages/apps/Test/connectivity"/>
+
+0
+platform/packages/apps/ThemePicker
+LINUX/android/packages/apps/ThemePicker
+	<project groups="QC" name="platform/packages/apps/ThemePicker" path="LINUX/android/packages/apps/ThemePicker"/>
+
+0
+platform/packages/apps/TimeZoneData
+LINUX/android/packages/apps/TimeZoneData
+	<project groups="QC" name="platform/packages/apps/TimeZoneData" path="LINUX/android/packages/apps/TimeZoneData"/>
+
+0
+platform/packages/apps/TimeZoneUpdater
+LINUX/android/packages/apps/TimeZoneUpdater
+	<project groups="QC" name="platform/packages/apps/TimeZoneUpdater" path="LINUX/android/packages/apps/TimeZoneUpdater"/>
+
+0
+platform/packages/apps/Traceur
+LINUX/android/packages/apps/Traceur
+	<project groups="QC" name="platform/packages/apps/Traceur" path="LINUX/android/packages/apps/Traceur"/>
+
+0
+platform/packages/apps/TvSettings
+LINUX/android/packages/apps/TvSettings
+	<project groups="QC" name="platform/packages/apps/TvSettings" path="LINUX/android/packages/apps/TvSettings"/>
+
+0
+platform/packages/apps/UnifiedEmail
+LINUX/android/packages/apps/UnifiedEmail
+	<project groups="QC" name="platform/packages/apps/UnifiedEmail" path="LINUX/android/packages/apps/UnifiedEmail"/>
+
+0
+platform/packages/apps/WallpaperPicker
+LINUX/android/packages/apps/WallpaperPicker
+	<project groups="QC" name="platform/packages/apps/WallpaperPicker" path="LINUX/android/packages/apps/WallpaperPicker"/>
+
+0
+platform/packages/apps/WallpaperPicker2
+LINUX/android/packages/apps/WallpaperPicker2
+	<project groups="QC" name="platform/packages/apps/WallpaperPicker2" path="LINUX/android/packages/apps/WallpaperPicker2"/>
+
+0
+platform/packages/inputmethods/LatinIME
+LINUX/android/packages/inputmethods/LatinIME
+	<project groups="QC" name="platform/packages/inputmethods/LatinIME" path="LINUX/android/packages/inputmethods/LatinIME"/>
+
+0
+platform/packages/modules/CaptivePortalLogin
+LINUX/android/packages/modules/CaptivePortalLogin
+	<project groups="QC" name="platform/packages/modules/CaptivePortalLogin" path="LINUX/android/packages/modules/CaptivePortalLogin"/>
+
+0
+platform/packages/modules/ExtServices
+LINUX/android/packages/modules/ExtServices
+	<project groups="QC" name="platform/packages/modules/ExtServices" path="LINUX/android/packages/modules/ExtServices"/>
+
+0
+platform/packages/modules/ModuleMetadata
+LINUX/android/packages/modules/ModuleMetadata
+	<project groups="QC" name="platform/packages/modules/ModuleMetadata" path="LINUX/android/packages/modules/ModuleMetadata"/>
+
+0
+platform/packages/modules/NetworkPermissionConfig
+LINUX/android/packages/modules/NetworkPermissionConfig
+	<project groups="QC" name="platform/packages/modules/NetworkPermissionConfig" path="LINUX/android/packages/modules/NetworkPermissionConfig"/>
+
+0
+platform/packages/modules/NetworkStack
+LINUX/android/packages/modules/NetworkStack
+	<project groups="QC" name="platform/packages/modules/NetworkStack" path="LINUX/android/packages/modules/NetworkStack"/>
+
+0
+platform/packages/providers/ApplicationsProvider
+LINUX/android/packages/providers/ApplicationsProvider
+	<project groups="QC" name="platform/packages/providers/ApplicationsProvider" path="LINUX/android/packages/providers/ApplicationsProvider"/>
+
+0
+platform/packages/providers/BlockedNumberProvider
+LINUX/android/packages/providers/BlockedNumberProvider
+	<project groups="QC" name="platform/packages/providers/BlockedNumberProvider" path="LINUX/android/packages/providers/BlockedNumberProvider"/>
+
+0
+platform/packages/providers/BookmarkProvider
+LINUX/android/packages/providers/BookmarkProvider
+	<project groups="QC" name="platform/packages/providers/BookmarkProvider" path="LINUX/android/packages/providers/BookmarkProvider"/>
+
+0
+platform/packages/providers/CalendarProvider
+LINUX/android/packages/providers/CalendarProvider
+	<project groups="QC" name="platform/packages/providers/CalendarProvider" path="LINUX/android/packages/providers/CalendarProvider"/>
+
+0
+platform/packages/providers/CallLogProvider
+LINUX/android/packages/providers/CallLogProvider
+	<project groups="QC" name="platform/packages/providers/CallLogProvider" path="LINUX/android/packages/providers/CallLogProvider"/>
+
+0
+platform/packages/providers/ContactsProvider
+LINUX/android/packages/providers/ContactsProvider
+	<project groups="QC" name="platform/packages/providers/ContactsProvider" path="LINUX/android/packages/providers/ContactsProvider"/>
+
+0
+platform/packages/providers/DownloadProvider
+LINUX/android/packages/providers/DownloadProvider
+	<project groups="QC" name="platform/packages/providers/DownloadProvider" path="LINUX/android/packages/providers/DownloadProvider"/>
+
+0
+platform/packages/providers/MediaProvider
+LINUX/android/packages/providers/MediaProvider
+	<project groups="QC" name="platform/packages/providers/MediaProvider" path="LINUX/android/packages/providers/MediaProvider"/>
+
+0
+platform/packages/providers/PartnerBookmarksProvider
+LINUX/android/packages/providers/PartnerBookmarksProvider
+	<project groups="QC" name="platform/packages/providers/PartnerBookmarksProvider" path="LINUX/android/packages/providers/PartnerBookmarksProvider"/>
+
+0
+platform/packages/providers/TelephonyProvider
+LINUX/android/packages/providers/TelephonyProvider
+	<project groups="QC" name="platform/packages/providers/TelephonyProvider" path="LINUX/android/packages/providers/TelephonyProvider"/>
+
+0
+platform/packages/providers/TvProvider
+LINUX/android/packages/providers/TvProvider
+	<project groups="QC" name="platform/packages/providers/TvProvider" path="LINUX/android/packages/providers/TvProvider"/>
+
+0
+platform/packages/providers/UserDictionaryProvider
+LINUX/android/packages/providers/UserDictionaryProvider
+	<project groups="QC" name="platform/packages/providers/UserDictionaryProvider" path="LINUX/android/packages/providers/UserDictionaryProvider"/>
+
+0
+platform/packages/screensavers/Basic
+LINUX/android/packages/screensavers/Basic
+	<project groups="QC" name="platform/packages/screensavers/Basic" path="LINUX/android/packages/screensavers/Basic"/>
+
+0
+platform/packages/screensavers/PhotoTable
+LINUX/android/packages/screensavers/PhotoTable
+	<project groups="QC" name="platform/packages/screensavers/PhotoTable" path="LINUX/android/packages/screensavers/PhotoTable"/>
+
+0
+platform/packages/services/AlternativeNetworkAccess
+LINUX/android/packages/services/AlternativeNetworkAccess
+	<project groups="QC" name="platform/packages/services/AlternativeNetworkAccess" path="LINUX/android/packages/services/AlternativeNetworkAccess"/>
+
+0
+platform/packages/services/BuiltInPrintService
+LINUX/android/packages/services/BuiltInPrintService
+	<project groups="QC" name="platform/packages/services/BuiltInPrintService" path="LINUX/android/packages/services/BuiltInPrintService"/>
+
+0
+platform/packages/services/Car
+LINUX/android/packages/services/Car
+	<project groups="QC" name="platform/packages/services/Car" path="LINUX/android/packages/services/Car"/>
+
+0
+platform/packages/services/Mms
+LINUX/android/packages/services/Mms
+	<project groups="QC" name="platform/packages/services/Mms" path="LINUX/android/packages/services/Mms"/>
+
+0
+platform/packages/services/Telecomm
+LINUX/android/packages/services/Telecomm
+	<project groups="QC" name="platform/packages/services/Telecomm" path="LINUX/android/packages/services/Telecomm"/>
+
+0
+platform/packages/services/Telephony
+LINUX/android/packages/services/Telephony
+	<project groups="QC" name="platform/packages/services/Telephony" path="LINUX/android/packages/services/Telephony"/>
+
+0
+platform/packages/wallpapers/LivePicker
+LINUX/android/packages/wallpapers/LivePicker
+	<project groups="QC" name="platform/packages/wallpapers/LivePicker" path="LINUX/android/packages/wallpapers/LivePicker"/>
+
+0
+platform/pdk
+LINUX/android/pdk
+	<project groups="QC" name="platform/pdk" path="LINUX/android/pdk"/>
+
+0
+platform/platform_testing
+LINUX/android/platform_testing
+	<project groups="QC" name="platform/platform_testing" path="LINUX/android/platform_testing"/>
+
+0
+platform/prebuilts/abi-dumps/ndk
+LINUX/android/prebuilts/abi-dumps/ndk
+	<project groups="QC" name="platform/prebuilts/abi-dumps/ndk" path="LINUX/android/prebuilts/abi-dumps/ndk"/>
+
+0
+platform/prebuilts/abi-dumps/vndk
+LINUX/android/prebuilts/abi-dumps/vndk
+	<project groups="QC" name="platform/prebuilts/abi-dumps/vndk" path="LINUX/android/prebuilts/abi-dumps/vndk"/>
+
+0
+platform/prebuilts/android-emulator
+LINUX/android/prebuilts/android-emulator
+	<project groups="QC" name="platform/prebuilts/android-emulator" path="LINUX/android/prebuilts/android-emulator"/>
+
+0
+platform/prebuilts/asuite
+LINUX/android/prebuilts/asuite
+	<project groups="QC" name="platform/prebuilts/asuite" path="LINUX/android/prebuilts/asuite"/>
+
+0
+platform/prebuilts/build-tools
+LINUX/android/prebuilts/build-tools
+	<project groups="QC" name="platform/prebuilts/build-tools" path="LINUX/android/prebuilts/build-tools"/>
+
+0
+platform/prebuilts/bundletool
+LINUX/android/prebuilts/bundletool
+	<project groups="QC" name="platform/prebuilts/bundletool" path="LINUX/android/prebuilts/bundletool"/>
+
+0
+platform/prebuilts/checkcolor
+LINUX/android/prebuilts/checkcolor
+	<project groups="QC" name="platform/prebuilts/checkcolor" path="LINUX/android/prebuilts/checkcolor"/>
+
+0
+platform/prebuilts/checkstyle
+LINUX/android/prebuilts/checkstyle
+	<project groups="QC" name="platform/prebuilts/checkstyle" path="LINUX/android/prebuilts/checkstyle"/>
+
+0
+platform/prebuilts/clang-tools
+LINUX/android/prebuilts/clang-tools
+	<project groups="QC" name="platform/prebuilts/clang-tools" path="LINUX/android/prebuilts/clang-tools"/>
+
+0
+platform/prebuilts/clang/host/linux-x86
+LINUX/android/prebuilts/clang/host/linux-x86
+	<project groups="QC" name="platform/prebuilts/clang/host/linux-x86" path="LINUX/android/prebuilts/clang/host/linux-x86"/>
+
+0
+platform/prebuilts/devtools
+LINUX/android/prebuilts/devtools
+	<project groups="QC" name="platform/prebuilts/devtools" path="LINUX/android/prebuilts/devtools"/>
+
+0
+platform/prebuilts/fuchsia_sdk
+LINUX/android/prebuilts/fuchsia_sdk
+	<project groups="QC" name="platform/prebuilts/fuchsia_sdk" path="LINUX/android/prebuilts/fuchsia_sdk"/>
+
+0
+platform/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9
+LINUX/android/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9
+	<project groups="QC" name="platform/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9" path="LINUX/android/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9"/>
+
+0
+platform/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8
+LINUX/android/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8
+	<project groups="QC" name="platform/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8" path="LINUX/android/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8"/>
+
+0
+platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9
+LINUX/android/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9
+	<project groups="QC" name="platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9" path="LINUX/android/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9"/>
+
+0
+platform/prebuilts/gcc/linux-x86/host/x86_64-linux-glibc2.17-4.8
+LINUX/android/prebuilts/gcc/linux-x86/host/x86_64-linux-glibc2.17-4.8
+	<project groups="QC" name="platform/prebuilts/gcc/linux-x86/host/x86_64-linux-glibc2.17-4.8" path="LINUX/android/prebuilts/gcc/linux-x86/host/x86_64-linux-glibc2.17-4.8"/>
+
+0
+platform/prebuilts/gcc/linux-x86/host/x86_64-w64-mingw32-4.8
+LINUX/android/prebuilts/gcc/linux-x86/host/x86_64-w64-mingw32-4.8
+	<project groups="QC" name="platform/prebuilts/gcc/linux-x86/host/x86_64-w64-mingw32-4.8" path="LINUX/android/prebuilts/gcc/linux-x86/host/x86_64-w64-mingw32-4.8"/>
+
+0
+platform/prebuilts/gcc/linux-x86/x86/x86_64-linux-android-4.9
+LINUX/android/prebuilts/gcc/linux-x86/x86/x86_64-linux-android-4.9
+	<project groups="QC" name="platform/prebuilts/gcc/linux-x86/x86/x86_64-linux-android-4.9" path="LINUX/android/prebuilts/gcc/linux-x86/x86/x86_64-linux-android-4.9"/>
+
+0
+platform/prebuilts/gdb/linux-x86
+LINUX/android/prebuilts/gdb/linux-x86
+	<project groups="QC" name="platform/prebuilts/gdb/linux-x86" path="LINUX/android/prebuilts/gdb/linux-x86"/>
+
+0
+platform/prebuilts/go/linux-x86
+LINUX/android/prebuilts/go/linux-x86
+	<project groups="QC" name="platform/prebuilts/go/linux-x86" path="LINUX/android/prebuilts/go/linux-x86"/>
+
+0
+platform/prebuilts/gradle-plugin
+LINUX/android/prebuilts/gradle-plugin
+	<project groups="QC" name="platform/prebuilts/gradle-plugin" path="LINUX/android/prebuilts/gradle-plugin"/>
+
+0
+platform/prebuilts/jdk/jdk8
+LINUX/android/prebuilts/jdk/jdk8
+	<project groups="QC" name="platform/prebuilts/jdk/jdk8" path="LINUX/android/prebuilts/jdk/jdk8"/>
+
+0
+platform/prebuilts/jdk/jdk9
+LINUX/android/prebuilts/jdk/jdk9
+	<project groups="QC" name="platform/prebuilts/jdk/jdk9" path="LINUX/android/prebuilts/jdk/jdk9"/>
+
+0
+platform/prebuilts/ktlint
+LINUX/android/prebuilts/ktlint
+	<project groups="QC" name="platform/prebuilts/ktlint" path="LINUX/android/prebuilts/ktlint"/>
+
+0
+platform/prebuilts/manifest-merger
+LINUX/android/prebuilts/manifest-merger
+	<project groups="QC" name="platform/prebuilts/manifest-merger" path="LINUX/android/prebuilts/manifest-merger"/>
+
+0
+platform/prebuilts/maven_repo/android
+LINUX/android/prebuilts/maven_repo/android
+	<project groups="QC" name="platform/prebuilts/maven_repo/android" path="LINUX/android/prebuilts/maven_repo/android"/>
+
+0
+platform/prebuilts/maven_repo/bumptech
+LINUX/android/prebuilts/maven_repo/bumptech
+	<project groups="QC" name="platform/prebuilts/maven_repo/bumptech" path="LINUX/android/prebuilts/maven_repo/bumptech"/>
+
+0
+platform/prebuilts/misc
+LINUX/android/prebuilts/misc
+	<project groups="QC" name="platform/prebuilts/misc" path="LINUX/android/prebuilts/misc"/>
+
+0
+platform/prebuilts/ndk
+LINUX/android/prebuilts/ndk
+	<project groups="QC" name="platform/prebuilts/ndk" path="LINUX/android/prebuilts/ndk"/>
+
+0
+platform/prebuilts/python/linux-x86/2.7.5
+LINUX/android/prebuilts/python/linux-x86/2.7.5
+	<project groups="QC" name="platform/prebuilts/python/linux-x86/2.7.5" path="LINUX/android/prebuilts/python/linux-x86/2.7.5"/>
+
+0
+platform/prebuilts/qemu-kernel
+LINUX/android/prebuilts/qemu-kernel
+	<project groups="QC" name="platform/prebuilts/qemu-kernel" path="LINUX/android/prebuilts/qemu-kernel"/>
+
+0
+platform/prebuilts/r8
+LINUX/android/prebuilts/r8
+	<project groups="QC" name="platform/prebuilts/r8" path="LINUX/android/prebuilts/r8"/>
+
+0
+platform/prebuilts/sdk
+LINUX/android/prebuilts/sdk
+	<project groups="QC" name="platform/prebuilts/sdk" path="LINUX/android/prebuilts/sdk"/>
+
+0
+platform/prebuilts/tools
+LINUX/android/prebuilts/tools
+	<project groups="QC" name="platform/prebuilts/tools" path="LINUX/android/prebuilts/tools"/>
+
+0
+platform/prebuilts/vndk/v27
+LINUX/android/prebuilts/vndk/v27
+	<project groups="QC" name="platform/prebuilts/vndk/v27" path="LINUX/android/prebuilts/vndk/v27"/>
+
+0
+platform/prebuilts/vndk/v28
+LINUX/android/prebuilts/vndk/v28
+	<project groups="QC" name="platform/prebuilts/vndk/v28" path="LINUX/android/prebuilts/vndk/v28"/>
+
+0
+platform/sdk
+LINUX/android/sdk
+	<project groups="QC" name="platform/sdk" path="LINUX/android/sdk">
+
+0
+platform/system/apex
+LINUX/android/system/apex
+	<project groups="QC" name="platform/system/apex" path="LINUX/android/system/apex"/>
+
+0
+platform/system/ashmemd
+LINUX/android/system/ashmemd
+	<project groups="QC" name="platform/system/ashmemd" path="LINUX/android/system/ashmemd"/>
+
+0
+platform/system/bpf
+LINUX/android/system/bpf
+	<project groups="QC" name="platform/system/bpf" path="LINUX/android/system/bpf"/>
+
+0
+platform/system/bpfprogs
+LINUX/android/system/bpfprogs
+	<project groups="QC" name="platform/system/bpfprogs" path="LINUX/android/system/bpfprogs"/>
+
+0
+platform/system/bt
+LINUX/android/system/bt
+	<project groups="QC" name="platform/system/bt" path="LINUX/android/system/bt"/>
+
+0
+platform/system/ca-certificates
+LINUX/android/system/ca-certificates
+	<project groups="QC" name="platform/system/ca-certificates" path="LINUX/android/system/ca-certificates"/>
+
+0
+platform/system/chre
+LINUX/android/system/chre
+	<project groups="QC" name="platform/system/chre" path="LINUX/android/system/chre"/>
+
+0
+platform/system/connectivity/wificond
+LINUX/android/system/connectivity/wificond
+	<project groups="QC" name="platform/system/connectivity/wificond" path="LINUX/android/system/connectivity/wificond"/>
+
+0
+platform/system/connectivity/wifilogd
+LINUX/android/system/connectivity/wifilogd
+	<project groups="QC" name="platform/system/connectivity/wifilogd" path="LINUX/android/system/connectivity/wifilogd"/>
+
+0
+platform/system/core
+LINUX/android/system/core
+	<project groups="QC" name="platform/system/core" path="LINUX/android/system/core"/>
+
+0
+platform/system/extras
+LINUX/android/system/extras
+	<project groups="QC" name="platform/system/extras" path="LINUX/android/system/extras"/>
+
+0
+platform/system/gatekeeper
+LINUX/android/system/gatekeeper
+	<project groups="QC" name="platform/system/gatekeeper" path="LINUX/android/system/gatekeeper"/>
+
+0
+platform/system/gsid
+LINUX/android/system/gsid
+	<project groups="QC" name="platform/system/gsid" path="LINUX/android/system/gsid"/>
+
+0
+platform/system/hardware/interfaces
+LINUX/android/system/hardware/interfaces
+	<project groups="QC" name="platform/system/hardware/interfaces" path="LINUX/android/system/hardware/interfaces"/>
+
+0
+platform/system/hwservicemanager
+LINUX/android/system/hwservicemanager
+	<project groups="QC" name="platform/system/hwservicemanager" path="LINUX/android/system/hwservicemanager"/>
+
+0
+platform/system/iorap
+LINUX/android/system/iorap
+	<project groups="QC" name="platform/system/iorap" path="LINUX/android/system/iorap"/>
+
+0
+platform/system/keymaster
+LINUX/android/system/keymaster
+	<project groups="QC" name="platform/system/keymaster" path="LINUX/android/system/keymaster"/>
+
+0
+platform/system/libfmq
+LINUX/android/system/libfmq
+	<project groups="QC" name="platform/system/libfmq" path="LINUX/android/system/libfmq"/>
+
+0
+platform/system/libhidl
+LINUX/android/system/libhidl
+	<project groups="QC" name="platform/system/libhidl" path="LINUX/android/system/libhidl"/>
+
+0
+platform/system/libhwbinder
+LINUX/android/system/libhwbinder
+	<project groups="QC" name="platform/system/libhwbinder" path="LINUX/android/system/libhwbinder"/>
+
+0
+platform/system/libsysprop
+LINUX/android/system/libsysprop
+	<project groups="QC" name="platform/system/libsysprop" path="LINUX/android/system/libsysprop"/>
+
+0
+platform/system/libufdt
+LINUX/android/system/libufdt
+	<project groups="QC" name="platform/system/libufdt" path="LINUX/android/system/libufdt"/>
+
+0
+platform/system/libvintf
+LINUX/android/system/libvintf
+	<project groups="QC" name="platform/system/libvintf" path="LINUX/android/system/libvintf"/>
+
+0
+platform/system/linkerconfig
+LINUX/android/system/linkerconfig
+	<project groups="QC" name="platform/system/linkerconfig" path="LINUX/android/system/linkerconfig"/>
+
+0
+platform/system/media
+LINUX/android/system/media
+	<project groups="QC" name="platform/system/media" path="LINUX/android/system/media"/>
+
+0
+platform/system/netd
+LINUX/android/system/netd
+	<project groups="QC" name="platform/system/netd" path="LINUX/android/system/netd"/>
+
+0
+platform/system/nfc
+LINUX/android/system/nfc
+	<project groups="QC" name="platform/system/nfc" path="LINUX/android/system/nfc"/>
+
+0
+platform/system/nvram
+LINUX/android/system/nvram
+	<project groups="QC" name="platform/system/nvram" path="LINUX/android/system/nvram"/>
+
+0
+platform/system/qcom
+LINUX/android/vendor/qcom/opensource/softap
+	<project groups="QC" name="platform/system/qcom" path="LINUX/android/vendor/qcom/opensource/softap"/>
+
+0
+platform/system/security
+LINUX/android/system/security
+	<project groups="QC" name="platform/system/security" path="LINUX/android/system/security"/>
+
+0
+platform/system/sepolicy
+LINUX/android/system/sepolicy
+	<project groups="QC" name="platform/system/sepolicy" path="LINUX/android/system/sepolicy"/>
+
+0
+platform/system/server_configurable_flags
+LINUX/android/system/server_configurable_flags
+	<project groups="QC" name="platform/system/server_configurable_flags" path="LINUX/android/system/server_configurable_flags"/>
+
+0
+platform/system/testing/gtest_extras
+LINUX/android/system/testing/gtest_extras
+	<project groups="QC" name="platform/system/testing/gtest_extras" path="LINUX/android/system/testing/gtest_extras"/>
+
+0
+platform/system/timezone
+LINUX/android/system/timezone
+	<project groups="QC" name="platform/system/timezone" path="LINUX/android/system/timezone"/>
+
+0
+platform/system/tools/aidl
+LINUX/android/system/tools/aidl
+	<project groups="QC" name="platform/system/tools/aidl" path="LINUX/android/system/tools/aidl"/>
+
+0
+platform/system/tools/hidl
+LINUX/android/system/tools/hidl
+	<project groups="QC" name="platform/system/tools/hidl" path="LINUX/android/system/tools/hidl"/>
+
+0
+platform/system/tools/sysprop
+LINUX/android/system/tools/sysprop
+	<project groups="QC" name="platform/system/tools/sysprop" path="LINUX/android/system/tools/sysprop"/>
+
+0
+platform/system/tools/xsdc
+LINUX/android/system/tools/xsdc
+	<project groups="QC" name="platform/system/tools/xsdc" path="LINUX/android/system/tools/xsdc"/>
+
+0
+platform/system/ucontainer
+LINUX/android/system/ucontainer
+	<project groups="QC" name="platform/system/ucontainer" path="LINUX/android/system/ucontainer"/>
+
+0
+platform/system/update_engine
+LINUX/android/system/update_engine
+	<project groups="QC" name="platform/system/update_engine" path="LINUX/android/system/update_engine"/>
+
+0
+platform/system/vold
+LINUX/android/system/vold
+	<project groups="QC" name="platform/system/vold" path="LINUX/android/system/vold"/>
+
+0
+platform/test/framework
+LINUX/android/test/framework
+	<project groups="QC" name="platform/test/framework" path="LINUX/android/test/framework"/>
+
+0
+platform/test/mlts/benchmark
+LINUX/android/test/mlts/benchmark
+	<project groups="QC" name="platform/test/mlts/benchmark" path="LINUX/android/test/mlts/benchmark"/>
+
+0
+platform/test/mlts/models
+LINUX/android/test/mlts/models
+	<project groups="QC" name="platform/test/mlts/models" path="LINUX/android/test/mlts/models"/>
+
+0
+platform/test/suite_harness
+LINUX/android/test/suite_harness
+	<project groups="QC" name="platform/test/suite_harness" path="LINUX/android/test/suite_harness"/>
+
+0
+platform/test/vti/alert
+LINUX/android/test/vti/alert
+	<project groups="QC" name="platform/test/vti/alert" path="LINUX/android/test/vti/alert"/>
+
+0
+platform/test/vti/dashboard
+LINUX/android/test/vti/dashboard
+	<project groups="QC" name="platform/test/vti/dashboard" path="LINUX/android/test/vti/dashboard"/>
+
+0
+platform/test/vti/fuzz_test_serving
+LINUX/android/test/vti/fuzz_test_serving
+	<project groups="QC" name="platform/test/vti/fuzz_test_serving" path="LINUX/android/test/vti/fuzz_test_serving"/>
+
+0
+platform/test/vti/test_serving
+LINUX/android/test/vti/test_serving
+	<project groups="QC" name="platform/test/vti/test_serving" path="LINUX/android/test/vti/test_serving"/>
+
+0
+platform/test/vts
+LINUX/android/test/vts
+	<project groups="QC" name="platform/test/vts" path="LINUX/android/test/vts"/>
+
+0
+platform/test/vts-testcase/fuzz
+LINUX/android/test/vts-testcase/fuzz
+	<project groups="QC" name="platform/test/vts-testcase/fuzz" path="LINUX/android/test/vts-testcase/fuzz"/>
+
+0
+platform/test/vts-testcase/hal
+LINUX/android/test/vts-testcase/hal
+	<project groups="QC" name="platform/test/vts-testcase/hal" path="LINUX/android/test/vts-testcase/hal"/>
+
+0
+platform/test/vts-testcase/hal-trace
+LINUX/android/test/vts-testcase/hal-trace
+	<project groups="QC" name="platform/test/vts-testcase/hal-trace" path="LINUX/android/test/vts-testcase/hal-trace"/>
+
+0
+platform/test/vts-testcase/kernel
+LINUX/android/test/vts-testcase/kernel
+	<project groups="QC" name="platform/test/vts-testcase/kernel" path="LINUX/android/test/vts-testcase/kernel"/>
+
+0
+platform/test/vts-testcase/nbu
+LINUX/android/test/vts-testcase/nbu
+	<project groups="QC" name="platform/test/vts-testcase/nbu" path="LINUX/android/test/vts-testcase/nbu"/>
+
+0
+platform/test/vts-testcase/performance
+LINUX/android/test/vts-testcase/performance
+	<project groups="QC" name="platform/test/vts-testcase/performance" path="LINUX/android/test/vts-testcase/performance"/>
+
+0
+platform/test/vts-testcase/security
+LINUX/android/test/vts-testcase/security
+	<project groups="QC" name="platform/test/vts-testcase/security" path="LINUX/android/test/vts-testcase/security"/>
+
+0
+platform/test/vts-testcase/vndk
+LINUX/android/test/vts-testcase/vndk
+	<project groups="QC" name="platform/test/vts-testcase/vndk" path="LINUX/android/test/vts-testcase/vndk"/>
+
+0
+platform/tools/acloud
+LINUX/android/tools/acloud
+	<project groups="QC" name="platform/tools/acloud" path="LINUX/android/tools/acloud"/>
+
+0
+platform/tools/apksig
+LINUX/android/tools/apksig
+	<project groups="QC" name="platform/tools/apksig" path="LINUX/android/tools/apksig"/>
+
+0
+platform/tools/apkzlib
+LINUX/android/tools/apkzlib
+	<project groups="QC" name="platform/tools/apkzlib" path="LINUX/android/tools/apkzlib"/>
+
+0
+platform/tools/asuite
+LINUX/android/tools/asuite
+	<project groups="QC" name="platform/tools/asuite" path="LINUX/android/tools/asuite"/>
+
+0
+platform/tools/currysrc
+LINUX/android/tools/currysrc
+	<project groups="QC" name="platform/tools/currysrc" path="LINUX/android/tools/currysrc"/>
+
+0
+platform/tools/dexter
+LINUX/android/tools/dexter
+	<project groups="QC" name="platform/tools/dexter" path="LINUX/android/tools/dexter"/>
+
+0
+platform/tools/loganalysis
+LINUX/android/tools/loganalysis
+	<project groups="QC" name="platform/tools/loganalysis" path="LINUX/android/tools/loganalysis"/>
+
+0
+platform/tools/metalava
+LINUX/android/tools/metalava
+	<project groups="QC" name="platform/tools/metalava" path="LINUX/android/tools/metalava"/>
+
+0
+platform/tools/ndkports
+LINUX/android/tools/ndkports
+	<project groups="QC" name="platform/tools/ndkports" path="LINUX/android/tools/ndkports"/>
+
+0
+platform/tools/repohooks
+LINUX/android/tools/repohooks
+	<project groups="QC" name="platform/tools/repohooks" path="LINUX/android/tools/repohooks"/>
+
+0
+platform/tools/security
+LINUX/android/tools/security
+	<project groups="QC" name="platform/tools/security" path="LINUX/android/tools/security"/>
+
+0
+platform/tools/test/connectivity
+LINUX/android/tools/test/connectivity
+	<project groups="QC" name="platform/tools/test/connectivity" path="LINUX/android/tools/test/connectivity"/>
+
+0
+platform/tools/test/graphicsbenchmark
+LINUX/android/tools/test/graphicsbenchmark
+	<project groups="QC" name="platform/tools/test/graphicsbenchmark" path="LINUX/android/tools/test/graphicsbenchmark"/>
+
+0
+platform/tools/tradefederation
+LINUX/android/tools/tradefederation/core
+	<project groups="QC" name="platform/tools/tradefederation" path="LINUX/android/tools/tradefederation/core"/>
+
+0
+platform/tools/tradefederation/contrib
+LINUX/android/tools/tradefederation/contrib
+	<project groups="QC" name="platform/tools/tradefederation/contrib" path="LINUX/android/tools/tradefederation/contrib"/>
+
+0
+platform/tools/trebuchet
+LINUX/android/tools/trebuchet
+	<project groups="QC" name="platform/tools/trebuchet" path="LINUX/android/tools/trebuchet"/>
+
+0
+platform/vendor/codeaurora/packages/apps/Dialer
+LINUX/android/vendor/codeaurora/commonsys/packages/apps/Dialer
+	<project groups="QC" name="platform/vendor/codeaurora/packages/apps/Dialer" path="LINUX/android/vendor/codeaurora/commonsys/packages/apps/Dialer"/>
+
+0
+platform/vendor/codeaurora/packages/apps/SoundRecorder
+LINUX/android/vendor/codeaurora/commonsys/packages/apps/SoundRecorder
+	<project groups="QC" name="platform/vendor/codeaurora/packages/apps/SoundRecorder" path="LINUX/android/vendor/codeaurora/commonsys/packages/apps/SoundRecorder">
+
+0
+platform/vendor/codeaurora/telephony
+LINUX/android/vendor/codeaurora/commonsys/telephony
+	<project groups="QC" name="platform/vendor/codeaurora/telephony" path="LINUX/android/vendor/codeaurora/commonsys/telephony"/>
+
+0
+platform/vendor/nxp/interfaces/opensource/nfc
+LINUX/android/vendor/nxp/opensource/interfaces/nfc
+	<project groups="QC" name="platform/vendor/nxp/interfaces/opensource/nfc" path="LINUX/android/vendor/nxp/opensource/interfaces/nfc"/>
+
+0
+platform/vendor/nxp/opensource/external/libnfc-nci
+LINUX/android/vendor/nxp/opensource/commonsys/external/libnfc-nci
+	<project groups="QC" name="platform/vendor/nxp/opensource/external/libnfc-nci" path="LINUX/android/vendor/nxp/opensource/commonsys/external/libnfc-nci"/>
+
+0
+platform/vendor/nxp/opensource/frameworks
+LINUX/android/vendor/nxp/opensource/commonsys/frameworks
+	<project groups="QC" name="platform/vendor/nxp/opensource/frameworks" path="LINUX/android/vendor/nxp/opensource/commonsys/frameworks"/>
+
+0
+platform/vendor/nxp/opensource/halimpl
+LINUX/android/vendor/nxp/opensource/halimpl
+	<project groups="QC" name="platform/vendor/nxp/opensource/halimpl" path="LINUX/android/vendor/nxp/opensource/halimpl">
+
+0
+platform/vendor/nxp/opensource/hidlimpl
+LINUX/android/vendor/nxp/opensource/hidlimpl
+	<project groups="QC" name="platform/vendor/nxp/opensource/hidlimpl" path="LINUX/android/vendor/nxp/opensource/hidlimpl"/>
+
+0
+platform/vendor/nxp/opensource/packages/apps/Nfc
+LINUX/android/vendor/nxp/opensource/commonsys/packages/apps/Nfc
+	<project groups="QC" name="platform/vendor/nxp/opensource/packages/apps/Nfc" path="LINUX/android/vendor/nxp/opensource/commonsys/packages/apps/Nfc">
+
+0
+platform/vendor/qcom-opensource/audio
+LINUX/android/vendor/qcom/opensource/audio
+	<project groups="QC" name="platform/vendor/qcom-opensource/audio" path="LINUX/android/vendor/qcom/opensource/audio"/>
+
+0
+platform/vendor/qcom-opensource/audio-hal/st-hal
+LINUX/android/vendor/qcom/opensource/audio-hal/st-hal
+	<project groups="QC" name="platform/vendor/qcom-opensource/audio-hal/st-hal" path="LINUX/android/vendor/qcom/opensource/audio-hal/st-hal"/>
+
+0
+platform/vendor/qcom-opensource/bluetooth
+LINUX/android/vendor/qcom/opensource/commonsys/bluetooth
+	<project groups="QC" name="platform/vendor/qcom-opensource/bluetooth" path="LINUX/android/vendor/qcom/opensource/commonsys/bluetooth"/>
+
+0
+platform/vendor/qcom-opensource/bluetooth-commonsys-intf
+LINUX/android/vendor/qcom/opensource/commonsys-intf/bluetooth
+	<project groups="QC" name="platform/vendor/qcom-opensource/bluetooth-commonsys-intf" path="LINUX/android/vendor/qcom/opensource/commonsys-intf/bluetooth">
+
+0
+platform/vendor/qcom-opensource/bluetooth_ext
+LINUX/android/vendor/qcom/opensource/commonsys/bluetooth_ext
+	<project groups="QC" name="platform/vendor/qcom-opensource/bluetooth_ext" path="LINUX/android/vendor/qcom/opensource/commonsys/bluetooth_ext"/>
+
+0
+platform/vendor/qcom-opensource/core-utils
+LINUX/android/vendor/qcom/opensource/core-utils
+	<project groups="QC" name="platform/vendor/qcom-opensource/core-utils" path="LINUX/android/vendor/qcom/opensource/core-utils">
+
+0
+platform/vendor/qcom-opensource/cryptfs_hw
+LINUX/android/vendor/qcom/opensource/commonsys/cryptfs_hw
+	<project groups="QC" name="platform/vendor/qcom-opensource/cryptfs_hw" path="LINUX/android/vendor/qcom/opensource/commonsys/cryptfs_hw"/>
+
+0
+platform/vendor/qcom-opensource/data-ipa-cfg-mgr
+LINUX/android/vendor/qcom/opensource/data-ipa-cfg-mgr
+	<project groups="QC" name="platform/vendor/qcom-opensource/data-ipa-cfg-mgr" path="LINUX/android/vendor/qcom/opensource/data-ipa-cfg-mgr">
+
+0
+platform/vendor/qcom-opensource/dataservices
+LINUX/android/vendor/qcom/opensource/dataservices
+	<project groups="QC" name="platform/vendor/qcom-opensource/dataservices" path="LINUX/android/vendor/qcom/opensource/dataservices"/>
+
+0
+platform/vendor/qcom-opensource/dataservices-commonsys
+LINUX/android/vendor/qcom/opensource/commonsys/dataservices
+	<project groups="QC" name="platform/vendor/qcom-opensource/dataservices-commonsys" path="LINUX/android/vendor/qcom/opensource/commonsys/dataservices"/>
+
+0
+platform/vendor/qcom-opensource/dpm
+LINUX/android/vendor/qcom/opensource/dpm
+	<project groups="QC" name="platform/vendor/qcom-opensource/dpm" path="LINUX/android/vendor/qcom/opensource/dpm"/>
+
+0
+platform/vendor/qcom-opensource/dpm-commonsys
+LINUX/android/vendor/qcom/opensource/commonsys/dpm
+	<project groups="QC" name="platform/vendor/qcom-opensource/dpm-commonsys" path="LINUX/android/vendor/qcom/opensource/commonsys/dpm"/>
+
+0
+platform/vendor/qcom-opensource/fm-commonsys
+LINUX/android/vendor/qcom/opensource/commonsys/fm
+	<project groups="QC" name="platform/vendor/qcom-opensource/fm-commonsys" path="LINUX/android/vendor/qcom/opensource/commonsys/fm"/>
+
+0
+platform/vendor/qcom-opensource/fst-manager
+LINUX/android/vendor/qcom/opensource/fst-manager
+	<project groups="QC" name="platform/vendor/qcom-opensource/fst-manager" path="LINUX/android/vendor/qcom/opensource/fst-manager"/>
+
+0
+platform/vendor/qcom-opensource/healthd-ext
+LINUX/android/vendor/qcom/opensource/healthd-ext
+	<project groups="QC" name="platform/vendor/qcom-opensource/healthd-ext" path="LINUX/android/vendor/qcom/opensource/healthd-ext"/>
+
+0
+platform/vendor/qcom-opensource/interfaces
+LINUX/android/vendor/qcom/opensource/interfaces
+	<project groups="QC" name="platform/vendor/qcom-opensource/interfaces" path="LINUX/android/vendor/qcom/opensource/interfaces"/>
+
+0
+platform/vendor/qcom-opensource/location
+LINUX/android/vendor/qcom/opensource/location
+	<project groups="QC" name="platform/vendor/qcom-opensource/location" path="LINUX/android/vendor/qcom/opensource/location">
+
+0
+platform/vendor/qcom-opensource/mmc-utils
+LINUX/android/vendor/qcom/opensource/mmc-utils
+	<project groups="QC" name="platform/vendor/qcom-opensource/mmc-utils" path="LINUX/android/vendor/qcom/opensource/mmc-utils"/>
+
+0
+platform/vendor/qcom-opensource/power
+LINUX/android/vendor/qcom/opensource/power
+	<project groups="QC" name="platform/vendor/qcom-opensource/power" path="LINUX/android/vendor/qcom/opensource/power"/>
+
+0
+platform/vendor/qcom-opensource/recovery-ext
+LINUX/android/vendor/qcom/opensource/recovery-ext
+	<project groups="QC" name="platform/vendor/qcom-opensource/recovery-ext" path="LINUX/android/vendor/qcom/opensource/recovery-ext"/>
+
+0
+platform/vendor/qcom-opensource/shortcut-fe
+LINUX/android/shortcut-fe
+	<project groups="QC" name="platform/vendor/qcom-opensource/shortcut-fe" path="LINUX/android/shortcut-fe"/>
+
+0
+platform/vendor/qcom-opensource/system/bt
+LINUX/android/vendor/qcom/opensource/commonsys/system/bt
+	<project groups="QC" name="platform/vendor/qcom-opensource/system/bt" path="LINUX/android/vendor/qcom/opensource/commonsys/system/bt"/>
+
+0
+platform/vendor/qcom-opensource/thermal-engine
+LINUX/android/vendor/qcom/opensource/thermal-engine
+	<project groups="QC" name="platform/vendor/qcom-opensource/thermal-engine" path="LINUX/android/vendor/qcom/opensource/thermal-engine"/>
+
+0
+platform/vendor/qcom-opensource/time-services
+LINUX/android/vendor/qcom/opensource/time-services
+	<project groups="QC" name="platform/vendor/qcom-opensource/time-services" path="LINUX/android/vendor/qcom/opensource/time-services"/>
+
+0
+platform/vendor/qcom-opensource/tools
+LINUX/android/vendor/qcom/opensource/tools
+	<project groups="QC" name="platform/vendor/qcom-opensource/tools" path="LINUX/android/vendor/qcom/opensource/tools"/>
+
+0
+platform/vendor/qcom-opensource/usb
+LINUX/android/vendor/qcom/opensource/usb
+	<project groups="QC" name="platform/vendor/qcom-opensource/usb" path="LINUX/android/vendor/qcom/opensource/usb"/>
+
+0
+platform/vendor/qcom-opensource/wigig
+LINUX/android/vendor/qcom/opensource/wigig
+	<project groups="QC" name="platform/vendor/qcom-opensource/wigig" path="LINUX/android/vendor/qcom/opensource/wigig"/>
+
+0
+platform/vendor/qcom-opensource/wlan/fw-api
+LINUX/android/vendor/qcom/opensource/wlan/fw-api
+	<project groups="QC" name="platform/vendor/qcom-opensource/wlan/fw-api" path="LINUX/android/vendor/qcom/opensource/wlan/fw-api"/>
+
+0
+platform/vendor/qcom-opensource/wlan/qca-wifi-host-cmn
+LINUX/android/vendor/qcom/opensource/wlan/qca-wifi-host-cmn
+	<project groups="QC" name="platform/vendor/qcom-opensource/wlan/qca-wifi-host-cmn" path="LINUX/android/vendor/qcom/opensource/wlan/qca-wifi-host-cmn"/>
+
+0
+platform/vendor/qcom-opensource/wlan/qcacld-3.0
+LINUX/android/vendor/qcom/opensource/wlan/qcacld-3.0
+	<project groups="QC" name="platform/vendor/qcom-opensource/wlan/qcacld-3.0" path="LINUX/android/vendor/qcom/opensource/wlan/qcacld-3.0"/>
+
+0
+platform/vendor/qcom-opensource/wlan/utils/sigma-dut
+LINUX/android/vendor/qcom/opensource/wlan/utils/sigma-dut
+	<project groups="QC" name="platform/vendor/qcom-opensource/wlan/utils/sigma-dut" path="LINUX/android/vendor/qcom/opensource/wlan/utils/sigma-dut"/>
+
+0
+platform/vendor/qcom/cobalt
+LINUX/android/device/qcom/msm8998
+	<project groups="QC" name="platform/vendor/qcom/cobalt" path="LINUX/android/device/qcom/msm8998"/>
+
+0
+platform/vendor/qcom/falcon_32
+LINUX/android/device/qcom/sdm660_32
+	<project groups="QC" name="platform/vendor/qcom/falcon_32" path="LINUX/android/device/qcom/sdm660_32"/>
+
+0
+platform/vendor/qcom/falcon_64
+LINUX/android/device/qcom/sdm660_64
+	<project groups="QC" name="platform/vendor/qcom/falcon_64" path="LINUX/android/device/qcom/sdm660_64"/>
+
+0
+platform/vendor/qcom/ferrum
+LINUX/android/device/qcom/msm8909
+	<project groups="QC" name="platform/vendor/qcom/ferrum" path="LINUX/android/device/qcom/msm8909"/>
+
+0
+platform/vendor/qcom/msm8909go
+LINUX/android/device/qcom/msm8909go
+	<project groups="QC" name="platform/vendor/qcom/msm8909go" path="LINUX/android/device/qcom/msm8909go"/>
+
+0
+platform/vendor/qcom/msm8937_32go
+LINUX/android/device/qcom/msm8937_32go
+	<project groups="QC" name="platform/vendor/qcom/msm8937_32go" path="LINUX/android/device/qcom/msm8937_32go"/>
+
+0
+platform/vendor/qcom/skunk
+LINUX/android/device/qcom/sdm845
+	<project groups="QC" name="platform/vendor/qcom/skunk" path="LINUX/android/device/qcom/sdm845"/>
+
+0
+platform/vendor/qcom/thulium
+LINUX/android/device/qcom/msm8996
+	<project groups="QC" name="platform/vendor/qcom/thulium" path="LINUX/android/device/qcom/msm8996"/>
+
+0
+platform/vendor/qcom/wlan
+LINUX/android/device/qcom/wlan
+	<project groups="QC" name="platform/vendor/qcom/wlan" path="LINUX/android/device/qcom/wlan"/>
+
+0
+toolchain/pgo-profiles
+LINUX/android/toolchain/pgo-profiles
+	<project groups="QC" name="toolchain/pgo-profiles" path="LINUX/android/toolchain/pgo-profiles"/>
+
+0
+.repo/manifests/30100013_SP/BSP.xml
+security
+LINUX/security
+	<project groups="COM_BSP" name="security" path="LINUX/security" revision="dev/SDM660/BSP"/>
+
+0
+device/gsi_qcom/common
+LINUX/android/device/gsi_qcom/common
+	<project groups="FIH_BSP" name="device/gsi_qcom/common" path="LINUX/android/device/gsi_qcom/common" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+platform/vendor/FIH
+LINUX/android/vendor/FIH
+	<project groups="FIH_BSP" name="platform/vendor/FIH" path="LINUX/android/vendor/FIH" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+device/fih_qcom/fih_sdm660_64
+LINUX/android/device/fih_qcom/fih_sdm660_64
+	<project groups="FIH_BSP" name="device/fih_qcom/fih_sdm660_64" path="LINUX/android/device/fih_qcom/fih_sdm660_64" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+build_scripts
+build_scripts
+	<project groups="FIH_AP" name="build_scripts" path="build_scripts" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+SDM660/LINUX/android/vendor/qcom/proprietary/telephony-fwk
+LINUX/android/vendor/qcom/proprietary/commonsys/telephony-fwk
+	<project groups="SDM660" name="SDM660/LINUX/android/vendor/qcom/proprietary/telephony-fwk" path="LINUX/android/vendor/qcom/proprietary/commonsys/telephony-fwk" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+SDM660/LINUX/android/vendor/qcom/proprietary
+LINUX/android/vendor/qcom/proprietary
+	<project groups="SDM660" name="SDM660/LINUX/android/vendor/qcom/proprietary" path="LINUX/android/vendor/qcom/proprietary" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+SDM660/LINUX/android/vendor/qcom/proprietary/mm-camera
+LINUX/android/vendor/qcom/proprietary/mm-camera
+	<project groups="SDM660" name="SDM660/LINUX/android/vendor/qcom/proprietary/mm-camera" path="LINUX/android/vendor/qcom/proprietary/mm-camera" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+SDM660/LINUX/android/vendor/qcom/proprietary/mm-camerasdk
+LINUX/android/vendor/qcom/proprietary/mm-camerasdk
+	<project groups="SDM660" name="SDM660/LINUX/android/vendor/qcom/proprietary/mm-camerasdk" path="LINUX/android/vendor/qcom/proprietary/mm-camerasdk" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+SDM660/LINUX/android/vendor/qcom/proprietary/mm-still
+LINUX/android/vendor/qcom/proprietary/mm-still
+	<project groups="SDM660" name="SDM660/LINUX/android/vendor/qcom/proprietary/mm-still" path="LINUX/android/vendor/qcom/proprietary/mm-still" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+platform/external/dng_sdk
+LINUX/android/external/dng_sdk
+	<reset-project groups="BSP" name="platform/external/dng_sdk" path="LINUX/android/external/dng_sdk" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+platform/system/vold
+LINUX/android/system/vold
+	<reset-project groups="BSP" name="platform/system/vold" path="LINUX/android/system/vold" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+platform/external/libcups
+LINUX/android/external/libcups
+	<reset-project groups="BSP" name="platform/external/libcups" path="LINUX/android/external/libcups" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+platform/vendor/qcom-opensource/system/bt
+LINUX/android/vendor/qcom/opensource/commonsys/system/bt
+	<reset-project groups="BSP" name="platform/vendor/qcom-opensource/system/bt" path="LINUX/android/vendor/qcom/opensource/commonsys/system/bt" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+platform/system/bt
+LINUX/android/system/bt
+	<reset-project groups="BSP" name="platform/system/bt" path="LINUX/android/system/bt" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+platform/packages/services/BuiltInPrintService
+LINUX/android/packages/services/BuiltInPrintService
+	<reset-project groups="BSP" name="platform/packages/services/BuiltInPrintService" path="LINUX/android/packages/services/BuiltInPrintService" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+platform/packages/apps/PackageInstaller
+LINUX/android/packages/apps/PermissionController
+	<reset-project groups="BSP" name="platform/packages/apps/PackageInstaller" path="LINUX/android/packages/apps/PermissionController" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+platform/packages/providers/TvProvider
+LINUX/android/packages/providers/TvProvider
+	<reset-project groups="BSP" name="platform/packages/providers/TvProvider" path="LINUX/android/packages/providers/TvProvider" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+platform/packages/providers/DownloadProvider
+LINUX/android/packages/providers/DownloadProvider
+	<reset-project groups="BSP" name="platform/packages/providers/DownloadProvider" path="LINUX/android/packages/providers/DownloadProvider" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+platform/packages/apps/ManagedProvisioning
+LINUX/android/packages/apps/ManagedProvisioning
+	<reset-project groups="BSP" name="platform/packages/apps/ManagedProvisioning" path="LINUX/android/packages/apps/ManagedProvisioning" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+platform/packages/services/Car
+LINUX/android/packages/services/Car
+	<reset-project groups="BSP" name="platform/packages/services/Car" path="LINUX/android/packages/services/Car" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+platform/external/libexif
+LINUX/android/external/libexif
+	<reset-project groups="BSP" name="platform/external/libexif" path="LINUX/android/external/libexif" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+platform/vendor/qcom-opensource/wlan/qca-wifi-host-cmn
+LINUX/android/vendor/qcom/opensource/wlan/qca-wifi-host-cmn
+	<reset-project groups="BSP" name="platform/vendor/qcom-opensource/wlan/qca-wifi-host-cmn" path="LINUX/android/vendor/qcom/opensource/wlan/qca-wifi-host-cmn" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+platform/vendor/qcom-opensource/bluetooth-commonsys-intf
+LINUX/android/vendor/qcom/opensource/commonsys-intf/bluetooth
+	<reset-project groups="BSP" name="platform/vendor/qcom-opensource/bluetooth-commonsys-intf" path="LINUX/android/vendor/qcom/opensource/commonsys-intf/bluetooth" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+platform/system/apex
+LINUX/android/system/apex
+	<reset-project groups="BSP" name="platform/system/apex" path="LINUX/android/system/apex" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+platform/external/chromium-libpac
+LINUX/android/external/chromium-libpac
+	<reset-project groups="BSP" name="platform/external/chromium-libpac" path="LINUX/android/external/chromium-libpac" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+platform/external/libcxx
+LINUX/android/external/libcxx
+	<reset-project groups="BSP" name="platform/external/libcxx" path="LINUX/android/external/libcxx" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+platform/external/libjpeg-turbo
+LINUX/android/external/libjpeg-turbo
+	<reset-project groups="BSP" name="platform/external/libjpeg-turbo" path="LINUX/android/external/libjpeg-turbo" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+platform/external/ImageMagick
+LINUX/android/external/ImageMagick
+	<reset-project groups="BSP" name="platform/external/ImageMagick" path="LINUX/android/external/ImageMagick" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+platform/external/libhevc
+LINUX/android/external/libhevc
+	<reset-project groups="BSP" name="platform/external/libhevc" path="LINUX/android/external/libhevc" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+platform/external/libavc
+LINUX/android/external/libavc
+	<reset-project groups="BSP" name="platform/external/libavc" path="LINUX/android/external/libavc" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+platform/system/nfc
+LINUX/android/system/nfc
+	<reset-project groups="BSP" name="platform/system/nfc" path="LINUX/android/system/nfc" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+platform/libcore
+LINUX/android/libcore
+	<reset-project groups="BSP" name="platform/libcore" path="LINUX/android/libcore" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+platform/vendor/nxp/opensource/packages/apps/Nfc
+LINUX/android/vendor/nxp/opensource/commonsys/packages/apps/Nfc
+	<reset-project groups="BSP" name="platform/vendor/nxp/opensource/packages/apps/Nfc" path="LINUX/android/vendor/nxp/opensource/commonsys/packages/apps/Nfc" revision="OF6/dev/SDM660/30100013/BSP">
+
+0
+platform/vendor/nxp/opensource/hidlimpl
+LINUX/android/vendor/nxp/opensource/hidlimpl
+	<reset-project groups="BSP" name="platform/vendor/nxp/opensource/hidlimpl" path="LINUX/android/vendor/nxp/opensource/hidlimpl" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+platform/vendor/nxp/opensource/halimpl
+LINUX/android/vendor/nxp/opensource/halimpl
+	<reset-project groups="BSP" name="platform/vendor/nxp/opensource/halimpl" path="LINUX/android/vendor/nxp/opensource/halimpl" revision="OF6/dev/SDM660/30100013/BSP">
+
+0
+platform/art
+LINUX/android/art
+	<reset-project groups="BSP" name="platform/art" path="LINUX/android/art" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+platform/external/sqlite
+LINUX/android/external/sqlite
+	<reset-project groups="BSP" name="platform/external/sqlite" path="LINUX/android/external/sqlite" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+platform/external/skia
+LINUX/android/external/skia
+	<reset-project groups="BSP" name="platform/external/skia" path="LINUX/android/external/skia" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+platform/vendor/qcom-opensource/audio
+LINUX/android/vendor/qcom/opensource/audio
+	<reset-project groups="BSP" name="platform/vendor/qcom-opensource/audio" path="LINUX/android/vendor/qcom/opensource/audio" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+platform/external/wpa_supplicant_8
+LINUX/android/external/wpa_supplicant_8
+	<reset-project groups="BSP" name="platform/external/wpa_supplicant_8" path="LINUX/android/external/wpa_supplicant_8" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+platform/development
+LINUX/android/development
+	<reset-project groups="BSP" name="platform/development" path="LINUX/android/development" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+platform/vendor/qcom-opensource/power
+LINUX/android/vendor/qcom/opensource/power
+	<reset-project groups="BSP" name="platform/vendor/qcom-opensource/power" path="LINUX/android/vendor/qcom/opensource/power" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+platform/bootable/recovery
+LINUX/android/bootable/recovery
+	<reset-project groups="BSP" name="platform/bootable/recovery" path="LINUX/android/bootable/recovery" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+abl/tianocore/edk2
+LINUX/android/bootable/bootloader/edk2
+	<reset-project groups="BSP" name="abl/tianocore/edk2" path="LINUX/android/bootable/bootloader/edk2" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+device/qcom/common
+LINUX/android/device/qcom/common
+	<reset-project groups="BSP" name="device/qcom/common" path="LINUX/android/device/qcom/common" revision="OF6/dev/SDM660/30100013/BSP">
+
+0
+device/qcom/sepolicy
+LINUX/android/device/qcom/sepolicy
+	<reset-project groups="BSP" name="device/qcom/sepolicy" path="LINUX/android/device/qcom/sepolicy" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+kernel/msm-4.4
+LINUX/android/kernel/msm-4.4
+	<reset-project groups="BSP" name="kernel/msm-4.4" path="LINUX/android/kernel/msm-4.4" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+platform/hardware/interfaces
+LINUX/android/hardware/interfaces
+	<reset-project groups="BSP" name="platform/hardware/interfaces" path="LINUX/android/hardware/interfaces" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+platform/hardware/libhardware
+LINUX/android/hardware/libhardware
+	<reset-project groups="BSP" name="platform/hardware/libhardware" path="LINUX/android/hardware/libhardware" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+platform/hardware/libhardware_legacy
+LINUX/android/hardware/libhardware_legacy
+	<reset-project groups="BSP" name="platform/hardware/libhardware_legacy" path="LINUX/android/hardware/libhardware_legacy" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+platform/hardware/qcom/audio
+LINUX/android/vendor/qcom/opensource/audio-hal/primary-hal
+	<reset-project groups="BSP" name="platform/hardware/qcom/audio" path="LINUX/android/vendor/qcom/opensource/audio-hal/primary-hal" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+platform/hardware/qcom/bootctrl
+LINUX/android/hardware/qcom/bootctrl
+	<reset-project groups="BSP" name="platform/hardware/qcom/bootctrl" path="LINUX/android/hardware/qcom/bootctrl" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+platform/hardware/qcom/camera
+LINUX/android/hardware/qcom/camera
+	<reset-project groups="BSP" name="platform/hardware/qcom/camera" path="LINUX/android/hardware/qcom/camera" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+platform/hardware/qcom/display
+LINUX/android/hardware/qcom/display
+	<reset-project groups="BSP" name="platform/hardware/qcom/display" path="LINUX/android/hardware/qcom/display" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+platform/hardware/qcom/gps
+LINUX/android/hardware/qcom/gps
+	<reset-project groups="BSP" name="platform/hardware/qcom/gps" path="LINUX/android/hardware/qcom/gps" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+platform/hardware/qcom/media
+LINUX/android/hardware/qcom/media
+	<reset-project groups="BSP" name="platform/hardware/qcom/media" path="LINUX/android/hardware/qcom/media" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+platform/hardware/qcom/wlan
+LINUX/android/hardware/qcom/wlan
+	<reset-project groups="BSP" name="platform/hardware/qcom/wlan" path="LINUX/android/hardware/qcom/wlan" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+platform/system/core
+LINUX/android/system/core
+	<reset-project groups="BSP" name="platform/system/core" path="LINUX/android/system/core" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+platform/system/extras
+LINUX/android/system/extras
+	<reset-project groups="BSP" name="platform/system/extras" path="LINUX/android/system/extras" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+platform/system/media
+LINUX/android/system/media
+	<reset-project groups="BSP" name="platform/system/media" path="LINUX/android/system/media" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+platform/system/security
+LINUX/android/system/security
+	<reset-project groups="BSP" name="platform/system/security" path="LINUX/android/system/security" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+platform/system/update_engine
+LINUX/android/system/update_engine
+	<reset-project groups="BSP" name="platform/system/update_engine" path="LINUX/android/system/update_engine" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+platform/vendor/qcom-opensource/bluetooth
+LINUX/android/vendor/qcom/opensource/commonsys/bluetooth
+	<reset-project groups="BSP" name="platform/vendor/qcom-opensource/bluetooth" path="LINUX/android/vendor/qcom/opensource/commonsys/bluetooth" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+platform/vendor/qcom-opensource/bluetooth_ext
+LINUX/android/vendor/qcom/opensource/commonsys/bluetooth_ext
+	<reset-project groups="BSP" name="platform/vendor/qcom-opensource/bluetooth_ext" path="LINUX/android/vendor/qcom/opensource/commonsys/bluetooth_ext" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+platform/vendor/qcom-opensource/interfaces
+LINUX/android/vendor/qcom/opensource/interfaces
+	<reset-project groups="BSP" name="platform/vendor/qcom-opensource/interfaces" path="LINUX/android/vendor/qcom/opensource/interfaces" revision="OF6/dev/SDM660/30100013/BSP">
+
+0
+platform/vendor/qcom/falcon_32
+LINUX/android/device/qcom/sdm660_32
+	<reset-project groups="BSP" name="platform/vendor/qcom/falcon_32" path="LINUX/android/device/qcom/sdm660_32" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+platform/vendor/qcom/falcon_64
+LINUX/android/device/qcom/sdm660_64
+	<reset-project groups="BSP" name="platform/vendor/qcom/falcon_64" path="LINUX/android/device/qcom/sdm660_64" revision="OF6/dev/SDM660/30100013/BSP"/>
+
+0
+.repo/manifests/30100013/PFAQ.xml
+platform/packages/apps/LocationAttribution
+LINUX/android/packages/apps/LocationAttribution
+	<project groups="SHARP_AP" name="platform/packages/apps/LocationAttribution" path="LINUX/android/packages/apps/LocationAttribution" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/vendor/dolby/atmos
+LINUX/android/vendor/dolby/atmos
+ 	<project groups="SHARP_AP" name="platform/vendor/dolby/atmos" path="LINUX/android/vendor/dolby/atmos" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/external/sharp/selfcheckserver
+LINUX/android/external/sharp/selfcheckserver
+ 	<project groups="SHARP_AP" name="platform/external/sharp/selfcheckserver" path="LINUX/android/external/sharp/selfcheckserver" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/hardware/sharp
+LINUX/android/hardware/sharp
+	<project groups="SHARP_AP" name="platform/hardware/sharp" path="LINUX/android/hardware/sharp" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+platform/system/sharp/shpwr
+LINUX/android/system/sharp/shpwr
+        <project groups="SHARP_AP" name="platform/system/sharp/shpwr" path="LINUX/android/system/sharp/shpwr" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+platform/packages/apps/ARCore
+LINUX/android/packages/apps/ARCore
+ 	<project groups="SHARP_AP" name="platform/packages/apps/ARCore" path="LINUX/android/packages/apps/ARCore" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/apps/InputMethodSelector
+LINUX/android/packages/apps/InputMethodSelector
+ 	<project groups="SHARP_AP" name="platform/packages/apps/InputMethodSelector" path="LINUX/android/packages/apps/InputMethodSelector" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/system/sharp/shlogd
+LINUX/android/system/sharp/shlogd
+	<project groups="SHARP_AP" name="platform/system/sharp/shlogd" path="LINUX/android/system/sharp/shlogd" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/apps/SHLogdService
+LINUX/android/packages/apps/SHLogdService
+ 	<project groups="SHARP_AP" name="platform/packages/apps/SHLogdService" path="LINUX/android/packages/apps/SHLogdService" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/apps/ifiltershortcut
+LINUX/android/packages/apps/ifiltershortcut
+ 	<project groups="SHARP_AP" name="platform/packages/apps/ifiltershortcut" path="LINUX/android/packages/apps/ifiltershortcut" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/apps/Sgsc
+LINUX/android/packages/apps/Sgsc
+ 	<project groups="SHARP_AP" name="platform/packages/apps/Sgsc" path="LINUX/android/packages/apps/Sgsc" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/apps/KddiOma
+LINUX/android/packages/apps/KddiOma
+ 	<project groups="SHARP_AP" name="platform/packages/apps/KddiOma" path="LINUX/android/packages/apps/KddiOma" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/apps/KddiOmaPlug
+LINUX/android/packages/apps/KddiOmaPlug
+ 	<project groups="SHARP_AP" name="platform/packages/apps/KddiOmaPlug" path="LINUX/android/packages/apps/KddiOmaPlug" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/external/sharp/shtpspm
+LINUX/android/external/sharp/shtpspm
+ 	<project groups="SHARP_AP" name="platform/external/sharp/shtpspm" path="LINUX/android/external/sharp/shtpspm" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/apps/SHSelfCheckApp
+LINUX/android/packages/apps/SHSelfCheckApp
+ 	<project groups="SHARP_AP" name="platform/packages/apps/SHSelfCheckApp" path="LINUX/android/packages/apps/SHSelfCheckApp" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/apps/BackupRestore
+LINUX/android/packages/apps/BackupRestore
+ 	<project groups="SHARP_AP" name="platform/packages/apps/BackupRestore" path="LINUX/android/packages/apps/BackupRestore" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/apps/RestoreGuide
+LINUX/android/packages/apps/RestoreGuide
+	<project groups="SHARP_AP" name="platform/packages/apps/RestoreGuide" path="LINUX/android/packages/apps/RestoreGuide" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/apps/BluetoothPbapPce
+LINUX/android/packages/apps/BluetoothPbapPce
+ 	<project groups="SHARP_AP" name="platform/packages/apps/BluetoothPbapPce" path="LINUX/android/packages/apps/BluetoothPbapPce" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/apps/ContactsSH
+LINUX/android/packages/apps/ContactsSH
+ 	<project groups="SHARP_AP" name="platform/packages/apps/ContactsSH" path="LINUX/android/packages/apps/ContactsSH" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/apps/PlayAutoInstalls
+LINUX/android/packages/apps/PlayAutoInstalls
+ 	<project groups="SHARP_AP" name="platform/packages/apps/PlayAutoInstalls" path="LINUX/android/packages/apps/PlayAutoInstalls" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/providers/BackupRestoreProvider
+LINUX/android/packages/providers/BackupRestoreProvider
+ 	<project groups="SHARP_AP" name="platform/packages/providers/BackupRestoreProvider" path="LINUX/android/packages/providers/BackupRestoreProvider" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/vendor/sbm
+LINUX/android/vendor/sbm
+ 	<project groups="SHARP_AP" name="platform/vendor/sbm" path="LINUX/android/vendor/sbm" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/vendor/mobilesystems
+LINUX/android/vendor/mobilesystems
+ 	<project groups="SHARP_AP" name="platform/vendor/mobilesystems" path="LINUX/android/vendor/mobilesystems" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/system/sharp/shsleeplog
+LINUX/android/system/sharp/shsleeplog
+ 	<project groups="SHARP_AP" name="platform/system/sharp/shsleeplog" path="LINUX/android/system/sharp/shsleeplog" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/apps/KittingService
+LINUX/android/packages/apps/KittingService
+ 	<project groups="SHARP_AP" name="platform/packages/apps/KittingService" path="LINUX/android/packages/apps/KittingService" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/apps/KittingSetupWizard
+LINUX/android/packages/apps/KittingSetupWizard
+ 	<project groups="SHARP_AP" name="platform/packages/apps/KittingSetupWizard" path="LINUX/android/packages/apps/KittingSetupWizard" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/apps/KittingApp
+LINUX/android/packages/apps/KittingApp
+ 	<project groups="SHARP_AP" name="platform/packages/apps/KittingApp" path="LINUX/android/packages/apps/KittingApp" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/apps/ScShoCapture
+LINUX/android/packages/apps/ScShoCapture
+ 	<project groups="SHARP_AP" name="platform/packages/apps/ScShoCapture" path="LINUX/android/packages/apps/ScShoCapture" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/apps/GmsSetupWizard
+LINUX/android/packages/apps/GmsSetupWizard
+ 	<project groups="SHARP_AP" name="platform/packages/apps/GmsSetupWizard" path="LINUX/android/packages/apps/GmsSetupWizard" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/apps/ScrollAuto
+LINUX/android/packages/apps/ScrollAuto
+ 	<project groups="SHARP_AP" name="platform/packages/apps/ScrollAuto" path="LINUX/android/packages/apps/ScrollAuto" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/apps/SoundMemo
+LINUX/android/packages/apps/SoundMemo
+ 	<project groups="SHARP_AP" name="platform/packages/apps/SoundMemo" path="LINUX/android/packages/apps/SoundMemo" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/providers/SoundMemoProvider
+LINUX/android/packages/providers/SoundMemoProvider
+ 	<project groups="SHARP_AP" name="platform/packages/providers/SoundMemoProvider" path="LINUX/android/packages/providers/SoundMemoProvider" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/apps/FriendLink
+LINUX/android/packages/apps/FriendLink
+	<project groups="SHARP_AP" name="platform/packages/apps/FriendLink" path="LINUX/android/packages/apps/FriendLink" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/apps/shshow
+LINUX/android/packages/apps/shshow
+ 	<project groups="SHARP_AP" name="platform/packages/apps/shshow" path="LINUX/android/packages/apps/shshow" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/inputmethods/iWnnIME_SH
+LINUX/android/packages/inputmethods/iWnnIME_SH
+ 	<project groups="SHARP_AP" name="platform/packages/inputmethods/iWnnIME_SH" path="LINUX/android/packages/inputmethods/iWnnIME_SH" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/apps/PartnerLauncherProvider
+LINUX/android/packages/apps/PartnerLauncherProvider
+ 	<project groups="SHARP_AP" name="platform/packages/apps/PartnerLauncherProvider" path="LINUX/android/packages/apps/PartnerLauncherProvider" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/apps/BrightKeep
+LINUX/android/packages/apps/BrightKeep
+ 	<project groups="SHARP_AP" name="platform/packages/apps/BrightKeep" path="LINUX/android/packages/apps/BrightKeep" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/apps/HikariEffect
+LINUX/android/packages/apps/HikariEffect
+ 	<!-- [remove] project groups="SHARP_AP" name="platform/packages/apps/HikariEffect" path="LINUX/android/packages/apps/HikariEffect" revision="OF6/dev/SDM660/30100013/PFAQ"/--> 
+
+0
+platform/packages/apps/ExchangePolicy
+LINUX/android/packages/apps/ExchangePolicy
+ 	<project groups="SHARP_AP" name="platform/packages/apps/ExchangePolicy" path="LINUX/android/packages/apps/ExchangePolicy" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/external/sharp/rlog
+LINUX/android/external/sharp/rlog
+ 	<project groups="SHARP_AP" name="platform/external/sharp/rlog" path="LINUX/android/external/sharp/rlog" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+platform/packages/apps/SHCamera
+LINUX/android/packages/apps/SHCamera
+	<project groups="SHARP_AP" name="platform/packages/apps/SHCamera" path="LINUX/android/packages/apps/SHCamera" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/apps/CocoroBooks
+LINUX/android/packages/apps/CocoroBooks
+ 	<project groups="SHARP_AP" name="platform/packages/apps/CocoroBooks" path="LINUX/android/packages/apps/CocoroBooks" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/apps/SettingsAQUOSUsefull
+LINUX/android/packages/apps/SettingsAQUOSUsefull
+ 	<project groups="SHARP_AP" name="platform/packages/apps/SettingsAQUOSUsefull" path="LINUX/android/packages/apps/SettingsAQUOSUsefull" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/apps/RestoreScreen
+LINUX/android/packages/apps/RestoreScreen
+ 	<project groups="SHARP_AP" name="platform/packages/apps/RestoreScreen" path="LINUX/android/packages/apps/RestoreScreen" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/apps/SHWirelessOutput
+LINUX/android/packages/apps/SHWirelessOutput
+ 	<project groups="SHARP_AP" name="platform/packages/apps/SHWirelessOutput" path="LINUX/android/packages/apps/SHWirelessOutput" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/apps/RoboDock
+LINUX/android/packages/apps/RoboDock
+ 	<project groups="SHARP_AP" name="platform/packages/apps/RoboDock" path="LINUX/android/packages/apps/RoboDock" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/apps/AquosCastCollabo
+LINUX/android/packages/apps/AquosCastCollabo
+ 	<project groups="SHARP_AP" name="platform/packages/apps/AquosCastCollabo" path="LINUX/android/packages/apps/AquosCastCollabo" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/apps/SHMediaPlayer
+LINUX/android/packages/apps/SHMediaPlayer
+ 	<project groups="SHARP_AP" name="platform/packages/apps/SHMediaPlayer" path="LINUX/android/packages/apps/SHMediaPlayer" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/apps/SimInsertionGuide
+LINUX/android/packages/apps/SimInsertionGuide
+ 	<project groups="SHARP_AP" name="platform/packages/apps/SimInsertionGuide" path="LINUX/android/packages/apps/SimInsertionGuide" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/apps/Slm
+LINUX/android/packages/apps/Slm
+ 	<project groups="SHARP_AP" name="platform/packages/apps/Slm" path="LINUX/android/packages/apps/Slm" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/apps/SharpApps
+LINUX/android/packages/apps/SharpApps
+ 	<project groups="SHARP_AP" name="platform/packages/apps/SharpApps" path="LINUX/android/packages/apps/SharpApps" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/apps/RakutenApps
+LINUX/android/packages/apps/RakutenApps
+ 	<project groups="SHARP_AP" name="platform/packages/apps/RakutenApps" path="LINUX/android/packages/apps/RakutenApps" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/apps/FaceControlApp
+LINUX/android/packages/apps/FaceControlApp
+ 	<project groups="SHARP_AP" name="platform/packages/apps/FaceControlApp" path="LINUX/android/packages/apps/FaceControlApp" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/apps/AntiTOK
+LINUX/android/packages/apps/AntiTOK
+ 	<project groups="SHARP_AP" name="platform/packages/apps/AntiTOK" path="LINUX/android/packages/apps/AntiTOK" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/apps/LauncherSh
+LINUX/android/packages/apps/LauncherSh
+ 	<project groups="SHARP_AP" name="platform/packages/apps/LauncherSh" path="LINUX/android/packages/apps/LauncherSh" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/external/efs-tools
+LINUX/android/external/efs-tools
+ 	<project groups="SHARP_AP" name="platform/external/efs-tools" path="LINUX/android/external/efs-tools" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/external/fatfs
+LINUX/android/external/fatfs
+ 	<project groups="SHARP_AP" name="platform/external/fatfs" path="LINUX/android/external/fatfs" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/vendor/pri_data
+LINUX/android/vendor/pri_data
+ 	<project groups="SHARP_AP" name="platform/vendor/pri_data" path="LINUX/android/vendor/pri_data" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/vendor/kddi
+LINUX/android/vendor/kddi
+ 	<project groups="SHARP_AP" name="platform/vendor/kddi" path="LINUX/android/vendor/kddi" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/apps/SettingsAppDataClear
+LINUX/android/packages/apps/SettingsAppDataClear
+ 	<project groups="SHARP_AP" name="platform/packages/apps/SettingsAppDataClear" path="LINUX/android/packages/apps/SettingsAppDataClear" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/apps/PseudoLockHelper
+LINUX/android/packages/apps/PseudoLockHelper
+ 	<project groups="SHARP_AP" name="platform/packages/apps/PseudoLockHelper" path="LINUX/android/packages/apps/PseudoLockHelper" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/apps/Wallpaper3D
+LINUX/android/packages/apps/Wallpaper3D
+ 	<project groups="SHARP_AP" name="platform/packages/apps/Wallpaper3D" path="LINUX/android/packages/apps/Wallpaper3D" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/apps/LockWeatherWidget
+LINUX/android/packages/apps/LockWeatherWidget
+ 	<project groups="SHARP_AP" name="platform/packages/apps/LockWeatherWidget" path="LINUX/android/packages/apps/LockWeatherWidget" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/apps/LocationInfoQuoter
+LINUX/android/packages/apps/LocationInfoQuoter
+ 	<project groups="SHARP_AP" name="platform/packages/apps/LocationInfoQuoter" path="LINUX/android/packages/apps/LocationInfoQuoter" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/apps/ClipBoardHelper
+LINUX/android/packages/apps/ClipBoardHelper
+ 	<project groups="SHARP_AP" name="platform/packages/apps/ClipBoardHelper" path="LINUX/android/packages/apps/ClipBoardHelper" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/apps/CopyHistorySH
+LINUX/android/packages/apps/CopyHistorySH
+ 	<project groups="SHARP_AP" name="platform/packages/apps/CopyHistorySH" path="LINUX/android/packages/apps/CopyHistorySH" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/apps/DetectMoisture
+LINUX/android/packages/apps/DetectMoisture
+ 	<project groups="SHARP_AP" name="platform/packages/apps/DetectMoisture" path="LINUX/android/packages/apps/DetectMoisture" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/apps/CalendarSelector
+LINUX/android/packages/apps/CalendarSelector
+ 	<project groups="SHARP_AP" name="platform/packages/apps/CalendarSelector" path="LINUX/android/packages/apps/CalendarSelector" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+platform/vendor/partner_modules
+LINUX/android/vendor/partner_modules
+	<project groups="FIH_AP" name="platform/vendor/partner_modules" path="LINUX/android/vendor/partner_modules" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+platform/vendor/partner_gms
+LINUX/android/vendor/partner_gms
+	<project groups="FIH_AP" name="platform/vendor/partner_gms" path="LINUX/android/vendor/partner_gms" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+platform/vendor/widevine
+LINUX/android/vendor/widevine
+	<project groups="COM_AP" name="platform/vendor/widevine" path="LINUX/android/vendor/widevine" revision="dev/GMS/qt-widevine-release" />
+
+0
+platform/packages/apps/Exchange
+LINUX/android/vendor/codeaurora/commonsys/packages/apps/Exchange
+        <project groups="FIH_AP" name="platform/packages/apps/Exchange" path="LINUX/android/vendor/codeaurora/commonsys/packages/apps/Exchange" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+FIH/system/fih
+LINUX/android/system/fih
+	<project groups="FIH_AP" name="FIH/system/fih" path="LINUX/android/system/fih" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+platform/vendor/sharp
+LINUX/android/vendor/sharp
+	<project groups="FIH_AP" name="platform/vendor/sharp" path="LINUX/android/vendor/sharp" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+platform/packages/Blackboxsystem
+LINUX/android/packages/Blackboxsystem
+        <project groups="FIH_AP" name="platform/packages/Blackboxsystem" path="LINUX/android/packages/Blackboxsystem" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+build_scripts
+build_scripts
+	<reset-project groups="FIH_AP" name="build_scripts" path="build_scripts" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+platform/external/okhttp
+LINUX/android/external/okhttp
+	<reset-project groups="QC" name="platform/external/okhttp" path="LINUX/android/external/okhttp" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+platform/frameworks/minikin
+LINUX/android/frameworks/minikin
+	<reset-project groups="QC" name="platform/frameworks/minikin" path="LINUX/android/frameworks/minikin" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+platform/external/freetype
+LINUX/android/external/freetype
+	<reset-project groups="QC" name="platform/external/freetype" path="LINUX/android/external/freetype" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+platform/external/libaom
+LINUX/android/external/libaom
+	<reset-project groups="QC" name="platform/external/libaom" path="LINUX/android/external/libaom" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+platform/external/ppp
+LINUX/android/external/ppp
+	<reset-project groups="QC" name="platform/external/ppp" path="LINUX/android/external/ppp" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+platform/vendor/codeaurora/packages/apps/SoundRecorder
+LINUX/android/vendor/codeaurora/commonsys/packages/apps/SoundRecorder
+	<reset-project groups="QC" name="platform/vendor/codeaurora/packages/apps/SoundRecorder" path="LINUX/android/vendor/codeaurora/commonsys/packages/apps/SoundRecorder" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+platform/packages/apps/SoundRecorder
+LINUX/android/packages/apps/SoundRecorder
+	<reset-project groups="QC" name="platform/packages/apps/SoundRecorder" path="LINUX/android/packages/apps/SoundRecorder" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+platform/build/soong
+LINUX/android/build/soong
+	<reset-project groups="AP" name="platform/build/soong" path="LINUX/android/build/soong" revision="OF6/dev/SDM660/30100013/PFAQ">
+
+0
+platform/vendor/qcom-opensource/core-utils
+LINUX/android/vendor/qcom/opensource/core-utils
+	<reset-project groups="AP" name="platform/vendor/qcom-opensource/core-utils" path="LINUX/android/vendor/qcom/opensource/core-utils" revision="OF6/dev/SDM660/30100013/PFAQ">
+
+0
+platform/packages/apps/Launcher3
+LINUX/android/packages/apps/Launcher3
+	<reset-project groups="AP" name="platform/packages/apps/Launcher3" path="LINUX/android/packages/apps/Launcher3" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+platform/frameworks/opt/vcard
+LINUX/android/frameworks/opt/vcard
+	<reset-project groups="AP" name="platform/frameworks/opt/vcard" path="LINUX/android/frameworks/opt/vcard" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/apps/EmergencyInfo
+LINUX/android/packages/apps/EmergencyInfo
+ 	<reset-project groups="AP" name="platform/packages/apps/EmergencyInfo" path="LINUX/android/packages/apps/EmergencyInfo" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/apps/HTMLViewer
+LINUX/android/packages/apps/HTMLViewer
+ 	<reset-project groups="AP" name="platform/packages/apps/HTMLViewer" path="LINUX/android/packages/apps/HTMLViewer" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/providers/ContactsProvider
+LINUX/android/packages/providers/ContactsProvider
+ 	<reset-project groups="AP" name="platform/packages/providers/ContactsProvider" path="LINUX/android/packages/providers/ContactsProvider" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/prebuilts/sdk
+LINUX/android/prebuilts/sdk
+ 	<reset-project groups="AP" name="platform/prebuilts/sdk" path="LINUX/android/prebuilts/sdk" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/external/fsck_msdos
+LINUX/android/external/fsck_msdos
+ 	<reset-project groups="AP" name="platform/external/fsck_msdos" path="LINUX/android/external/fsck_msdos" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/external/gptfdisk
+LINUX/android/external/gptfdisk
+	<reset-project groups="AP" name="platform/external/gptfdisk" path="LINUX/android/external/gptfdisk" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/external/ipsec-tools
+LINUX/android/external/ipsec-tools
+ 	<reset-project groups="AP" name="platform/external/ipsec-tools" path="LINUX/android/external/ipsec-tools" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/wallpapers/LivePicker
+LINUX/android/packages/wallpapers/LivePicker
+ 	<reset-project groups="AP" name="platform/packages/wallpapers/LivePicker" path="LINUX/android/packages/wallpapers/LivePicker" revision="OF6/dev/SDM660/30100013/PFAQ"/> 
+
+0
+platform/packages/providers/PartnerBookmarksProvider
+LINUX/android/packages/providers/PartnerBookmarksProvider
+	<reset-project groups="AP" name="platform/packages/providers/PartnerBookmarksProvider" path="LINUX/android/packages/providers/PartnerBookmarksProvider" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+platform/packages/apps/DeskClock
+LINUX/android/packages/apps/DeskClock
+	<reset-project groups="AP" name="platform/packages/apps/DeskClock" path="LINUX/android/packages/apps/DeskClock" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+platform/frameworks/opt/net/ims
+LINUX/android/frameworks/opt/net/ims
+	<reset-project groups="AP" name="platform/frameworks/opt/net/ims" path="LINUX/android/frameworks/opt/net/ims" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+platform/packages/apps/PhoneCommon
+LINUX/android/packages/apps/PhoneCommon
+	<reset-project groups="AP" name="platform/packages/apps/PhoneCommon" path="LINUX/android/packages/apps/PhoneCommon" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+platform/frameworks/layoutlib
+LINUX/android/frameworks/layoutlib
+	<reset-project groups="AP" name="platform/frameworks/layoutlib" path="LINUX/android/frameworks/layoutlib" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+platform/packages/apps/Dialer
+LINUX/android/packages/apps/Dialer
+	<reset-project groups="AP" name="platform/packages/apps/Dialer" path="LINUX/android/packages/apps/Dialer" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+platform/packages/services/Telecomm
+LINUX/android/packages/services/Telecomm
+	<reset-project groups="AP" name="platform/packages/services/Telecomm" path="LINUX/android/packages/services/Telecomm" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+platform/vendor/codeaurora/packages/apps/Dialer
+LINUX/android/vendor/codeaurora/commonsys/packages/apps/Dialer
+	<reset-project groups="AP" name="platform/vendor/codeaurora/packages/apps/Dialer" path="LINUX/android/vendor/codeaurora/commonsys/packages/apps/Dialer" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+platform/packages/apps/CarrierConfig
+LINUX/android/packages/apps/CarrierConfig
+	<reset-project groups="AP" name="platform/packages/apps/CarrierConfig" path="LINUX/android/packages/apps/CarrierConfig" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+platform/packages/apps/CertInstaller
+LINUX/android/packages/apps/CertInstaller
+	<reset-project groups="AP" name="platform/packages/apps/CertInstaller" path="LINUX/android/packages/apps/CertInstaller" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+platform/packages/apps/DocumentsUI
+LINUX/android/packages/apps/DocumentsUI
+	<reset-project groups="AP" name="platform/packages/apps/DocumentsUI" path="LINUX/android/packages/apps/DocumentsUI" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+platform/packages/apps/StorageManager
+LINUX/android/packages/apps/StorageManager
+	<reset-project groups="AP" name="platform/packages/apps/StorageManager" path="LINUX/android/packages/apps/StorageManager" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+platform/packages/providers/MediaProvider
+LINUX/android/packages/providers/MediaProvider
+	<reset-project groups="AP" name="platform/packages/providers/MediaProvider" path="LINUX/android/packages/providers/MediaProvider" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+platform/frameworks/opt/calendar
+LINUX/android/frameworks/opt/calendar
+	<reset-project groups="AP" name="platform/frameworks/opt/calendar" path="LINUX/android/frameworks/opt/calendar" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+platform/frameworks/opt/net/wifi
+LINUX/android/frameworks/opt/net/wifi
+	<reset-project groups="AP" name="platform/frameworks/opt/net/wifi" path="LINUX/android/frameworks/opt/net/wifi" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+platform/packages/apps/CellBroadcastReceiver
+LINUX/android/packages/apps/CellBroadcastReceiver
+	<reset-project groups="AP" name="platform/packages/apps/CellBroadcastReceiver" path="LINUX/android/packages/apps/CellBroadcastReceiver" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+platform/packages/apps/Calendar
+LINUX/android/packages/apps/Calendar
+	<reset-project groups="AP" name="platform/packages/apps/Calendar" path="LINUX/android/packages/apps/Calendar" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+platform/packages/apps/Stk
+LINUX/android/packages/apps/Stk
+	<reset-project groups="AP" name="platform/packages/apps/Stk" path="LINUX/android/packages/apps/Stk" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+platform/packages/providers/CalendarProvider
+LINUX/android/packages/providers/CalendarProvider
+	<reset-project groups="AP" name="platform/packages/providers/CalendarProvider" path="LINUX/android/packages/providers/CalendarProvider" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+platform/packages/services/Telephony
+LINUX/android/packages/services/Telephony
+	<reset-project groups="AP" name="platform/packages/services/Telephony" path="LINUX/android/packages/services/Telephony" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+platform/external/tinyalsa
+LINUX/android/external/tinyalsa
+	<reset-project groups="AP" name="platform/external/tinyalsa" path="LINUX/android/external/tinyalsa" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+platform/frameworks/base
+LINUX/android/frameworks/base
+	<reset-project groups="AP" name="platform/frameworks/base" path="LINUX/android/frameworks/base" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+platform/packages/providers/TelephonyProvider
+LINUX/android/packages/providers/TelephonyProvider
+	<reset-project groups="AP" name="platform/packages/providers/TelephonyProvider" path="LINUX/android/packages/providers/TelephonyProvider" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+platform/packages/apps/SettingsIntelligence
+LINUX/android/packages/apps/SettingsIntelligence
+	<reset-project groups="AP" name="platform/packages/apps/SettingsIntelligence" path="LINUX/android/packages/apps/SettingsIntelligence" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+platform/packages/apps/SecureElement
+LINUX/android/packages/apps/SecureElement
+	<reset-project groups="AP" name="platform/packages/apps/SecureElement" path="LINUX/android/packages/apps/SecureElement" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+platform/packages/apps/Nfc
+LINUX/android/packages/apps/Nfc
+	<reset-project groups="AP" name="platform/packages/apps/Nfc" path="LINUX/android/packages/apps/Nfc" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+platform/frameworks/native
+LINUX/android/frameworks/native
+	<reset-project groups="AP" name="platform/frameworks/native" path="LINUX/android/frameworks/native" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+platform/frameworks/av
+LINUX/android/frameworks/av
+	<reset-project groups="AP" name="platform/frameworks/av" path="LINUX/android/frameworks/av" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+platform/packages/apps/Settings
+LINUX/android/packages/apps/Settings
+	<reset-project groups="AP" name="platform/packages/apps/Settings" path="LINUX/android/packages/apps/Settings" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+platform/frameworks/opt/telephony
+LINUX/android/frameworks/opt/telephony
+	<reset-project groups="AP" name="platform/frameworks/opt/telephony" path="LINUX/android/frameworks/opt/telephony" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+platform/packages/apps/Bluetooth
+LINUX/android/packages/apps/Bluetooth
+	<reset-project groups="AP" name="platform/packages/apps/Bluetooth" path="LINUX/android/packages/apps/Bluetooth" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+platform/packages/apps/UnifiedEmail
+LINUX/android/packages/apps/UnifiedEmail
+	<reset-project groups="AP" name="platform/packages/apps/UnifiedEmail" path="LINUX/android/packages/apps/UnifiedEmail" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+platform/packages/apps/Email
+LINUX/android/packages/apps/Email
+	<reset-project groups="AP" name="platform/packages/apps/Email" path="LINUX/android/packages/apps/Email" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+platform/packages/apps/Contacts
+LINUX/android/packages/apps/Contacts
+	<reset-project groups="AP" name="platform/packages/apps/Contacts" path="LINUX/android/packages/apps/Contacts" revision="OF6/dev/SDM660/30100013/PFAQ"/>
+
+0
+load fest over!
+git branch
+git am
+git push

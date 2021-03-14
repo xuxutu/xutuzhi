@@ -1,0 +1,90 @@
+From c4fecb0e50c7639097133323374712a36cecf0b5 Mon Sep 17 00:00:00 2001
+From: Hui Yu <huiyu@google.com>
+Date: Thu, 6 Aug 2020 16:55:19 -0700
+Subject: [PATCH] セキュリティパッチ 2021-03-01 ANDROID-173516292
+
+[porting]
+
+RESTRICT AUTOMERGE: Set mAllowWhileInUsePermissionInFgs
+ correctly when bindService() from background.
+
+Pass original callingPid and callingUid into
+shouldAllowWhileInUsePermissionInFgsLocked() after
+Binder.clearCallingIdentity().
+
+Bug: 163084228, 173516292
+Test: atest cts/tests/app/src/android/app/cts/ActivityManagerFgsBgStartTest.java#testFgsLocationStartFromBGWithBind
+
+CVE-2021-0398
+
+Change-Id: I7a240621267648ea54e7dc737ebc55bc665e39b6
+Merged-In: I7a240621267648ea54e7dc737ebc55bc665e39b6
+(cherry picked from commit 86bd39db3595842bae77abe7e768226e412591c8)
+(cherry picked from commit 346eed7325d47d8ed453266f613ccad1b4260c67)
+---
+ .../java/com/android/server/am/ActiveServices.java | 14 ++++++++------
+ 1 file changed, 8 insertions(+), 6 deletions(-)
+
+diff --git a/services/core/java/com/android/server/am/ActiveServices.java b/services/core/java/com/android/server/am/ActiveServices.java
+index 3f867f656c24..dd0e1f6458f9 100644
+--- a/services/core/java/com/android/server/am/ActiveServices.java
++++ b/services/core/java/com/android/server/am/ActiveServices.java
+@@ -1836,11 +1836,13 @@ public final class ActiveServices {
+         if (DEBUG_SERVICE) Slog.v(TAG_SERVICE, "bindService: " + service
+                 + " type=" + resolvedType + " conn=" + connection.asBinder()
+                 + " flags=0x" + Integer.toHexString(flags));
++        final int callingPid = Binder.getCallingPid();
++        final int callingUid = Binder.getCallingUid();
+         final ProcessRecord callerApp = mAm.getRecordForAppLocked(caller);
+         if (callerApp == null) {
+             throw new SecurityException(
+                     "Unable to find app for caller " + caller
+-                    + " (pid=" + Binder.getCallingPid()
++                    + " (pid=" + callingPid
+                     + ") when binding service " + service);
+         }
+ 
+@@ -1880,19 +1882,19 @@ public final class ActiveServices {
+         }
+ 
+         if ((flags & Context.BIND_SCHEDULE_LIKE_TOP_APP) != 0 && !isCallerSystem) {
+-            throw new SecurityException("Non-system caller (pid=" + Binder.getCallingPid()
++            throw new SecurityException("Non-system caller (pid=" + callingPid
+                     + ") set BIND_SCHEDULE_LIKE_TOP_APP when binding service " + service);
+         }
+ 
+         if ((flags & Context.BIND_ALLOW_WHITELIST_MANAGEMENT) != 0 && !isCallerSystem) {
+             throw new SecurityException(
+-                    "Non-system caller " + caller + " (pid=" + Binder.getCallingPid()
++                    "Non-system caller " + caller + " (pid=" + callingPid
+                     + ") set BIND_ALLOW_WHITELIST_MANAGEMENT when binding service " + service);
+         }
+ 
+         if ((flags & Context.BIND_ALLOW_INSTANT) != 0 && !isCallerSystem) {
+             throw new SecurityException(
+-                    "Non-system caller " + caller + " (pid=" + Binder.getCallingPid()
++                    "Non-system caller " + caller + " (pid=" + callingPid
+                             + ") set BIND_ALLOW_INSTANT when binding service " + service);
+         }
+ 
+@@ -1908,7 +1910,7 @@ public final class ActiveServices {
+ 
+         ServiceLookupResult res =
+             retrieveServiceLocked(service, instanceName, resolvedType, callingPackage,
+-                    Binder.getCallingPid(), Binder.getCallingUid(), userId, true,
++                    callingPid, callingUid, userId, true,
+                     callerFg, isBindExternal, allowInstant);
+         if (res == null) {
+             return 0;
+@@ -2068,7 +2070,7 @@ public final class ActiveServices {
+             if (!s.mAllowWhileInUsePermissionInFgs) {
+                 s.mAllowWhileInUsePermissionInFgs =
+                         shouldAllowWhileInUsePermissionInFgsLocked(callingPackage,
+-                                Binder.getCallingPid(), Binder.getCallingUid(),
++                                callingPid, callingUid,
+                                 service, s, false);
+             }
+ 
+-- 
+2.30.0.280.ga3ce27912f-goog
+

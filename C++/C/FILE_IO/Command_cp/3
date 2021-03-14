@@ -1,0 +1,1 @@
+gcc -o obj/io.o -I include -c src/io.c  

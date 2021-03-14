@@ -1,0 +1,783 @@
+From 9803ee9d512ab4d308820337224d93c4fa9a3267 Mon Sep 17 00:00:00 2001
+From: Nate Jiang <qiangjiang@google.com>
+Date: Thu, 3 Dec 2020 14:31:30 -0800
+Subject: [PATCH] [OF6Q-572]:Security Patch 2021-03-01 ANDROID-174749461
+
+[porting]
+
+[Suggestion] Check foreground user for API call
+
+Also, squashes the follow up commit to create a single CL for
+backporting:
+=======
+PasspointManager: Don't allow bg user to modify passpoint profiles
+Also, add safety net logging for this bug.
+=======
+
+Bug: 174749461
+Test: atest com.android.server.wifi
+
+CVE-2021-0390
+
+Change-Id: Ifc79ffeb04a7be99a9c60d9414b72e88275c0514
+Merged-In: Ifc79ffeb04a7be99a9c60d9414b72e88275c0514
+(cherry picked from commit e799efba85cbe52044a067869af71d9c15b573bb)
+(cherry picked from commit 23685b8604571ec623e539f4f9c66db65c9dde81)
+(cherry picked from commit 95673e85133c78773870fb5161bb300b7f2ee51e)
+---
+ .../android/server/wifi/ClientModeImpl.java   |  4 +-
+ .../server/wifi/WifiConfigManager.java        | 44 ++++-----------
+ .../com/android/server/wifi/WifiInjector.java |  2 +-
+ .../wifi/WifiNetworkSuggestionsManager.java   | 10 +++-
+ .../android/server/wifi/WifiServiceImpl.java  |  3 +-
+ .../wifi/hotspot2/PasspointManager.java       | 20 +++++--
+ .../server/wifi/util/WifiPermissionsUtil.java | 29 ++++++++++
+ .../server/wifi/ClientModeImplTest.java       |  6 +--
+ .../server/wifi/WifiConfigManagerTest.java    | 19 ++++++-
+ .../WifiNetworkSuggestionsManagerTest.java    | 54 +++++++++++++------
+ .../server/wifi/WifiServiceImplTest.java      |  9 ++--
+ .../wifi/hotspot2/PasspointManagerTest.java   | 20 ++++---
+ 12 files changed, 145 insertions(+), 75 deletions(-)
+
+diff --git a/service/java/com/android/server/wifi/ClientModeImpl.java b/service/java/com/android/server/wifi/ClientModeImpl.java
+index d98d022b7..12c45e90f 100644
+--- a/service/java/com/android/server/wifi/ClientModeImpl.java
++++ b/service/java/com/android/server/wifi/ClientModeImpl.java
+@@ -3678,7 +3678,7 @@ public class ClientModeImpl extends StateMachine {
+                     break;
+                 case CMD_REMOVE_PASSPOINT_CONFIG:
+                     int removeResult = mPasspointManager.removeProvider(
+-                            (String) message.obj) ? SUCCESS : FAILURE;
++                            message.sendingUid, (String) message.obj) ? SUCCESS : FAILURE;
+                     replyToMessage(message, message.what, removeResult);
+                     break;
+                 case CMD_GET_PASSPOINT_CONFIGS:
+@@ -4517,7 +4517,7 @@ public class ClientModeImpl extends StateMachine {
+                     break;
+                 case CMD_REMOVE_PASSPOINT_CONFIG:
+                     String fqdn = (String) message.obj;
+-                    if (mPasspointManager.removeProvider(fqdn)) {
++                    if (mPasspointManager.removeProvider(message.sendingUid, fqdn)) {
+                         if (isProviderOwnedNetwork(mTargetNetworkId, fqdn)
+                                 || isProviderOwnedNetwork(mLastNetworkId, fqdn)) {
+                             logd("Disconnect from current network since its provider is removed");
+diff --git a/service/java/com/android/server/wifi/WifiConfigManager.java b/service/java/com/android/server/wifi/WifiConfigManager.java
+index b22b7b0d7..2fe3d86fc 100644
+--- a/service/java/com/android/server/wifi/WifiConfigManager.java
++++ b/service/java/com/android/server/wifi/WifiConfigManager.java
+@@ -897,28 +897,6 @@ public class WifiConfigManager {
+     }
+ 
+     /**
+-     * Check if the given UID belongs to the current foreground user. This is
+-     * used to prevent apps running in background users from modifying network
+-     * configurations.
+-     * <p>
+-     * UIDs belonging to system internals (such as SystemUI) are always allowed,
+-     * since they always run as {@link UserHandle#USER_SYSTEM}.
+-     *
+-     * @param uid uid of the app.
+-     * @return true if the given UID belongs to the current foreground user,
+-     *         otherwise false.
+-     */
+-    private boolean doesUidBelongToCurrentUser(int uid) {
+-        if (uid == android.os.Process.SYSTEM_UID || uid == mSystemUiUid) {
+-            return true;
+-        } else {
+-            return WifiConfigurationUtil.doesUidBelongToAnyProfile(
+-                    uid, mUserManager.getProfiles(mCurrentUserId));
+-        }
+-    }
+-
+-    /**
+-     * Copy over public elements from an external WifiConfiguration object to the internal
+      * configuration object if element has been set in the provided external WifiConfiguration.
+      * The only exception is the hidden |IpConfiguration| parameters, these need to be copied over
+      * for every update.
+@@ -1285,7 +1263,7 @@ public class WifiConfigManager {
+      */
+     public NetworkUpdateResult addOrUpdateNetwork(WifiConfiguration config, int uid,
+                                                   @Nullable String packageName) {
+-        if (!doesUidBelongToCurrentUser(uid)) {
++        if (!mWifiPermissionsUtil.doesUidBelongToCurrentUser(uid)) {
+             Log.e(TAG, "UID " + uid + " not visible to the current user");
+             return new NetworkUpdateResult(WifiConfiguration.INVALID_NETWORK_ID);
+         }
+@@ -1387,7 +1365,7 @@ public class WifiConfigManager {
+      * @return true if successful, false otherwise.
+      */
+     public boolean removeNetwork(int networkId, int uid) {
+-        if (!doesUidBelongToCurrentUser(uid)) {
++        if (!mWifiPermissionsUtil.doesUidBelongToCurrentUser(uid)) {
+             Log.e(TAG, "UID " + uid + " not visible to the current user");
+             return false;
+         }
+@@ -1771,7 +1749,7 @@ public class WifiConfigManager {
+         if (mVerboseLoggingEnabled) {
+             Log.v(TAG, "Enabling network " + networkId + " (disableOthers " + disableOthers + ")");
+         }
+-        if (!doesUidBelongToCurrentUser(uid)) {
++        if (!mWifiPermissionsUtil.doesUidBelongToCurrentUser(uid)) {
+             Log.e(TAG, "UID " + uid + " not visible to the current user");
+             return false;
+         }
+@@ -1809,7 +1787,7 @@ public class WifiConfigManager {
+         if (mVerboseLoggingEnabled) {
+             Log.v(TAG, "Disabling network " + networkId);
+         }
+-        if (!doesUidBelongToCurrentUser(uid)) {
++        if (!mWifiPermissionsUtil.doesUidBelongToCurrentUser(uid)) {
+             Log.e(TAG, "UID " + uid + " not visible to the current user");
+             return false;
+         }
+@@ -1846,7 +1824,7 @@ public class WifiConfigManager {
+         if (mVerboseLoggingEnabled) {
+             Log.v(TAG, "Update network last connect UID for " + networkId);
+         }
+-        if (!doesUidBelongToCurrentUser(uid)) {
++        if (!mWifiPermissionsUtil.doesUidBelongToCurrentUser(uid)) {
+             Log.e(TAG, "UID " + uid + " not visible to the current user");
+             return false;
+         }
+@@ -3011,8 +2989,8 @@ public class WifiConfigManager {
+         Set<Integer> removedNetworkIds = new HashSet<>();
+         // Remove any private networks of the old user before switching the userId.
+         for (WifiConfiguration config : getInternalConfiguredNetworks()) {
+-            if (!config.shared && WifiConfigurationUtil.doesUidBelongToAnyProfile(
+-                    config.creatorUid, mUserManager.getProfiles(userId))) {
++            if (!config.shared && !mWifiPermissionsUtil
++                    .doesUidBelongToCurrentUser(config.creatorUid)) {
+                 removedNetworkIds.add(config.networkId);
+                 localLog("clearInternalUserData: removed config."
+                         + " netId=" + config.networkId
+@@ -3222,8 +3200,8 @@ public class WifiConfigManager {
+ 
+             // Migrate the legacy Passpoint configurations owned by the current user to
+             // {@link PasspointManager}.
+-            if (config.isLegacyPasspointConfig && WifiConfigurationUtil.doesUidBelongToAnyProfile(
+-                        config.creatorUid, mUserManager.getProfiles(mCurrentUserId))) {
++            if (config.isLegacyPasspointConfig && !mWifiPermissionsUtil
++                    .doesUidBelongToCurrentUser(config.creatorUid)) {
+                 legacyPasspointNetId.add(config.networkId);
+                 // Migrate the legacy Passpoint configuration and add it to PasspointManager.
+                 if (!PasspointManager.addLegacyPasspointConfig(config)) {
+@@ -3240,8 +3218,8 @@ public class WifiConfigManager {
+             // because all networks were previously stored in a central file. We cannot
+             // write these private networks to the user specific store until the corresponding
+             // user logs in.
+-            if (config.shared || !WifiConfigurationUtil.doesUidBelongToAnyProfile(
+-                    config.creatorUid, mUserManager.getProfiles(mCurrentUserId))) {
++            if (config.shared || !mWifiPermissionsUtil
++                    .doesUidBelongToCurrentUser(config.creatorUid)) {
+                 sharedConfigurations.add(config);
+             } else {
+                 userConfigurations.add(config);
+diff --git a/service/java/com/android/server/wifi/WifiInjector.java b/service/java/com/android/server/wifi/WifiInjector.java
+index c435ad2bb..26d3ad1f3 100644
+--- a/service/java/com/android/server/wifi/WifiInjector.java
++++ b/service/java/com/android/server/wifi/WifiInjector.java
+@@ -282,7 +282,7 @@ public class WifiInjector {
+         mPasspointManager = new PasspointManager(mContext, this,
+                 new Handler(mWifiCoreHandlerThread.getLooper()), mWifiNative, mWifiKeyStore, mClock,
+                 mSimAccessor, new PasspointObjectFactory(), mWifiConfigManager, mWifiConfigStore,
+-                mWifiMetrics, makeTelephonyManager(), subscriptionManager);
++                mWifiMetrics, makeTelephonyManager(), subscriptionManager, mWifiPermissionsUtil);
+         mPasspointNetworkEvaluator = new PasspointNetworkEvaluator(
+                 mPasspointManager, mWifiConfigManager, mConnectivityLocalLog,
+                 mCarrierNetworkConfig, this, subscriptionManager);
+diff --git a/service/java/com/android/server/wifi/WifiNetworkSuggestionsManager.java b/service/java/com/android/server/wifi/WifiNetworkSuggestionsManager.java
+index 8feb3711e..0cb844509 100644
+--- a/service/java/com/android/server/wifi/WifiNetworkSuggestionsManager.java
++++ b/service/java/com/android/server/wifi/WifiNetworkSuggestionsManager.java
+@@ -557,6 +557,10 @@ public class WifiNetworkSuggestionsManager {
+      */
+     public @WifiManager.NetworkSuggestionsStatusCode int add(
+             List<WifiNetworkSuggestion> networkSuggestions, int uid, String packageName) {
++        if (!mWifiPermissionsUtil.doesUidBelongToCurrentUser(uid)) {
++            Log.e(TAG, "UID " + uid + " not visible to the current user");
++            return WifiManager.STATUS_NETWORK_SUGGESTIONS_ERROR_INTERNAL;
++        }
+         if (mVerboseLoggingEnabled) {
+             Log.v(TAG, "Adding " + networkSuggestions.size() + " networks from " + packageName);
+         }
+@@ -667,7 +671,11 @@ public class WifiNetworkSuggestionsManager {
+      * Remove the provided list of network suggestions from the corresponding app's active list.
+      */
+     public @WifiManager.NetworkSuggestionsStatusCode int remove(
+-            List<WifiNetworkSuggestion> networkSuggestions, String packageName) {
++            List<WifiNetworkSuggestion> networkSuggestions, int uid, String packageName) {
++        if (!mWifiPermissionsUtil.doesUidBelongToCurrentUser(uid)) {
++            Log.e(TAG, "UID " + uid + " not visible to the current user");
++            return WifiManager.STATUS_NETWORK_SUGGESTIONS_ERROR_INTERNAL;
++        }
+         if (mVerboseLoggingEnabled) {
+             Log.v(TAG, "Removing " + networkSuggestions.size() + " networks from " + packageName);
+         }
+diff --git a/service/java/com/android/server/wifi/WifiServiceImpl.java b/service/java/com/android/server/wifi/WifiServiceImpl.java
+index 6bb36b3b9..f04755fd9 100644
+--- a/service/java/com/android/server/wifi/WifiServiceImpl.java
++++ b/service/java/com/android/server/wifi/WifiServiceImpl.java
+@@ -3313,11 +3313,12 @@ public class WifiServiceImpl extends BaseWifiService {
+         if (mVerboseLoggingEnabled) {
+             mLog.info("removeNetworkSuggestions uid=%").c(Binder.getCallingUid()).flush();
+         }
++        int callingUid = Binder.getCallingUid();
+         Mutable<Integer> success = new Mutable<>();
+         boolean runWithScissorsSuccess = mWifiInjector.getClientModeImplHandler().runWithScissors(
+                 () -> {
+                     success.value = mWifiNetworkSuggestionsManager.remove(
+-                            networkSuggestions, callingPackageName);
++                            networkSuggestions, callingUid, callingPackageName);
+                 }, RUN_WITH_SCISSORS_TIMEOUT_MILLIS);
+         if (!runWithScissorsSuccess) {
+             Log.e(TAG, "Failed to post runnable to remove network suggestions");
+diff --git a/service/java/com/android/server/wifi/hotspot2/PasspointManager.java b/service/java/com/android/server/wifi/hotspot2/PasspointManager.java
+index 8f4349a1f..bdb323be8 100644
+--- a/service/java/com/android/server/wifi/hotspot2/PasspointManager.java
++++ b/service/java/com/android/server/wifi/hotspot2/PasspointManager.java
+@@ -59,6 +59,7 @@ import com.android.server.wifi.hotspot2.anqp.NAIRealmElement;
+ import com.android.server.wifi.hotspot2.anqp.OsuProviderInfo;
+ import com.android.server.wifi.util.InformationElementUtil;
+ import com.android.server.wifi.util.TelephonyUtil;
++import com.android.server.wifi.util.WifiPermissionsUtil;
+ 
+ import java.io.PrintWriter;
+ import java.security.cert.X509Certificate;
+@@ -117,6 +118,8 @@ public class PasspointManager {
+     private final TelephonyManager mTelephonyManager;
+     private final AppOpsManager mAppOps;
+     private final SubscriptionManager mSubscriptionManager;
++    private final WifiPermissionsUtil mWifiPermissionsUtil;
++
+ 
+     /**
+      * Map of package name of an app to the app ops changed listener for the app.
+@@ -249,7 +252,7 @@ public class PasspointManager {
+         for (Map.Entry<String, PasspointProvider> entry : getPasspointProviderWithPackage(
+                 packageName).entrySet()) {
+             String fqdn = entry.getValue().getConfig().getHomeSp().getFqdn();
+-            removeProvider(fqdn);
++            removeProvider(Process.WIFI_UID, fqdn);
+             disconnectIfPasspointNetwork(fqdn);
+         }
+     }
+@@ -297,7 +300,8 @@ public class PasspointManager {
+             PasspointObjectFactory objectFactory, WifiConfigManager wifiConfigManager,
+             WifiConfigStore wifiConfigStore,
+             WifiMetrics wifiMetrics,
+-            TelephonyManager telephonyManager, SubscriptionManager subscriptionManager) {
++            TelephonyManager telephonyManager, SubscriptionManager subscriptionManager,
++            WifiPermissionsUtil wifiPermissionsUtil) {
+         mPasspointEventHandler = objectFactory.makePasspointEventHandler(wifiNative,
+                 new CallbackHandler(context));
+         mWifiInjector = wifiInjector;
+@@ -322,6 +326,7 @@ public class PasspointManager {
+                 this, wifiMetrics);
+         mAppOps = (AppOpsManager) context.getSystemService(Context.APP_OPS_SERVICE);
+         sPasspointManager = this;
++        mWifiPermissionsUtil = wifiPermissionsUtil;
+     }
+ 
+     /**
+@@ -361,6 +366,10 @@ public class PasspointManager {
+             Log.e(TAG, "Invalid configuration");
+             return false;
+         }
++        if (!mWifiPermissionsUtil.doesUidBelongToCurrentUser(uid)) {
++            Log.e(TAG, "UID " + uid + " not visible to the current user");
++            return false;
++        }
+ 
+         // For Hotspot 2.0 Release 1, the CA Certificate must be trusted by one of the pre-loaded
+         // public CAs in the system key store on the device.  Since the provisioning method
+@@ -619,16 +628,21 @@ public class PasspointManager {
+     /**
+      * Remove a Passpoint provider identified by the given FQDN.
+      *
++     * @param callingUid Calling UID.
+      * @param fqdn The FQDN of the provider to remove
+      * @return true if a provider is removed, false otherwise
+      */
+-    public boolean removeProvider(String fqdn) {
++    public boolean removeProvider(int callingUid, String fqdn) {
+         mWifiMetrics.incrementNumPasspointProviderUninstallation();
+         String packageName;
+         if (!mProviders.containsKey(fqdn)) {
+             Log.e(TAG, "Config doesn't exist");
+             return false;
+         }
++        if (!mWifiPermissionsUtil.doesUidBelongToCurrentUser(callingUid)) {
++            Log.e(TAG, "UID " + callingUid + " not visible to the current user");
++            return false;
++        }
+         mProviders.get(fqdn).uninstallCertsAndKeys();
+         packageName = mProviders.get(fqdn).getPackageName();
+         mProviders.remove(fqdn);
+diff --git a/service/java/com/android/server/wifi/util/WifiPermissionsUtil.java b/service/java/com/android/server/wifi/util/WifiPermissionsUtil.java
+index 2834ad765..a08d87673 100644
+--- a/service/java/com/android/server/wifi/util/WifiPermissionsUtil.java
++++ b/service/java/com/android/server/wifi/util/WifiPermissionsUtil.java
+@@ -29,6 +29,7 @@ import android.os.RemoteException;
+ import android.os.UserHandle;
+ import android.os.UserManager;
+ import android.util.Slog;
++import android.util.EventLog;
+ 
+ import com.android.internal.annotations.GuardedBy;
+ import com.android.server.wifi.WifiInjector;
+@@ -516,4 +517,32 @@ public class WifiPermissionsUtil {
+         }
+         return mode == AppOpsManager.MODE_ALLOWED;
+     }
++
++    /**
++     * Check if the given UID belongs to the current foreground user. This is
++     * used to prevent apps running in background users from modifying network
++     * configurations.
++     * <p>
++     * UIDs belonging to system internals (such as SystemUI) are always allowed,
++     * since they always run as {@link UserHandle#USER_SYSTEM}.
++     *
++     * @param uid uid of the app.
++     * @return true if the given UID belongs to the current foreground user,
++     *         otherwise false.
++     */
++    public boolean doesUidBelongToCurrentUser(int uid) {
++        if (uid == android.os.Process.SYSTEM_UID
++                // UIDs with the NETWORK_SETTINGS permission are always allowed since they are
++                // acting on behalf of the user.
++                || checkNetworkSettingsPermission(uid)) {
++            return true;
++        }
++        boolean isCurrentProfile = isCurrentProfile(uid);
++        if (!isCurrentProfile) {
++            // Fix for b/174749461
++            EventLog.writeEvent(0x534e4554, "174749461", -1,
++                    "Non foreground user trying to modify wifi configuration");
++        }
++        return isCurrentProfile;
++    }
+ }
+diff --git a/tests/wifitests/src/com/android/server/wifi/ClientModeImplTest.java b/tests/wifitests/src/com/android/server/wifi/ClientModeImplTest.java
+index b64bf3de5..aa1ab3001 100644
+--- a/tests/wifitests/src/com/android/server/wifi/ClientModeImplTest.java
++++ b/tests/wifitests/src/com/android/server/wifi/ClientModeImplTest.java
+@@ -1811,13 +1811,13 @@ public class ClientModeImplTest {
+     @Test
+     public void syncRemovePasspointConfig() throws Exception {
+         String fqdn = "test.com";
+-        when(mPasspointManager.removeProvider(fqdn)).thenReturn(true);
++        when(mPasspointManager.removeProvider(anyInt(), eq(fqdn))).thenReturn(true);
+         mLooper.startAutoDispatch();
+         assertTrue(mCmi.syncRemovePasspointConfig(mCmiAsyncChannel, fqdn));
+         mLooper.stopAutoDispatch();
+         reset(mPasspointManager);
+ 
+-        when(mPasspointManager.removeProvider(fqdn)).thenReturn(false);
++        when(mPasspointManager.removeProvider(anyInt(), eq(fqdn))).thenReturn(false);
+         mLooper.startAutoDispatch();
+         assertFalse(mCmi.syncRemovePasspointConfig(mCmiAsyncChannel, fqdn));
+         mLooper.stopAutoDispatch();
+@@ -3484,7 +3484,7 @@ public class ClientModeImplTest {
+     @Test
+     public void testRemovePasspointConfig() throws Exception {
+         String fqdn = "test.com";
+-        when(mPasspointManager.removeProvider(anyString())).thenReturn(true);
++        when(mPasspointManager.removeProvider(anyInt(), anyString())).thenReturn(true);
+ 
+         // switch to connect mode and verify wifi is reported as enabled
+         startSupplicantAndDispatchMessages();
+diff --git a/tests/wifitests/src/com/android/server/wifi/WifiConfigManagerTest.java b/tests/wifitests/src/com/android/server/wifi/WifiConfigManagerTest.java
+index 01ef909b2..c4ce0faad 100644
+--- a/tests/wifitests/src/com/android/server/wifi/WifiConfigManagerTest.java
++++ b/tests/wifitests/src/com/android/server/wifi/WifiConfigManagerTest.java
+@@ -215,6 +215,8 @@ public class WifiConfigManagerTest {
+         when(mWifiInjector.getWifiLastResortWatchdog().shouldIgnoreSsidUpdate())
+                 .thenReturn(false);
+         when(mWifiInjector.getCarrierNetworkConfig()).thenReturn(mCarrierNetworkConfig);
++        when(mWifiPermissionsUtil.doesUidBelongToCurrentUser(anyInt())).thenReturn(true);
++
+         createWifiConfigManager();
+         mWifiConfigManager.setOnSavedNetworkUpdateListener(mWcmListener);
+         ArgumentCaptor<ContentObserver> observerCaptor =
+@@ -2968,6 +2970,8 @@ public class WifiConfigManagerTest {
+         setupStoreDataForUserRead(user2Networks, new HashMap<>());
+         // Now switch the user to user 2 and ensure that user 1's private network has been removed.
+         when(mUserManager.isUserUnlockingOrUnlocked(user2)).thenReturn(true);
++        when(mWifiPermissionsUtil.doesUidBelongToCurrentUser(user1Network.creatorUid))
++                .thenReturn(false);
+         Set<Integer> removedNetworks = mWifiConfigManager.handleUserSwitch(user2);
+         verify(mWifiConfigStore).switchUserStoresAndRead(any(List.class));
+         assertTrue((removedNetworks.size() == 1) && (removedNetworks.contains(user1NetworkId)));
+@@ -3047,7 +3051,7 @@ public class WifiConfigManagerTest {
+     public void testHandleUserSwitchPushesOtherPrivateNetworksToSharedStore() throws Exception {
+         int user1 = TEST_DEFAULT_USER;
+         int user2 = TEST_DEFAULT_USER + 1;
+-        setupUserProfiles(user2);
++        setupUserProfiles(user1);
+ 
+         int appId = 674;
+ 
+@@ -3079,6 +3083,8 @@ public class WifiConfigManagerTest {
+             }
+         };
+         setupStoreDataForUserRead(userNetworks, new HashMap<>());
++        when(mWifiPermissionsUtil.doesUidBelongToCurrentUser(user2Network.creatorUid))
++                .thenReturn(false);
+         mWifiConfigManager.handleUserUnlock(user1);
+         verify(mWifiConfigStore).switchUserStoresAndRead(any(List.class));
+         // Capture the written data for the user 1 and ensure that it corresponds to what was
+@@ -3093,6 +3099,10 @@ public class WifiConfigManagerTest {
+         // Now switch the user to user2 and ensure that user 2's private network has been moved to
+         // the user store.
+         when(mUserManager.isUserUnlockingOrUnlocked(user2)).thenReturn(true);
++        when(mWifiPermissionsUtil.doesUidBelongToCurrentUser(user1Network.creatorUid))
++                .thenReturn(true).thenReturn(false);
++        when(mWifiPermissionsUtil.doesUidBelongToCurrentUser(user2Network.creatorUid))
++                .thenReturn(false).thenReturn(true);
+         mWifiConfigManager.handleUserSwitch(user2);
+         // Set the expected network list before comparing. user1Network should be in shared data.
+         // Note: In the real world, user1Network will no longer be visible now because it should
+@@ -3157,6 +3167,8 @@ public class WifiConfigManagerTest {
+         // Unlock the owner of the legacy Passpoint configuration, verify it is removed from
+         // the configured networks (migrated to PasspointManager).
+         setupStoreDataForUserRead(new ArrayList<WifiConfiguration>(), new HashMap<>());
++        when(mWifiPermissionsUtil.doesUidBelongToCurrentUser(passpointConfig.creatorUid))
++                .thenReturn(false);
+         mWifiConfigManager.handleUserUnlock(user1);
+         verify(mWifiConfigStore).switchUserStoresAndRead(any(List.class));
+         Pair<List<WifiConfiguration>, List<WifiConfiguration>> writtenNetworkList =
+@@ -3284,7 +3296,8 @@ public class WifiConfigManagerTest {
+ 
+         // Ensure that we have 2 networks in the database before the stop.
+         assertEquals(2, mWifiConfigManager.getConfiguredNetworks().size());
+-
++        when(mWifiPermissionsUtil.doesUidBelongToCurrentUser(user1Network.creatorUid))
++                .thenReturn(false);
+         mWifiConfigManager.handleUserStop(user1);
+ 
+         // Ensure that we only have 1 shared network in the database after the stop.
+@@ -3485,6 +3498,8 @@ public class WifiConfigManagerTest {
+ 
+         int creatorUid = UserHandle.getUid(user2, 674);
+ 
++        when(mWifiPermissionsUtil.doesUidBelongToCurrentUser(creatorUid)).thenReturn(false);
++
+         // Create a network for user2 try adding it. This should be rejected.
+         final WifiConfiguration user2Network = WifiConfigurationTestUtil.createPskNetwork();
+         NetworkUpdateResult result = addNetworkToWifiConfigManager(user2Network, creatorUid);
+diff --git a/tests/wifitests/src/com/android/server/wifi/WifiNetworkSuggestionsManagerTest.java b/tests/wifitests/src/com/android/server/wifi/WifiNetworkSuggestionsManagerTest.java
+index ed3e6d07f..bb31dd1b7 100644
+--- a/tests/wifitests/src/com/android/server/wifi/WifiNetworkSuggestionsManagerTest.java
++++ b/tests/wifitests/src/com/android/server/wifi/WifiNetworkSuggestionsManagerTest.java
+@@ -50,6 +50,7 @@ import android.net.wifi.WifiManager;
+ import android.net.wifi.WifiNetworkSuggestion;
+ import android.os.Handler;
+ import android.os.UserHandle;
++import android.os.UserManager;
+ import android.os.test.TestLooper;
+ import android.test.suitebuilder.annotation.SmallTest;
+ 
+@@ -103,6 +104,7 @@ public class WifiNetworkSuggestionsManagerTest {
+     private @Mock ClientModeImpl mClientModeImpl;
+     private @Mock WifiMetrics mWifiMetrics;
+     private @Mock WifiKeyStore mWifiKeyStore;
++    private @Mock UserManager mUserManager;
+     private TestLooper mLooper;
+     private ArgumentCaptor<AppOpsManager.OnOpChangedListener> mAppOpChangedListenerCaptor =
+             ArgumentCaptor.forClass(AppOpsManager.OnOpChangedListener.class);
+@@ -135,6 +137,7 @@ public class WifiNetworkSuggestionsManagerTest {
+         when(mContext.getSystemService(Context.NOTIFICATION_SERVICE))
+                 .thenReturn(mNotificationManger);
+         when(mContext.getPackageManager()).thenReturn(mPackageManager);
++        when(mWifiPermissionsUtil.doesUidBelongToCurrentUser(anyInt())).thenReturn(true);
+ 
+         // setup resource strings for notification.
+         when(mResources.getString(eq(R.string.wifi_suggestion_title), anyString()))
+@@ -252,9 +255,11 @@ public class WifiNetworkSuggestionsManagerTest {
+ 
+         // Now remove all of them.
+         assertEquals(WifiManager.STATUS_NETWORK_SUGGESTIONS_SUCCESS,
+-                mWifiNetworkSuggestionsManager.remove(networkSuggestionList1, TEST_PACKAGE_1));
++                mWifiNetworkSuggestionsManager.remove(networkSuggestionList1, TEST_UID_1,
++                        TEST_PACKAGE_1));
+         assertEquals(WifiManager.STATUS_NETWORK_SUGGESTIONS_SUCCESS,
+-                mWifiNetworkSuggestionsManager.remove(networkSuggestionList2, TEST_PACKAGE_2));
++                mWifiNetworkSuggestionsManager.remove(networkSuggestionList2, TEST_UID_2,
++                        TEST_PACKAGE_2));
+ 
+         assertTrue(mWifiNetworkSuggestionsManager.getAllNetworkSuggestions().isEmpty());
+ 
+@@ -296,9 +301,11 @@ public class WifiNetworkSuggestionsManagerTest {
+ 
+         // Now remove all of them by sending an empty list.
+         assertEquals(WifiManager.STATUS_NETWORK_SUGGESTIONS_SUCCESS,
+-                mWifiNetworkSuggestionsManager.remove(new ArrayList<>(), TEST_PACKAGE_1));
++                mWifiNetworkSuggestionsManager.remove(new ArrayList<>(), TEST_UID_1,
++                        TEST_PACKAGE_1));
+         assertEquals(WifiManager.STATUS_NETWORK_SUGGESTIONS_SUCCESS,
+-                mWifiNetworkSuggestionsManager.remove(new ArrayList<>(), TEST_PACKAGE_2));
++                mWifiNetworkSuggestionsManager.remove(new ArrayList<>(), TEST_UID_2,
++                        TEST_PACKAGE_2));
+ 
+         assertTrue(mWifiNetworkSuggestionsManager.getAllNetworkSuggestions().isEmpty());
+     }
+@@ -334,7 +341,7 @@ public class WifiNetworkSuggestionsManagerTest {
+         removingSuggestion.wifiConfiguration.SSID = networkSuggestion1.wifiConfiguration.SSID;
+         assertEquals(WifiManager.STATUS_NETWORK_SUGGESTIONS_SUCCESS,
+                 mWifiNetworkSuggestionsManager.remove(Arrays.asList(removingSuggestion),
+-                        TEST_PACKAGE_1));
++                        TEST_UID_1, TEST_PACKAGE_1));
+         verify(mWifiKeyStore).removeKeys(any());
+     }
+     /**
+@@ -355,7 +362,8 @@ public class WifiNetworkSuggestionsManagerTest {
+                 mWifiNetworkSuggestionsManager.add(networkSuggestionList1, TEST_UID_1,
+                         TEST_PACKAGE_1));
+         assertEquals(WifiManager.STATUS_NETWORK_SUGGESTIONS_SUCCESS,
+-                mWifiNetworkSuggestionsManager.remove(networkSuggestionList1, TEST_PACKAGE_1));
++                mWifiNetworkSuggestionsManager.remove(networkSuggestionList1, TEST_UID_1,
++                        TEST_PACKAGE_1));
+         assertEquals(WifiManager.STATUS_NETWORK_SUGGESTIONS_SUCCESS,
+                 mWifiNetworkSuggestionsManager.add(networkSuggestionList1, TEST_UID_1,
+                         TEST_PACKAGE_1));
+@@ -433,7 +441,8 @@ public class WifiNetworkSuggestionsManagerTest {
+         }
+         // The remove should succeed.
+         assertEquals(WifiManager.STATUS_NETWORK_SUGGESTIONS_SUCCESS,
+-                mWifiNetworkSuggestionsManager.remove(networkSuggestionList, TEST_PACKAGE_1));
++                mWifiNetworkSuggestionsManager.remove(networkSuggestionList, TEST_UID_1,
++                        TEST_PACKAGE_1));
+ 
+         // Now add 2 more.
+         networkSuggestionList = new ArrayList<>();
+@@ -473,7 +482,8 @@ public class WifiNetworkSuggestionsManagerTest {
+                         TEST_PACKAGE_1));
+         // Remove should fail because the network list is different.
+         assertEquals(WifiManager.STATUS_NETWORK_SUGGESTIONS_ERROR_REMOVE_INVALID,
+-                mWifiNetworkSuggestionsManager.remove(networkSuggestionList2, TEST_PACKAGE_1));
++                mWifiNetworkSuggestionsManager.remove(networkSuggestionList2, TEST_UID_1,
++                        TEST_PACKAGE_1));
+     }
+ 
+     /**
+@@ -802,7 +812,8 @@ public class WifiNetworkSuggestionsManagerTest {
+ 
+         // remove the suggestion & ensure lookup fails.
+         assertEquals(WifiManager.STATUS_NETWORK_SUGGESTIONS_SUCCESS,
+-                mWifiNetworkSuggestionsManager.remove(Collections.EMPTY_LIST, TEST_PACKAGE_1));
++                mWifiNetworkSuggestionsManager.remove(Collections.EMPTY_LIST, TEST_UID_1,
++                        TEST_PACKAGE_1));
+         assertNull(mWifiNetworkSuggestionsManager.getNetworkSuggestionsForScanDetail(scanDetail));
+     }
+ 
+@@ -850,6 +861,7 @@ public class WifiNetworkSuggestionsManagerTest {
+                 mWifiNetworkSuggestionsManager.add(networkSuggestionList, TEST_UID_1,
+                         TEST_PACKAGE_1));
+         mWifiNetworkSuggestionsManager.setHasUserApprovedForApp(true, TEST_PACKAGE_1);
++        mInorder.verify(mWifiPermissionsUtil).doesUidBelongToCurrentUser(eq(TEST_UID_1));
+ 
+         // Simulate connecting to the network.
+         mWifiNetworkSuggestionsManager.handleConnectionAttemptEnded(
+@@ -1241,7 +1253,8 @@ public class WifiNetworkSuggestionsManagerTest {
+                 mWifiNetworkSuggestionsManager.add(networkSuggestionList, TEST_UID_1,
+                         TEST_PACKAGE_1));
+         assertEquals(WifiManager.STATUS_NETWORK_SUGGESTIONS_SUCCESS,
+-                mWifiNetworkSuggestionsManager.remove(networkSuggestionList, TEST_PACKAGE_1));
++                mWifiNetworkSuggestionsManager.remove(networkSuggestionList, TEST_UID_1,
++                        TEST_PACKAGE_1));
+ 
+         // Verify config store interactions.
+         verify(mWifiConfigManager, times(2)).saveToStore(true);
+@@ -1373,7 +1386,8 @@ public class WifiNetworkSuggestionsManagerTest {
+ 
+         // Now remove the network suggestion and ensure we did not trigger a disconnect.
+         assertEquals(WifiManager.STATUS_NETWORK_SUGGESTIONS_SUCCESS,
+-                mWifiNetworkSuggestionsManager.remove(networkSuggestionList, TEST_PACKAGE_1));
++                mWifiNetworkSuggestionsManager.remove(networkSuggestionList, TEST_UID_1,
++                        TEST_PACKAGE_1));
+         verify(mClientModeImpl, never()).disconnectCommand();
+     }
+ 
+@@ -1520,10 +1534,12 @@ public class WifiNetworkSuggestionsManagerTest {
+ 
+         // Now remove first add, nothing happens.
+         assertEquals(WifiManager.STATUS_NETWORK_SUGGESTIONS_SUCCESS,
+-                mWifiNetworkSuggestionsManager.remove(networkSuggestionList1, TEST_PACKAGE_1));
++                mWifiNetworkSuggestionsManager.remove(networkSuggestionList1, TEST_UID_1,
++                        TEST_PACKAGE_1));
+         // Stop watching app-ops changes on last remove.
+         assertEquals(WifiManager.STATUS_NETWORK_SUGGESTIONS_SUCCESS,
+-                mWifiNetworkSuggestionsManager.remove(networkSuggestionList2, TEST_PACKAGE_1));
++                mWifiNetworkSuggestionsManager.remove(networkSuggestionList2, TEST_UID_1,
++                        TEST_PACKAGE_1));
+         assertTrue(mWifiNetworkSuggestionsManager.getAllNetworkSuggestions().isEmpty());
+         mInorder.verify(mAppOpsManager).stopWatchingMode(mAppOpChangedListenerCaptor.getValue());
+ 
+@@ -1702,9 +1718,11 @@ public class WifiNetworkSuggestionsManagerTest {
+ 
+         // Remove all suggestions from TEST_PACKAGE_1 & TEST_PACKAGE_2, we should continue to track.
+         assertEquals(WifiManager.STATUS_NETWORK_SUGGESTIONS_SUCCESS,
+-                mWifiNetworkSuggestionsManager.remove(networkSuggestionList1, TEST_PACKAGE_1));
++                mWifiNetworkSuggestionsManager.remove(networkSuggestionList1, TEST_UID_1,
++                        TEST_PACKAGE_1));
+         assertEquals(WifiManager.STATUS_NETWORK_SUGGESTIONS_SUCCESS,
+-                mWifiNetworkSuggestionsManager.remove(networkSuggestionList2, TEST_PACKAGE_2));
++                mWifiNetworkSuggestionsManager.remove(networkSuggestionList2, TEST_UID_2,
++                        TEST_PACKAGE_2));
+ 
+         assertTrue(mDataSource.hasNewDataToSerialize());
+         Map<String, PerAppInfo> networkSuggestionsMapToWrite = mDataSource.toSerialize();
+@@ -1766,9 +1784,11 @@ public class WifiNetworkSuggestionsManagerTest {
+ 
+         // Remove all suggestions from TEST_PACKAGE_1 & TEST_PACKAGE_2, we should continue to track.
+         assertEquals(WifiManager.STATUS_NETWORK_SUGGESTIONS_SUCCESS,
+-                mWifiNetworkSuggestionsManager.remove(networkSuggestionList1, TEST_PACKAGE_1));
++                mWifiNetworkSuggestionsManager.remove(networkSuggestionList1, TEST_UID_1,
++                        TEST_PACKAGE_1));
+         assertEquals(WifiManager.STATUS_NETWORK_SUGGESTIONS_SUCCESS,
+-                mWifiNetworkSuggestionsManager.remove(networkSuggestionList2, TEST_PACKAGE_2));
++                mWifiNetworkSuggestionsManager.remove(networkSuggestionList2, TEST_UID_2,
++                        TEST_PACKAGE_2));
+ 
+         assertTrue(mDataSource.hasNewDataToSerialize());
+         Map<String, PerAppInfo> networkSuggestionsMapToWrite = mDataSource.toSerialize();
+diff --git a/tests/wifitests/src/com/android/server/wifi/WifiServiceImplTest.java b/tests/wifitests/src/com/android/server/wifi/WifiServiceImplTest.java
+index b69fba78b..c02e42612 100644
+--- a/tests/wifitests/src/com/android/server/wifi/WifiServiceImplTest.java
++++ b/tests/wifitests/src/com/android/server/wifi/WifiServiceImplTest.java
+@@ -3782,7 +3782,7 @@ public class WifiServiceImplTest {
+                 mWifiServiceImpl.addNetworkSuggestions(mock(List.class), TEST_PACKAGE_NAME));
+ 
+         verify(mWifiNetworkSuggestionsManager, times(2)).add(
+-                any(), eq(Binder.getCallingUid()),  eq(TEST_PACKAGE_NAME));
++                any(), eq(Binder.getCallingUid()), eq(TEST_PACKAGE_NAME));
+     }
+ 
+     /**
+@@ -3793,12 +3793,12 @@ public class WifiServiceImplTest {
+     public void testRemoveNetworkSuggestions() {
+         setupClientModeImplHandlerForRunWithScissors();
+ 
+-        when(mWifiNetworkSuggestionsManager.remove(any(), anyString()))
++        when(mWifiNetworkSuggestionsManager.remove(any(),  anyInt(), anyString()))
+                 .thenReturn(WifiManager.STATUS_NETWORK_SUGGESTIONS_ERROR_REMOVE_INVALID);
+         assertEquals(WifiManager.STATUS_NETWORK_SUGGESTIONS_ERROR_REMOVE_INVALID,
+                 mWifiServiceImpl.removeNetworkSuggestions(mock(List.class), TEST_PACKAGE_NAME));
+ 
+-        when(mWifiNetworkSuggestionsManager.remove(any(), anyString()))
++        when(mWifiNetworkSuggestionsManager.remove(any(),  anyInt(), anyString()))
+                 .thenReturn(WifiManager.STATUS_NETWORK_SUGGESTIONS_SUCCESS);
+         assertEquals(WifiManager.STATUS_NETWORK_SUGGESTIONS_SUCCESS,
+                 mWifiServiceImpl.removeNetworkSuggestions(mock(List.class), TEST_PACKAGE_NAME));
+@@ -3808,7 +3808,8 @@ public class WifiServiceImplTest {
+         assertEquals(WifiManager.STATUS_NETWORK_SUGGESTIONS_ERROR_INTERNAL,
+                 mWifiServiceImpl.removeNetworkSuggestions(mock(List.class), TEST_PACKAGE_NAME));
+ 
+-        verify(mWifiNetworkSuggestionsManager, times(2)).remove(any(), eq(TEST_PACKAGE_NAME));
++        verify(mWifiNetworkSuggestionsManager, times(2)).remove(
++                any(), eq(Binder.getCallingUid()), eq(TEST_PACKAGE_NAME));
+     }
+ 
+     /**
+diff --git a/tests/wifitests/src/com/android/server/wifi/hotspot2/PasspointManagerTest.java b/tests/wifitests/src/com/android/server/wifi/hotspot2/PasspointManagerTest.java
+index 013c11fe5..e4b1622df 100644
+--- a/tests/wifitests/src/com/android/server/wifi/hotspot2/PasspointManagerTest.java
++++ b/tests/wifitests/src/com/android/server/wifi/hotspot2/PasspointManagerTest.java
+@@ -93,6 +93,7 @@ import com.android.server.wifi.hotspot2.anqp.OsuProviderInfo;
+ import com.android.server.wifi.hotspot2.anqp.eap.EAPMethod;
+ import com.android.server.wifi.util.InformationElementUtil;
+ import com.android.server.wifi.util.InformationElementUtil.RoamingConsortium;
++import com.android.server.wifi.util.WifiPermissionsUtil;
+ 
+ import org.junit.Before;
+ import org.junit.Test;
+@@ -176,6 +177,7 @@ public class PasspointManagerTest {
+     @Mock TelephonyManager mTelephonyManager;
+     @Mock TelephonyManager mDataTelephonyManager;
+     @Mock SubscriptionManager mSubscriptionManager;
++    @Mock WifiPermissionsUtil mWifiPermissionsUtil;
+ 
+     Handler mHandler;
+     TestLooper mLooper;
+@@ -202,11 +204,13 @@ public class PasspointManagerTest {
+                 .thenReturn(mPasspointProvisioner);
+         when(mContext.getSystemService(Context.APP_OPS_SERVICE)).thenReturn(mAppOpsManager);
+         when(mWifiInjector.getClientModeImpl()).thenReturn(mClientModeImpl);
++        when(mWifiPermissionsUtil.doesUidBelongToCurrentUser(anyInt())).thenReturn(true);
+         mLooper = new TestLooper();
+         mHandler = new Handler(mLooper.getLooper());
+         mManager = new PasspointManager(mContext, mWifiInjector, mHandler, mWifiNative,
+                 mWifiKeyStore, mClock, mSimAccessor, mObjectFactory, mWifiConfigManager,
+-                mWifiConfigStore, mWifiMetrics, mTelephonyManager, mSubscriptionManager);
++                mWifiConfigStore, mWifiMetrics, mTelephonyManager, mSubscriptionManager,
++                mWifiPermissionsUtil);
+         ArgumentCaptor<PasspointEventHandler.Callbacks> callbacks =
+                 ArgumentCaptor.forClass(PasspointEventHandler.Callbacks.class);
+         verify(mObjectFactory).makePasspointEventHandler(any(WifiNative.class),
+@@ -538,7 +542,7 @@ public class PasspointManagerTest {
+         assertEquals(1, mSharedDataSource.getProviderIndex());
+ 
+         // Remove the provider.
+-        assertTrue(mManager.removeProvider(TEST_FQDN));
++        assertTrue(mManager.removeProvider(TEST_CREATOR_UID, TEST_FQDN));
+         verify(provider).uninstallCertsAndKeys();
+         verify(mWifiConfigManager).saveToStore(true);
+         verify(mWifiMetrics).incrementNumPasspointProviderUninstallation();
+@@ -581,7 +585,7 @@ public class PasspointManagerTest {
+         assertEquals(1, mSharedDataSource.getProviderIndex());
+ 
+         // Remove the provider.
+-        assertTrue(mManager.removeProvider(TEST_FQDN));
++        assertTrue(mManager.removeProvider(TEST_CREATOR_UID, TEST_FQDN));
+         verify(provider).uninstallCertsAndKeys();
+         verify(mWifiConfigManager).saveToStore(true);
+         verify(mWifiMetrics).incrementNumPasspointProviderUninstallation();
+@@ -710,7 +714,7 @@ public class PasspointManagerTest {
+      */
+     @Test
+     public void removeNonExistingProvider() throws Exception {
+-        assertFalse(mManager.removeProvider(TEST_FQDN));
++        assertFalse(mManager.removeProvider(TEST_CREATOR_UID, TEST_FQDN));
+         verify(mWifiMetrics).incrementNumPasspointProviderUninstallation();
+         verify(mWifiMetrics, never()).incrementNumPasspointProviderUninstallSuccess();
+     }
+@@ -1517,7 +1521,7 @@ public class PasspointManagerTest {
+         PasspointManager passpointManager = new PasspointManager(mContext, mWifiInjector,
+                 mHandler, mWifiNative, mWifiKeyStore, mClock, mSimAccessor, mObjectFactory,
+                 mWifiConfigManager, mWifiConfigStore, mWifiMetrics, mTelephonyManager,
+-                mSubscriptionManager);
++                mSubscriptionManager, mWifiPermissionsUtil);
+ 
+         assertNull(passpointManager.createEphemeralPasspointConfigForCarrier(
+                 EAPConstants.EAP_TLS));
+@@ -1535,7 +1539,7 @@ public class PasspointManagerTest {
+         PasspointManager passpointManager = new PasspointManager(mContext, mWifiInjector,
+                 mHandler, mWifiNative, mWifiKeyStore, mClock, mSimAccessor, mObjectFactory,
+                 mWifiConfigManager, mWifiConfigStore, mWifiMetrics, mTelephonyManager,
+-                mSubscriptionManager);
++                mSubscriptionManager, mWifiPermissionsUtil);
+ 
+         PasspointConfiguration result =
+                 passpointManager.createEphemeralPasspointConfigForCarrier(
+@@ -1636,7 +1640,7 @@ public class PasspointManagerTest {
+             PasspointManager passpointManager = new PasspointManager(mContext, mWifiInjector,
+                     mHandler, mWifiNative, mWifiKeyStore, mClock, mSimAccessor, mObjectFactory,
+                     mWifiConfigManager, mWifiConfigStore, mWifiMetrics, mTelephonyManager,
+-                    mSubscriptionManager);
++                    mSubscriptionManager, mWifiPermissionsUtil);
+             assertEquals(EAPConstants.EAP_AKA,
+                     passpointManager.findEapMethodFromNAIRealmMatchedWithCarrier(scanDetails));
+         } finally {
+@@ -1665,7 +1669,7 @@ public class PasspointManagerTest {
+             PasspointManager passpointManager = new PasspointManager(mContext, mWifiInjector,
+                     mHandler, mWifiNative, mWifiKeyStore, mClock, mSimAccessor, mObjectFactory,
+                     mWifiConfigManager, mWifiConfigStore, mWifiMetrics, mTelephonyManager,
+-                    mSubscriptionManager);
++                    mSubscriptionManager, mWifiPermissionsUtil);
+ 
+             assertEquals(-1,
+                     passpointManager.findEapMethodFromNAIRealmMatchedWithCarrier(scanDetails));
+-- 
+2.30.0.280.ga3ce27912f-goog
+

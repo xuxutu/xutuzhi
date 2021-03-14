@@ -1,0 +1,4 @@
+android-10.0.0_r1/platform/external/dnsmasq/0001-dnsmasq-fix-heap-overflow.bulletin.patch
+android-11.0.0_r1/platform/external/dnsmasq/0001-dnsmasq-fix-heap-overflow.bulletin.patch
+android-8.1.0_r1/platform/external/dnsmasq/0001-backport-dnsmasq-fix-heap-overflow.bulletin.patch
+android-9.0.0_r1/platform/external/dnsmasq/0001-backport-dnsmasq-fix-heap-overflow.bulletin.patch
