@@ -1,1 +1,2 @@
 关联远程分支 git branch --set-upstream-to=origin/test-master1 test1
+git checkout -b test2 origin/test-master1 切换到远程分支
