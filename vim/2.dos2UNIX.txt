@@ -1,0 +1,3 @@
+wndows下的编辑器的换行为\r\n
+linux下的编辑器的换行为\n
+dos2UNIX+文件名 #互转

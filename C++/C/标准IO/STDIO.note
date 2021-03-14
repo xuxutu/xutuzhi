@@ -1,0 +1,51 @@
+1.是资源就有上限
+默认情况下最多能打开1024个stream(包括stdin stdout stderr)
+查看指令 ulimit -a	
+
+2.只有r,r+要求文件必须存在
+
+3.文件权限:0666 & ~umask
+
+4.umask机制的存在是为了防止产生权限过松的文件, umask值越大，产生文件权限越低
+比如说，我写一个进程，我怕一些bug被利用，我可以禁止它产生文件，或者说，把权限设置成全0状态
+
+
+
+fgetc(getchar) and fputc(putchar)
+
+getc 由宏实现，与fgetc一样
+
+fgets and fgets
+
+puts
+
+fgets(*, size, stream)两种正常结束
+//1.读到 size - 1 最后一个留给尾0
+//2.读到 '\n'
+
+od -c //查看一个文件ascll码
+
+fwrite() fread()
+
+fread(buf, size, member, fp);
+
+
+//操作单字节安全，适合操作有格式的数据
+fread(buf, 1, 10, fp)
+return 10
+返回读取成功的对象数
+fread(buf, 10, 1, fp)
+return 1
+
+
+printf() and scanf()
+
+fprintf()
+sprintf()
+snprintf()
+
+ftell
+fseek //最多定位2g的文件
+fflush
+rewind
+

@@ -1,0 +1,17 @@
+格式设置：
+命令行模式：
+    set cindent shiftwidth=4   #设置缩进宽度
+    set tabstop=n              #设置tab键的空格数量
+    set number                 #设置行号
+配置文件：
+.vimrc:
+    set shiftwidth=2
+    set tabstop=2
+    sewt number           
+常用：
+     眺行：5+回车
+     恢复：u
+     恢复的恢复：Ctrl+R
+     n向下找
+     N向上找 
+            
