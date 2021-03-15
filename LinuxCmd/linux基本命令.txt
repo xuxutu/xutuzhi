@@ -44,5 +44,6 @@ cp -r dir1/. dir2 表示将dir1下的文件复制到dir2,不包括dir1目录
   
 3.2.1 基础正则表达式
     grep 字符串选取程序
-    
+ 
+4.1 tail -f /tmp/out 动态地查看文件尾
  
