@@ -1,0 +1,30 @@
+#include<stdio.h>
+
+
+long exchange(long* xp, long y)
+{
+    long x=*xp;
+    *xp = y;    
+    return x;
+}
+
+/* xp存储在%rdi,y存储在%rsi,x存储在%rax
+ * 1. exchange:
+ * 2. movq (%rdi),%rax //数据传送：内存中读初xp，放到寄存器%rax
+ * 3. movq %rsi,(%rdi) //数据传送：读出x的y，放到寄存器rdi中地址指向的内存位置
+ * 4. ret
+*/
+
+//3点认识
+//1.c语言所谓的指针，其实就是地址
+//2.间接引用指针其实就是将该指针放到一个寄存器当中，然后在内存引用中使用这个寄存器
+//3.x这样的局部变量，通常是放在寄存器当中的，而不是在内存中。访问寄存器要比访问内存快得多。<F5>
+
+
+int main(void)
+{
+
+
+
+    return 0;
+}

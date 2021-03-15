@@ -1,0 +1,48 @@
+安装软件 sudo apt install 软件名
+记事本 gedit
+创建文件 touch
+当前路径下文件 ls
+前往 cd xxx
+返回上级目录 cd ..
+复制上级目录 cp xxx ../
+复制上上级目录 cp xxx ../..
+返回根目录 cd ~
+返回上次停留目录 cd -
+创建文件夹 mk../
+dir xxx
+删除文件 rm xxx
+删除文件夹（及里面的内容） rm -rf xxx
+查看网络配置 ifconfig
+运行程序或脚本 ./xxx
+更改权限 chmod 777 xxx
+改名 mv
+复制 cp
+剪切 粘贴 
+文件输出到终端 cat
+nslookup mail.thundersoft.com 查看ip
+find / -name *tomcat*
+
+
+
+1.cp命令
+cp dir1/a.doc dir2 表示将dir1下的a.doc文件复制到dir2目录下
+cp -r dir1 dir2 表示将dir1及其dir1下所包含的文件复制到dir2下
+cp -r dir1/. dir2 表示将dir1下的文件复制到dir2,不包括dir1目录
+说明：cp参数 -i：询问，如果目标文件已经存在，则会询问是否覆盖；
+
+
+2.ls -al 查看当前目录下所有隐藏文件与属性
+
+3.正则表达式
+3.1 什么是正则表达式？
+    处理字符串的方法
+    以行为单位加以特殊符号的辅助，它可以让用户轻松的完成对字符串的处理
+
+3.2 为什么要用正则表达式
+    管理员管理系统
+    拦截垃圾广告邮件
+  
+3.2.1 基础正则表达式
+    grep 字符串选取程序
+    
+ 

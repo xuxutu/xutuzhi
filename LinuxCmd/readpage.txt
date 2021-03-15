@@ -1,0 +1,32 @@
+在linux命令下如何访问一个url？
+极客on之路 2016-12-12 10:06:50 24436 收藏
+分类专栏： 【Linux】
+
+1.elinks - lynx-like替代角色模式WWW的浏览器
+
+例如：
+
+ elinks --dump http://www.baidu.com
+
+2.wget 这个会将访问的首页下载到本地
+
+[root@el5-mq2 ~]# wget http://www.baidu.com
+--2011-10-17 16:30:10--  http://www.baidu.com/
+Resolving www.baidu.com... 119.75.218.45, 119.75.217.56
+Connecting to www.baidu.com|119.75.218.45|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 8403 (8.2K) [text/html]
+Saving to: `index.html'
+
+100%[==========================================================================================>] 8,403       --.-K/s   in 0.01s  
+
+2011-10-17 16:30:10 (648 KB/s) - `index.html' saved [8403/8403]
+
+3.curl会显示出源码
+
+curl http://www.baidu.com/index.html
+
+4.lynx（这个以前在群里面见有人讨论过，但是没有尝试过，想用的话还需要下载软件）
+
+lynx http://www.baidu.com
+

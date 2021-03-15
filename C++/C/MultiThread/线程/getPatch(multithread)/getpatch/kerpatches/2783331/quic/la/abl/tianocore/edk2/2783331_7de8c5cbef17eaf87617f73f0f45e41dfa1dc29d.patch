@@ -1,0 +1,40 @@
+From 7de8c5cbef17eaf87617f73f0f45e41dfa1dc29d Mon Sep 17 00:00:00 2001
+From: Lijuan Gao <lijuang@codeaurora.org>
+Date: Mon, 28 Sep 2020 15:09:15 +0800
+Subject: QcomModulePkg: Buffer overflow maybe occur when convert string from
+ ASCII to Unicode
+
+The max size of ptn_name is 72, the max size of PartitionNameFromMeta is
+36, it will cause the buffer overflow issue if the actual string size of
+ptn_name is lager than 36 when covent string form ASCII to Unicore.
+
+AsciiStrToUnicodeStr (img_header_entry[i].ptn_name, PartitionNameFromMeta).
+
+Change-Id: I51d94e415e1f92a65155c01b030a4332ff679947
+---
+ QcomModulePkg/Include/Library/PartitionTableUpdate.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/QcomModulePkg/Include/Library/PartitionTableUpdate.h b/QcomModulePkg/Include/Library/PartitionTableUpdate.h
+index a22eaae..eb0e99c 100644
+--- a/QcomModulePkg/Include/Library/PartitionTableUpdate.h
++++ b/QcomModulePkg/Include/Library/PartitionTableUpdate.h
+@@ -1,5 +1,5 @@
+ /*
+- * Copyright (c) 2015-2019, The Linux Foundation. All rights reserved.
++ * Copyright (c) 2015-2020, The Linux Foundation. All rights reserved.
+  *
+  * Redistribution and use in source and binary forms, with or without
+  * modification, are permitted provided that the following conditions are met:
+@@ -70,7 +70,7 @@ typedef enum {
+ #define GPT_HEADER_SIZE 92
+ #define GPT_LBA 1
+ #define GPT_PART_ENTRY_SIZE 128
+-#define MAX_GPT_NAME_SIZE 36
++#define MAX_GPT_NAME_SIZE 72
+ 
+ /* GPT Offsets */
+ #define HEADER_SIZE_OFFSET 12
+-- 
+cgit v1.1
+

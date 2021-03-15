@@ -1,0 +1,6 @@
+--2021-02-04 15:09:00--  https://source.codeaurora.org/kernel/msm-4.14/patch/?id=006e454f569dd58cdb0a9f4145cb0f6bb9133710
+正在解析主机 source.codeaurora.org (source.codeaurora.org)... 198.145.29.80
+正在连接 source.codeaurora.org (source.codeaurora.org)|198.145.29.80|:443... 已连接。
+已发出 HTTP 请求，正在等待回应... 404 “wget-log.19”
+2021-02-04 15:09:02 错误 404：Not found。
+

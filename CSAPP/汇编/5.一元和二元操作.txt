@@ -1,0 +1,5 @@
+// addq s,d     +
+// subq s,d     -
+// imulq s,d    *
+// incq sd      +1
+// dec1 sd      -1 

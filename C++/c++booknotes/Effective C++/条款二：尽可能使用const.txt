@@ -1,0 +1,60 @@
+//use const whenever possible
+const允许你指定一个语义约束，而编译器会强制实行这项约束
+
+1.对一个函数的返回类型加const
+  1.1 if(a*b=c)//本意比较两个值，结果是赋值操作
+  1,2 .为了更像内置类型。如果是内置类型，这样的代码就不合法。而一个良好的“自定义类型”的特征的是它们避免无端地与内置类型不兼容。
+
+2.对一个函数的参数加const  
+  2.1 定义函数的时候就决定了参数是否加const
+
+3.对一个成员函数加const
+  3.1 两个函数如果只是常量性不同，可以被重载。
+
+  3.2 /*如果函数的返回类型是内置类型，那么改动函数返回值从来就不合法。
+      纵使合法，c++以by value传递这一事实，意味着被改动的只是副本，而不是自身。
+     */
+  3.3 在常函数内改变成员变量的值，可以在成员变量前加上mutable
+
+4.运用强制类型转换实现non-const成员函数调用const成员函数
+
+class CTextBlock
+{
+public:
+
+    CTextBlock(const char* pText)
+    {
+        this->pText=new char[strlen(pText)+1];
+        strcpy(this->pText,pText);
+    }
+
+
+    const char& operator[](int position)const//此处不希望改变成员变量，却返回了引用
+    {
+        return pText[position];
+    }
+
+
+    char& operator[](int position)
+    {
+
+        cout<<"谋划未来事，做好当下事"<<endl;
+        return  const_cast<char&>(static_cast<const CTextBlock>(*this)[position]);
+    }
+
+private:
+
+   mutable char* pText;//（即使在常函数内也可修改）
+};
+
+
+
+
+int main(void)
+{
+    CTextBlock ctb("hello");
+    cout<<ctb[0]<<endl;
+
+    return 0;
+}
+      

@@ -1,0 +1,19 @@
+系统数据文件和信息
+1. /etc/passwd
+	getpwuid(); //通过uid查询用户信息
+	getpwnam();	//通过name查询用户信息
+
+2.etc/group
+	getgrgid()
+	getgrgrnam()
+
+3./etc/shadow
+    getspnam()
+	ctypt();
+	getpass();
+
+gcc -o ck checkpwd.c -lcrypt //crypt 需要链接crypt
+//推荐书籍 应用密码学
+
+
+

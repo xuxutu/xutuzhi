@@ -1,0 +1,4 @@
+1.left-hand side //lhs
+2.right-hand side //rhs
+3.pointer to T //pt
+3.reference to T//rt

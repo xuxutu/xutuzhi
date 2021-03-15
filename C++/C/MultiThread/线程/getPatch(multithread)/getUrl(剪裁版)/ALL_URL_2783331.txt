@@ -1,0 +1,3 @@
+https://source.codeaurora.org//patch/?id=quic/la/abl/tianocore/edk2
+https://source.codeaurora.org//patch/?id=abl/tianocore/edk2
+https://source.codeaurora.org//patch/?id=quic/le/abl/tianocore/edk2

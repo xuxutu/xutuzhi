@@ -1,0 +1,9 @@
+//
+glob(),解析模式
+
+
+//2.当作流来解析
+opendir()
+readdir()
+closedir()
+

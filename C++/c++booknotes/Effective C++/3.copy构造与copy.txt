@@ -1,0 +1,31 @@
+//copy构造很容易与copy赋值有所区别
+//新对象被定义，一定会有个构造函数被调用，不可能调用赋值操作
+//pass-by-value 会调用copy constructor 
+#include<iostream>
+using namespace std;
+
+class Widget
+{
+public:
+    Widget()//default constructor
+    {
+    
+    }
+
+    Widget(const Widget& w)//copy constructor
+    {
+        
+    }
+
+    Widget& operator=(const Widget& w)//copy assignment
+    {
+    
+    }    
+};
+
+int main(void)
+{
+    Widget w1;
+
+    return 0;
+}

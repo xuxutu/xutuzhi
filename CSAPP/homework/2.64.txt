@@ -1,0 +1,31 @@
+#include<stdio.h>
+
+//return 1 when any odd bit of x equals 1; 0 otherwise. 
+
+int any_odd_one(unsigned x)
+{
+        unsigned char* val= (unsigned char*)&x;
+	for(int i=0;i<sizeof(x);i++)
+	{
+		if(val[i] != 0xAA)
+		{
+			return 0;
+		}
+	}
+
+	return 1;
+}
+
+int main(void)
+{
+    //10101010 10101010 10101010 10101010
+    //AA
+    //01010101 
+    //55         
+    printf("%d\n",any_odd_one(0xAAAAAAAA));
+    printf("%d\n",any_odd_one(0x55));
+
+
+
+    return 0;
+}

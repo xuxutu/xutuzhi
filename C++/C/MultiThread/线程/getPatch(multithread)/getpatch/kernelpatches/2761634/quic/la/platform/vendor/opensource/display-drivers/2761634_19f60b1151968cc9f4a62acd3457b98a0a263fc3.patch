@@ -1,0 +1,45 @@
+From 19f60b1151968cc9f4a62acd3457b98a0a263fc3 Mon Sep 17 00:00:00 2001
+From: Ping Li <pingli@codeaurora.org>
+Date: Mon, 31 Aug 2020 11:30:26 -0700
+Subject: disp: msm: sde: add event to event_list after register is successful
+
+Add event to event_list after msm_register_event is successful to avoid
+use-after-free vulnerability.
+
+Change-Id: I144ae82c657c1e2cf16608c0e8768b12a7d27974
+Signed-off-by: Ping Li <pingli@codeaurora.org>
+---
+ msm/msm_drv.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/msm/msm_drv.c b/msm/msm_drv.c
+index 4928954..5eea442 100644
+--- a/msm/msm_drv.c
++++ b/msm/msm_drv.c
+@@ -1342,11 +1342,6 @@ static int msm_ioctl_register_event(struct drm_device *dev, void *data,
+ 	 * calls add to client list and return.
+ 	 */
+ 	count = msm_event_client_count(dev, req_event, false);
+-	/* Add current client to list */
+-	spin_lock_irqsave(&dev->event_lock, flag);
+-	list_add_tail(&client->base.link, &priv->client_event_list);
+-	spin_unlock_irqrestore(&dev->event_lock, flag);
+-
+ 	if (count)
+ 		return 0;
+ 
+@@ -1359,6 +1354,11 @@ static int msm_ioctl_register_event(struct drm_device *dev, void *data,
+ 		list_del(&client->base.link);
+ 		spin_unlock_irqrestore(&dev->event_lock, flag);
+ 		kfree(client);
++	} else {
++		/* Add current client to list */
++		spin_lock_irqsave(&dev->event_lock, flag);
++		list_add_tail(&client->base.link, &priv->client_event_list);
++		spin_unlock_irqrestore(&dev->event_lock, flag);
+ 	}
+ 	return ret;
+ }
+-- 
+cgit v1.1
+

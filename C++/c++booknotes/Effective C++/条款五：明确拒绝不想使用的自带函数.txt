@@ -1,0 +1,14 @@
+1.将拷贝和赋值函数私有
+class Single
+{
+public:
+    Single()
+    {
+
+    }
+private:
+    Single(const Single&){}
+    Single& operator=(const Single&){}
+};
+
+

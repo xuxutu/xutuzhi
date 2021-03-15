@@ -1,0 +1,2 @@
+gsettings set org.gnome.gedit.preferences.editor tabs-size 4 //设置缩进
+gsettings set org.gnome.gedit.preferences.editor display-line-numbers true //设置显示行号

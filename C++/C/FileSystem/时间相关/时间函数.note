@@ -1,0 +1,9 @@
+1.时间戳 time_t 
+ time() //返回以秒为时间单位的计数
+
+ gmtime()
+ localtime();
+
+ mktime()//参数无const修饰
+ strftime		
+	

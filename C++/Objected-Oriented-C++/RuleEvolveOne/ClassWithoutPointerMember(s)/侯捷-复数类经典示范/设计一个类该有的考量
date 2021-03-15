@@ -1,0 +1,5 @@
+1.初始化参数列表的使用（最先的初始化）（initlizaton list）
+2.成员函数时候改变参数值（是否考虑加const）
+3.参数的传递尽量考虑pass by reference
+4.返回值类型是否需要pass by reference
+5.数据权限尽可能private（几乎没有例外） 

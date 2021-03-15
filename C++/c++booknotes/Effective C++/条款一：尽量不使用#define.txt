@@ -1,0 +1,165 @@
+1.#define a 1.653
+  const double a=1.653;
+
+2.const char* const buf="hello";
+  const string buf("hello");
+
+3.一个类的专属常量，且只有一份实体
+  static const int n=5;
+
+4.不用define的情况下，定义的时候变量名对数组设定大小
+  4.1 对一个const变量取地址合法，对一个enum取地址合法
+class GamePlayer
+{
+public:
+    void show()
+    {
+        cout<<sizeof(scores)/sizeof(int)<<endl;
+        cout<<NumTurns<<endl;
+        //cout<<&NumTurns<<endl;
+    }
+
+private:
+    enum{NumTurns=5};
+    int scores[NumTurns];
+};
+
+int main(void)
+{
+    GamePlayer gp;
+    gp.show();
+
+    return 0;
+}
+               
+5.用inline代替define
+  5.1 宏的缺陷
+      5.1.1 可读性差
+      5.1.2 用起来必须给每个参数上括号，但上括号也可能出错
+  5.2 用inline的有点
+      5.2.1 可预料行为，类型安全性，宏的效率 
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

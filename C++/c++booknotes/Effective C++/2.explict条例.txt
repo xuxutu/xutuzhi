@@ -1,0 +1,30 @@
+//1.被声明为explicit的构造函数通常比non-explicit更受欢迎，因为它禁止编译器执行非预期的类型转换。
+//2.除非我有一个很好的理由允许构造函数被用于隐式转换，否则我会把它声明位explicit
+
+#include<iostream>
+using namespace std;
+
+class Fraction
+{
+public:
+    Fraction(double ntor,double dtor=1) : m_ntor(ntor),m_dtor(dtor)
+    {
+        
+    }
+    void show()
+    {
+        cout<<m_ntor<<"/"<<m_dtor<<endl;
+    }    
+	    
+private:
+    double m_ntor;//分子
+    double m_dtor;//分母   
+};
+
+int main(void)
+{
+    Fraction f=2;
+    f.show();
+
+    return 0;
+}

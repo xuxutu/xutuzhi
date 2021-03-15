@@ -1,0 +1,4 @@
+1.构造由内而外
+  Derived::Derived():Base(){}
+2.析构由外而内
+  Derived::~Derived(){...~Base()}

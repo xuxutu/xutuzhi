@@ -1,0 +1,11 @@
+--2021-02-04 15:07:34--  https://source.codeaurora.org/quic/la/kernel/msm-4.14/patch/?id=c6adb370772c329c0054d849f48b46bdacaff52b
+正在解析主机 source.codeaurora.org (source.codeaurora.org)... 198.145.29.80
+正在连接 source.codeaurora.org (source.codeaurora.org)|198.145.29.80|:443... 已连接。
+已发出 HTTP 请求，正在等待回应... 200 “wget-log.10”
+长度： 未指定 [text/plain]
+正在保存至: “kerpatches/2721399/quic/%”
+
+kerpatches/2721399/quic/%                              [<=>                                                                                                              ]       0  --.-KB/s               kerpatches/2721399/quic/%                              [ <=>                                                                                                             ]   1.29K  --.-KB/s    用时 0s    
+
+2021-02-04 15:07:35 (85.7 MB/s) - “kerpatches/2721399/quic/%” 已保存 [1325]
+

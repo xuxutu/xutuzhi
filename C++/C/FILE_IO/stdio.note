@@ -1,0 +1,37 @@
+1.文件io与标准io的区别
+	文件io实时性快，每一次调用都存user态切换到kernel态
+	标准io具有缓存机制，吞吐量大
+
+2.面试：如何使程序变快
+	A 相应速度快		
+	B 吞吐量大(用户层面的快)
+
+3.标准io与文件io不可混用
+	3.1 int fileno(FILE* stream); FILE* -> int
+	3.2 FILE* fdopen(int fd, const char* mode); int -> FILE*
+	3.3 FILE结构体与fd关联的结构体其中状态信息往往不一样,具体见图IO结构体.png
+
+4.文件共享
+	多个任务共同操作一个文件
+	面试题目：写程序删除文件的第十行
+	truncate();见test1 	
+
+5.原子操作：不可分割的操作
+	5.1 tmpfile() 临时文件，原子操作 tmpname 操作不原子
+	
+6.dup, dup2
+	6.1 程序当中的重定向
+		dup(fd), 将fd复制到最小的未使用的文件描述表中
+		dup2(fd, 1); //close 1, 复制fd到1所在位置,如果fd == 1，什么也不做，返回fd
+	见dup/
+
+7.同步:sync fsync fdatasync 
+	
+
+
+8.fcntl(): 文件描述符相关的描述都基于此函数
+
+9.ioctl 设备相关的内容
+	9.1 特殊设备，声卡的读写是录音和放音 (一切皆文件的弊端)
+
+10./dev/fd 当前进程的文件描符的信息，谁在看，就是谁的描述符

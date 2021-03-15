@@ -1,0 +1,98 @@
+#include<stdio.h>
+
+void test()
+{
+    /*src_t* sp
+     *dest_t* dp
+     *
+     *sp存放在%rdi
+     *dp存放在%rsi
+     *
+     **dp=(dest_t)*sp;
+     * */    
+   
+     //第一条指令应该从内存中读数，做适当的转换，并设置寄存器%rax的适当部分
+     
+     
+     //第二条指令要把%rax的适当部分写到内存。
+    
+     
+     //寄存器选用：%rax、%eax、%ax、%a1
+     //当执行强制类型转换既涉及大小变化又涉及c语言中符号变化时，操作应先改变大小
+}
+
+void test01(void)
+{
+    long* sp;
+    long* dp;
+    *dp=(long)*sp;
+    
+    movq (%rdi),%rax //传送四字。内存引用寄存器%rdi的值，传送到%rax寄存器
+    movq %rax,(%rsi) //传送四字。将寄存器%rax，传送到，内存地址位为寄存器%rsi的值的位置	    
+}
+
+void test02(void)
+{
+    char* sp;
+    int* dp;
+    *dp=(int)*sp;
+
+    novsbl (%rdi),%eax //强制类型转换，b->l,字节到双字，传动到寄存器%eax(用来存放双字)
+    movl %eax,(%rsi)   //将寄存器%eax的值传送到寄存器内存
+}
+
+void test03()
+{
+    char* sp;
+    unsigned* dp;      
+    *dp=(unsigned)*sp;
+
+    movsbl (%rdi),%eax //将做了符号扩展的字节传到双字
+    movl %eax,(%rsi)   //将双字传送到内存
+}
+
+void test04()
+{
+    unsigned char* sp;
+    long* dp;
+    *dp=(long)*sp; //对一个无符号的类型进行向打大转型，需要进行0扩展
+
+    movzbq (%rdi),%rax //将做了0扩展的字节传送到四字 
+    movq %rax,(%rsi)   //将四字的数据传到内存    
+}
+
+void test05()
+{
+    int* sp;
+    char* dp;
+    *dp=(char)*sp;
+
+    movl (%rdi),%eax //移动双字到寄存器
+    movb %al,(%rsi)  //移动双字中的单字到寄存器	    
+}
+
+void test06()
+{
+    unsigned* sp;
+    unsigned char* dp;
+    *dp=(unsigned char)*sp;
+
+    movl (%rdi),%eax //读4个字节
+    movb %al,(%rsi)  //存低位字节
+}
+
+void test07()
+{
+    char* sp;
+    short* dp;
+    *dp=(short)*sp;
+ 
+    movsbw (%rdi),%ax; //读一个字节，并符号扩展
+    movw (%ax),(%rsi); //存两个字节
+}
+
+int main(void)
+{
+
+    return 0;
+}

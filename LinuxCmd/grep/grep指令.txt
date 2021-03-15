@@ -1,0 +1,73 @@
+#1 查找指定字符串
+grep -n 'let' test01.txt
+
+#2 对命令1取反 
+grep -vn 'let' test01.txt
+
+#3 查找含test或tast的字符串
+grep -n 't[ea]st' test01.txt
+
+#4 在指定字符串集和下的筛选
+   [^]集合字符的反向选择
+ 4.1 grep -n ‘ll’ test01.txt
+     hell
+     sell
+ 4.2 grep -n '[^h]ll' test01.txt
+     sell
+  
+ 4.3 不含小写字母 grep -n '[^a-z]ur' test01.txt
+      
+#5 查找包含数字的行
+grep -n  '[0-9]' test01.txt
+
+
+
+//行首与行尾字符 ‘^str’ '\str$'
+#6 显示首字符为+的行
+grep -n  '^+' test01.txt
+
+#7 显示首字符属于[a-d]集合的行
+grep -n  '^[a-d]' test01.txt
+
+#8 显示首字符不属于集合[a-z]的行
+grep '^[^a-z]' test01.txt
+
+#9 显示行尾是.的行 \.$
+ grep -n  '\.$' test01.txt
+
+#10 显示空白行（开头就是结尾符号的行）
+grep '^$' test01.txt
+
+#11 去除空白行
+grep -vn '^$' test01.txt
+
+
+
+.(小数点) 表示 一定有一个字符
+*（星号） 表示 重复前一个字符0-无穷多次
+.* 任意0个或多个字符
+
+o*  重复o个或多个前面字符 结果是全部输出
+oo* 第一个o要存在         结果是含o的所有字符 
+ooo* 前两个o必须要存在    结果是含两个以上的o的字符全输出
+
+#12 查找含有g--p的行 
+grep -n 'g..p' test01.txt 
+
+#13 显示含oo的行
+grep -n 'ooo*' test01.txt 
+
+#14 查找go...g
+ grep -n 'goo*g' test01.txt
+
+#15 gxxxg 0个或多个任意字符
+grep -n 'g.*g' test01.txt
+
+
+
+//限定连续字符的行
+
+#16 gxxxg之间包含2——5个o
+ grep -n 'go\{2,5\}g' test01.txt
+
+

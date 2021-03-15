@@ -1,0 +1,40 @@
+静态数据被所有对象共享
+静态函数没有this，所以只能处理静态数据
+
+class Account
+{
+public:
+	static double m_rate;
+    static void set_rate(const double& x){m_rate=x}
+};
+
+double Account::m_rate=8.0;
+
+int main()
+{
+	Account::set_rate(5.0);//调用方式一
+
+	Account a;
+    a.set_rate(7.0);//调用方式二
+}
+
+
+
+//单例模式
+
+class A
+{
+public:
+	static A& getInstance();
+
+private:
+   A();
+   A(const A& rhs)
+
+};
+
+A& A::getInstance()
+{
+	static A a;
+    return a;
+}

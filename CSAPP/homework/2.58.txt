@@ -1,0 +1,30 @@
+#include<stdio.h>
+
+/*
+  小端上运行返回1，大端上运行返回0；
+  在任何机器上都能运行，无论机器的字长是多少
+*/
+
+int is_little_endian()
+{
+	/*对于int4字节的情况下
+	 *大端：00000000 00000000 000000000 00000001
+	 *小端：00000001 00000000 000000000 00000000 
+	 *主要区别在第一个字节，与int的w无关
+	 */
+	int a=1;
+	return *(char*)&a;
+}
+
+int main(void)
+{
+        if(is_little_endian())
+	{
+		printf("Iittle endian!\n");
+		return 0;
+	}
+	
+        printf("Big endian!\n");
+
+	return 0;
+}

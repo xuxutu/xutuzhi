@@ -1,0 +1,16 @@
+执行命令
+python2.7 -u Get_patch_table_for_all_baseline.py --cr "2761634 2721399 2783659 2783331"   //获取表
+python2.7 -u xls_handle_one_CR.py --cr "2761634 2721399 2783659 2783331"               //获取CR号的patch
+
+例：cr:2648596 2434229 2658462 2724407 2710036
+python 2.7 也可用，需将脚本os.makedirs(new_path,exist_ok=True) 改为xls_handle_one_CR.py(若有报错，尝试切换)
+
+python2.7 -u Get_patch_table_for_all_baseline.py --cr "2648596 2434229 2658462 2724407 2710036"  
+
+
+
+wget -c --http-user=liuyx0410@thundersoft.com  --http-passwd=ThunderSoft@88 https://createpoint.qti.qualcomm.com/planner/#search/newReleaseHistory/searchArgs/rows||20||sortField||name||sortOrder||asc||isSpf||false||releaseName||MSM8998.LA.2.0.2||branch||master||product||MSM8998.LA.2.0.2||fq_facetCrStatus||Complete~~InProgress||fq_facetCrNumber||2748408
+
+
+
+wget -O test.xls https://stepup.qualcomm.com/qmfa/controller.jsp?profile=customerengineering&tokenID=000da7e79d49e55940070d42eaa5f2c7f15b0d2f&SMAUTHREASON=27&SMAGENTNAME=-SM-3fDqOYKHJxzpIZPr%2fn8KIx3w0nVTe5%2bfAFza9cSe402EShObc8Lno0LoyzNHQPLP&TARGET=-SM-HTTPS%3a%2f%2fcreatepoint%2eqti%2equalcomm%2ecom%2fdashboard%2f --http-user=liuyx0410@thundersoft.com  --http-passwd=ThunderSoft@88 

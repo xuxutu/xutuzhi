@@ -1,0 +1,27 @@
+1.了解c++默默编写并调用那些函数（know what functions C++ silently writes adn calls）
+  1.1 一个空类，编译器会为它声明一个copy构造函数、一个copy assignment操作符号、一个析构函数
+  /*
+      class Empty{};
+  */ 
+  实际上是
+  /*
+      class Empty
+      {
+      public:
+        Empty(){...}
+        Empty(const Empty& e){...}
+        Empty& operator(const Empty& rhs){...}
+      };
+
+
+  */
+  1.2 惟有当这些函数被需要（被调用），他们才会被编译器创建出来。下边的代码造成每一个函数被编译器产出
+      Empty e1; //default constructor
+      Empty e2(e1);//copy constructor
+      e2=e1;//copy assignment
+2.//如果你打算在一个含引用成员或const成员的类中支持赋值动作，你必须自己写>一个copy assignment
+ 
+~                                                                                                                                                                                                           
+~                                                                                                                                                                                                           
+~                                                                                                                                                                                                           
+~                                                                                                                                   

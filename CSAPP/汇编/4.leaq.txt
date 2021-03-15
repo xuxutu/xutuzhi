@@ -1,0 +1,53 @@
+#include<stdio.h>
+
+long scale(long x,long y,long z)
+{
+    long t=x+4*y+12*z;
+    retur nt;
+
+    // x in %rdi
+    // y in %rsi
+    // z in %rdx
+
+    /*    scale：
+     *      leaq （%rdi，%rsi,4),%rax //M[%rdi+%rsi*4] //x+y*4
+     *      leaq  (%rdx,%rdx,2),%rdx  //z=z+2z=3z
+     *      leaq  (%rax,%rdx,4),%rax  //x+y*4+4*3z
+     *      ret
+     **/
+}
+
+/*  x in %rax
+ *  y in %rcx
+ *
+ *
+ *  leaq 6(%ax),%rdx            M[6+%ax]           6+x
+ *  leaq (%rax,%rcx),%rdx       M[x+y]             x+y            
+ *  leaq (%rax,%rcx,4),%rdx     M[x+4y]            x+4y
+ *  leaq 7(%rax,%rax,8),%rdx    M[7+x+x*8]         9x+7  
+ *  leaq 0xA(,%rcx,4),%rdx      M[0xA+4*Y]         4y+10
+ *  leaq 9(%rax,%rcx,2),%rdx    M[9+x+2y]          2y+x+9
+ * */
+
+long scale2(long x,long y,long z)
+{
+    long t=5x+2y+8z;
+    return t;
+
+    // x in %rdi
+    // y in %rsi
+    // z in %rdx
+    /*    scale2:
+     *      leaq (%rdi,%rdi,4),%rax //5x
+     *      leaq (%rax,%rsi,2),%rax //5x+2y
+     *      leaq (%rax,%rdx,8),%rax //5x+2y+8z
+     *      ret
+     * */
+}
+
+int main(void)
+{
+
+
+    return 0;
+}

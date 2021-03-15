@@ -1,0 +1,5 @@
+//1.declaration(声明) 告诉编译器某个东西的名称和类型，但略区细节
+//2.definition（定义）提供声明式所遗漏的细节
+//  2.1 对对象而言，定义用来为其分配内存
+//  2.2 对function/function template而言，定义提供了代码本体
+//  2.3 对class/class template而言，定义列出了他们的成员

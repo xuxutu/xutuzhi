@@ -1,0 +1,11 @@
+namespace主要用來解決命名衝突的問題
+1.分文件編寫程序時，當.h文件用到namespace，那麼.c中的定義要加作用於運算符。
+2.命名空間必須定義在全局作用域下
+3.命名空間可以嵌套命名空間的
+4.命名空間是開放的，可以隨時往空間里添加東西
+  namespace A{int a;}
+  namesapce A{int b;}//合併，並不是覆蓋
+5.匿名命名空間
+  namesapce{int a} 相當於 static int a,只能在當前文件使用
+6.命名空間可以起別名
+  namesapce zhaoyong{int a;} namespace zhaoyong=zhao;cout<<zhao::a<<endl;

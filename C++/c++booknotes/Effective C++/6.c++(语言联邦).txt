@@ -1,0 +1,5 @@
+C++:
+  1.C:区块（blocks）、语句（statements）、预处理器（preprocessor）、内置数据类型（built-in data types)、数组（arrays）、指针（pointer）
+  2.Object-Oriented C++: classes、封装、继承、多态、virtual（虚函数）
+  3.Template C++：泛形编程（generic programming）
+  4.STL

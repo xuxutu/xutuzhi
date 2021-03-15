@@ -1,0 +1,6 @@
+--2021-02-04 15:12:22--  https://source.codeaurora.org/platform/vendor/opensource/camera-kernel/patch/?id=48f9fb7407228c0ab88583224d0f8f444615fac4
+正在解析主机 source.codeaurora.org (source.codeaurora.org)... 198.145.29.80
+正在连接 source.codeaurora.org (source.codeaurora.org)|198.145.29.80|:443... 已连接。
+已发出 HTTP 请求，正在等待回应... 404 Not found
+2021-02-04 15:12:27 错误 404：Not found。
+

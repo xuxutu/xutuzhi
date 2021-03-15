@@ -1,0 +1,20 @@
+#include<stdio.h>
+
+/*
+ *function: x=89ABCDEF,y=0x76543210,result=765432EF
+ *
+ * */
+
+int split(int x,int y)
+{
+   *(char*)&y=*(char*)&x;
+   return y;
+}
+
+int main(void)
+{
+	int x=0x89ABCDEF,y=0x76543210;
+	int result=split(x,y);
+	printf("%X",result);
+	return 0;
+}

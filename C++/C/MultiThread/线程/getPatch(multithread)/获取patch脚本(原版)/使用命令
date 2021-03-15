@@ -1,0 +1,6 @@
+执行命令
+python2.7 -u Get_patch_table_for_all_baseline.py --cr "2761634 2721399 2783659 2783331"   //获取表
+python2.7 -u xls_handle_one_CR.py --cr "2761634 2721399 2783659 2783331"               //获取CR号的patch
+
+例：cr:2648596 2434229 2658462 2724407 2710036
+python 2.7 也可用，需将脚本os.makedirs(new_path,exist_ok=True) 改为xls_handle_one_CR.py(若有报错，尝试切换)

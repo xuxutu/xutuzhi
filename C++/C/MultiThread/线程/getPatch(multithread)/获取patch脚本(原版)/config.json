@@ -1,0 +1,17 @@
+{"config":{
+  "author":{
+    "username":"LX18040089",
+    "password":"1q2w3e4r"},
+  "url":{
+    "base":"https://secure.sharp.co.jp/sbchsaas/redmine/gsc1",
+    "project":"projects/spsecuritypatch-exts/issues.json",
+    "new":"projects/sp_manage/issues/new"},
+  "debug":{
+    "support":"103140",
+    "cve":"103141"},
+  "qcom":{
+    "url":"https://createpoint.qti.qualcomm.com/dashboard/",
+    "user":"liuyx0410@thundersoft.com",
+    "pass":"ThunderSoft@88"}
+  }
+}
