@@ -13,67 +13,66 @@ void hex(int a)
 	}
 
 	hex(a/16);
-//18=1*16+2;
-//1=0*16+1
+	//18=1*16+2;
+	//1=0*16+1
 
 
 	switch(a%16)
 	{
 		case A:
-		{
-		    printf("%c",'A');
-                    break;
-	        }
+			{
+				printf("%c",'A');
+				break;
+			}
 
-	        case B:
-                {
-                    printf("%c",'B');
-                    break;
-                }
+		case B:
+			{
+				printf("%c",'B');
+				break;
+			}
 
-                case C:
-                {
-                    printf("%c",'C');
-                    break;
-                }
+		case C:
+			{
+				printf("%c",'C');
+				break;
+			}
 
-                case D:
-                {
-                    printf("%c",'D');
-                    break;
-                }
+		case D:
+			{
+				printf("%c",'D');
+				break;
+			}
 
-                case E:
-                {
-                    printf("%c",'E');
-                    break;
-                }
+		case E:
+			{
+				printf("%c",'E');
+				break;
+			}
 
-                case F:
-                {
-                    printf("%c",'F');
-                    break;
-                }
+		case F:
+			{
+				printf("%c",'F');
+				break;
+			}
 
-                default:
-		{
-			printf("%d",a%16);		
-		}
-
+		default:
+			{
+				printf("%d",a%16);		
+			}
 	}
-	
+
 }
 
 int main(void)
 {
-        int a;
+	int a;
 	while(1)
 	{
-	    scanf("%d",&a);
-	    printf("0x");
-            hex(a);
-	    printf("\n");
-        }
+		scanf("%d",&a);
+		printf("0x");
+		hex(a);
+		printf("\n");
+	}
 
 	return 0;
 }
