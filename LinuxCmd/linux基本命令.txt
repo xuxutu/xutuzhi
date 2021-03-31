@@ -49,5 +49,19 @@ cp -r dir1/. dir2 表示将dir1下的文件复制到dir2,不包括dir1目录
 
 5.1 find . -type f -name '*.pdf' -exec rm -rf {} \;
 	删除所有目录下的指定文件
+6.1 linux下如何用root用户使用其他用户安装的软件
+	su - root
+
+	或
+
+	su -l root
+
+	或
+
+	su -login root
+
+	输入密码登陆即可。
+
+	原理：-/-l/-login 参数，保留原用户的环境变量。
 
  
