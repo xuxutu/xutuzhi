@@ -617,4 +617,59 @@ register_chrdev_region 函数获得了设备 usb_device 对应的设备编号，
 
 
 
-p44
+#### 设置
+
+不过这里还是有点小悬念的，前面 struct usb_interface 里表示接口设置的 struct usb_host_interface 就被有意无意的飘过了，咱们在这里看看它的真面目，同样在 include/linux/usb.h 文件里定义。
+
+```
+69 /* host-side wrapper for one interface setting's parsed descriptors */
+70 struct usb_host_interface {
+71 struct usb_interface_descriptor desc;//71 行，desc，接口的描述符。
+72
+73 /* array of desc.bNumEndpoint endpoints associated with this
+74 * interface setting. these will be in no particular order.
+75 */
+76 struct usb_host_endpoint *endpoint;
+77
+78 char *string; /* iInterface string, if present */
+79 unsigned char *extra; /* Extra descriptors */
+80 int extralen;
+81 }; 
+```
+
+#### 描述符
+
+什么叫描述符？我们的生活就是一个不断的遇到人认识人的 过程，有些人注定只是擦肩而过，有些人却深深的留在我们的内心里，比如 USB 的描述符。 实际上，usb 的描述符是一个带有预定义格式的数据结构，里面保存了 usb 设备的各种属 性还有相关信息，姓甚名谁啊，哪儿生产的啊等等，我们可以通过向设备请求获得它们的内 容来深刻的了解感知一个 usb 设备。主要有四种 usb 描述符，设备描述符，配置描述符， 接口描述符和端点描述符，协议里规定一个 usb 设备是必须支持这四大描述符的，当然也 有其它一些描述符来让设备可以显得个性些，但这四大描述符是一个都不能少的。
+
+##### EEPROM
+
+这些描述符放哪儿？当然是在设备里。就好像你要把身份证放自己身上以免在哪里心情舒畅 的散步时被新时代最可爱的人警察叔叔查到一样，你不会直接放他们那儿吧，然后在他们亲 切慈祥的向你招手时，告诉他们说不就在你那儿么，那样的话等待你又是个什么样的结果， 我不知道，我想你也不会想知道。咱们的描述符就在设备里，等着主机去拿。具体在哪儿？ usb 设备里都会有一个叫 EEPROM 的东东，没错，就是放在它那儿，它就是用来存储设备 本身信息的。如果你的脑海里还残存着一些大学里的美好时光的话，应该还会记得 EEPROM 45 就是电可擦写的可编程 ROM，它与 Flash 虽说都是要电擦除的，但它可以按字节擦除，Flash 只能一次擦除一个 block，所以如果要改动比较少的数据的话，使用它还是比较合适的，但 是世界上没有完美的东西，此物成本相对 Flash 比较高，所以一般来说 usb 设备里只拿它 来存储一些本身特有的信息，要想存储数据，还是用 Flash 吧。
+
+##### 接口描述符
+
+就是电可擦写的可编程 ROM，它与 Flash 虽说都是要电擦除的，但它可以按字节擦除，Flash 只能一次擦除一个 block，所以如果要改动比较少的数据的话，使用它还是比较合适的，但 是世界上没有完美的东西，此物成本相对 Flash 比较高，所以一般来说 usb 设备里只拿它 来存储一些本身特有的信息，要想存储数据，还是用 Flash 吧。 具体到接口描述符，它当然就是描述接口本身的信息的。一个接口可以有多个设置，使用不 同的设置，描述接口的信息会有些不同，所以接口描述符并没有放在 struct usb_interface 结构里，而是放在表示接口设置的 struct usb_host_interface 结构里。定义在 include/linux/usb/ch9.h 文件里
+
+```
+294 /* USB_DT_INTERFACE: Interface descriptor */
+295 struct usb_interface_descriptor {
+296 __u8 bLength;//296 行，bLength，描述符的字节长度。协议里规定，每个描述符必须以一个字节打头来
+表明描述符的长度。那可以扳着指头数一下，接口描述符的 bLength 应该是 9，两个巴掌
+就数完了，没错，ch9.h 文件里紧挨着接口描述符的定义就定义了这个长度
+308 #define USB_DT_INTERFACE_SIZE 
+297 __u8 bDescriptorType;//297 行，bDescriptorType，描述符的类型。各种描述符的类型都在ch9.h文件里有定义，
+对应spec 中的Table 9.5。对于接口描述符来说，值为 USB_DT_INTERFACE，也就是
+0x04。
+298
+299 __u8 bInterfaceNumber;
+300 __u8 bAlternateSetting;
+301 __u8 bNumEndpoints;
+302 __u8 bInterfaceClass;
+303 __u8 bInterfaceSubClass;
+304 __u8 bInterfaceProtocol;
+305 __u8 iInterface;
+306 } __attribute__ ((packed)); 
+```
+
+又看到了 __attribute__，不过这里改头换面成了 __attribute__ ((packed))，意思就是 告诉编译器，这个结构的元素都是 1 字节对齐的，不要再添加填充位了。因为这个结构和 spec里的Table 9.12 是完全一致的，包括字段的长度，如果不给编译器这么个暗示，编译 器就会依据你平台的类型在结构的每个元素之间添加一定的填充位，如果你拿这个添加了填 充位的结构去向设备请求描述符，你想想会是什么结果。
+
+p45
