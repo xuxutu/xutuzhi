@@ -15,3 +15,5 @@
      n向下找
      N向上找 
             
+
+:%s/main/any/g //将main替换为any
