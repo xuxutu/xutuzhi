@@ -39,9 +39,9 @@ static void* thr_primer(void* p)
 		printf("[%d] is a primer\n", i);
 	}
 
-	//free(p);
+	free(p);
 
-	pthread_exit(p);
+	pthread_exit(0);
 }
 
 
@@ -73,8 +73,9 @@ int main()
 	
 	for(int i = LEFT; i <= RIGHT; i++)
 	{
-		pthread_join(tid[i-LEFT], &ptr);
-		free(ptr);
+		//pthread_join(tid[i-LEFT], &ptr);
+		//free(ptr);
+		pthread_join(tid[i-LEFT], NULL);
 	}
 
 
