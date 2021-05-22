@@ -13,11 +13,16 @@
 #define THRNUM	(RIGHT - LEFT + 1)
 
 
+struct thr_arg_st
+{
+	int n;
+};
+
 static void* thr_primer(void* p)
 {
-	int i, j, mark;
+	int j, mark;
 	
-	i = (int)p;
+	int i = ((struct thr_arg_st*)p)->n;
 	
 	for(j = 2; j < i/2; j++)
 	{
@@ -34,7 +39,9 @@ static void* thr_primer(void* p)
 		printf("[%d] is a primer\n", i);
 	}
 
-	pthread_exit(NULL);
+	//free(p);
+
+	pthread_exit(p);
 }
 
 
@@ -42,13 +49,21 @@ static void* thr_primer(void* p)
 int main()
 {
 	pthread_t tid[THRNUM];
+	struct thr_arg_st *p;
 	int err;
+
+	void* ptr; 
 
 
 	for(int i = LEFT; i < RIGHT; i++)
 	{
 	//	printf("i = %d\n", i);
-		err = pthread_create(tid + (i - LEFT), NULL, thr_primer, (void*)i);
+		p = malloc(sizeof(struct thr_arg_st));
+		if(!p)
+			exit(1);
+		p->n = i;
+
+		err = pthread_create(tid + (i - LEFT), NULL, thr_primer, p);
 		if(err)
 		{
 			fprintf(stderr, "ptherad_create error : %s\n", strerror(err));
@@ -58,7 +73,8 @@ int main()
 	
 	for(int i = LEFT; i <= RIGHT; i++)
 	{
-		pthread_join(tid[i-LEFT], NULL);
+		pthread_join(tid[i-LEFT], &ptr);
+		free(ptr);
 	}
 
 
