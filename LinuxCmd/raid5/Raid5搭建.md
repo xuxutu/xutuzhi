@@ -68,6 +68,8 @@ cat /proc/mdstat
 mkfs.ext4 /dev/md5
 ```
 
+![image-20210531105347933](Raid5%E6%90%AD%E5%BB%BA.assets/image-20210531105347933.png)	
+
 ### 3.2 创建目录并挂载
 
 在`/mnt`下创建目录 raid5，然后挂载文件系统到 /mnt/raid5/ 下，并检查挂载点下的文件，你会看到 lost+found 目录。

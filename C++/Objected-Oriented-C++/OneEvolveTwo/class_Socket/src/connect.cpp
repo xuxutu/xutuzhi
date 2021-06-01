@@ -9,6 +9,23 @@ public:
 
 	}
 	
+	static void* read_date(void* arg)
+	{
+		int len;
+		char buf[1024];
+		int cfd = *(int*)arg;
+
+		while((len = read(cfd, buf, 1024)) > 0)
+		{
+			if(write(1, buf, len) != len)
+			{
+				perror("write error");
+			}
+		}
+
+		pthread_exit(0);
+	}
+
 	void handleInfo(int sockfd)
 	{
 		char buffer[1024];	
@@ -24,6 +41,17 @@ public:
 			perror("write error");	
 		}
 		*/
+
+		pthread_t pid;
+		int err;
+		err = pthread_create(&pid, NULL, read_date, &sockfd);
+		if(err)
+		{
+			cout<<"err = "<<err<<endl; 	
+			fprintf(stderr, "pthread_create error: %s\n", strerror(err));
+			exit(1);
+		}
+
 		while(1)
 		{
 			//发送请求
@@ -39,7 +67,7 @@ public:
 				}
 			}
 
-			//接收信息
+	/*		//接收信息
 			if((size = read(sockfd, buffer, sizeof(buffer))) < 0)	
 			{
 				perror("read error");
@@ -51,6 +79,7 @@ public:
 					perror("write error");
 				}
 			}
+	*/	
 		}
 
 
