@@ -18,6 +18,8 @@ enum STATE{STATE_R = 1, STATE_W, STATE_Ex, STATE_T};
 struct fsm_st
 {
 	int state;
+	
+
 };
 
 
