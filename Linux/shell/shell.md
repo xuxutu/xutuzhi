@@ -290,3 +290,56 @@ exit_with_email()
  exit_with_email 1 "ERROR: Please input right manifest!!!"
 ```
 
+
+
+## 5.数组
+
+```
+Shell数组元素个数${#array[@]}数组的所有元素${array[*]} 字符串长度${#str}
+
+1、获取数组元素的个数:
+
+array=(bill chen bai hu);
+
+num=${#array[@]} //获取数组元素的个数。
+
+遍历数组就变成非常简单的事情:
+
+for((i=0;i<num;i++))
+
+{
+
+echo $array[i];
+
+}
+
+获取数组某一个单元的长度就变成了:
+
+${#array[i]}
+
+2、获取数组的所有元素:
+
+${array[*]}
+
+遍历数组就编程了非常简单的事情:
+
+for var in ${array[*]}grep -r "include"
+
+do
+
+echo $var;
+
+done
+
+获取长度就变成了:
+
+${#var}
+
+3、获取字符串的长度:
+
+str="hello"
+
+len=${#str}
+
+```
+
