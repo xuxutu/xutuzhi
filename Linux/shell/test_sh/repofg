@@ -1,0 +1,38 @@
+#!/bin/bash
+
+#用于FIH机型的查库和提交
+# repofg -g "project" 查找库
+# repofg upload       push
+
+case $1 in
+	"-g")
+	xml=`grep "include" .repo/manifest.xml | sed 's/.*"\(.*\)".*/\1/'`
+	for line in $xml
+	do
+		echo $line
+		grep $2 .repo/manifests/$line	
+	done
+	;;
+
+	"upload")
+		commit_info=`git config -l | grep remote.QC.url | cut -d '@' -f2`
+		commit_branch=`git config -l | grep ".merge" |head -1| cut -d '=' -f2`	
+		#echo $commit_info
+		#echo Commit_branch is $commit_branch, would you like push changes on this branch?[yes/no]
+		
+		read -p "Commit_branch is $commit_branch, would you like push changes on this branch?[yes/no]" reply	
+
+		if [[ $reply == "yes" ]]; then
+			#git push ssh://SHARP_SecPatch_Gr@10.24.71.41:29418/FIH/QC/platform/build HEAD:refs/for/OF6/dev/SDM660/30100013/BSP
+			echo git push ssh://SHARP_SecPatch_Gr@10.24.71.41:29418/FIH${commit_info#*FIH} HEAD:refs/for/$commit_branch
+			git push ssh://SHARP_SecPatch_Gr@10.24.71.41:29418/FIH${commit_info#*FIH} HEAD:refs/for/$commit_branch	
+		else
+			exit
+		fi
+	;;
+	
+	*)
+	echo "Usage: repofg -g [project] --查找库"
+	echo "Usage: repofg upload .     --push"
+	;;
+esac
