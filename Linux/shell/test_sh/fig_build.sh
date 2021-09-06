@@ -3,7 +3,7 @@
 ###### 01. download code
 echo "01. download code"
 
-echo gerritID is $gerritID
+echo gerritID is $Gerrit_IDs
 
 echo project is $project
 
@@ -25,7 +25,7 @@ manifest="${split_project[3]}_SP_BUILD.xml"
 download_branch=${split_project[2]}
 
 repo=${split_project[4]}
-
+IFS="$OLD_IFS"
 
 code_home=""
 
@@ -59,17 +59,18 @@ if [ ! -d "${split_project[0]}" ]; then
 	    cd $build_home && rm -rf workspace
 	    exit 1
     fi
+       
 else	
 	cd ${split_project[0]}
     workdir=`pwd`
     code_home=$workdir
 	#初始化代码指令
     echo "${split_project[4]} init  --depth=1 -u ssh://zhaoyong0602@10.74.185.240:29420/FIH/QC/manifest -b $download_branch -m $manifest"
-    ${split_project[4]} init --depth=1 -u ssh://zhaoyong0602@10.74.185.240:29420/FIH/QC/manifest -b $download_branch -m $manifest
+    #${split_project[4]} init --depth=1 -u ssh://zhaoyong0602@10.74.185.240:29420/FIH/QC/manifest -b $download_branch -m $manifest
     
     #切换或创建base分支
     echo "$repo forall -c \"$repo start BASE .\""
-    $repo forall -c "$repo start BASE ."
+    #$repo forall -c "$repo start BASE ."
  
  	if [ $? -eq 1 ]; then
  		echo "error: branch switch failed!"
@@ -85,7 +86,7 @@ else
         cpuNumber=`cat /proc/cpuinfo | grep 'processor' | wc -l`
         pwd
         echo "time ${split_project[4]} sync -c -q -j${cpuNumber} 2>&1 | tee init.log"
-        time ${split_project[4]} sync -c -q -j${cpuNumber} 2>&1 | tee init.log
+        #time ${split_project[4]} sync -c -q -j${cpuNumber} 2>&1 | tee init.log
         #touch init.log
         #echo "error: Exited sync due to fetch errors"	> init.log
         ret=`cat init.log | grep "error: Exited sync due to fetch errors"`
@@ -94,17 +95,17 @@ else
 	rm init.log
 
     if [[ $ret != "" ]]; then
-	    cd $build_home && rm -rf workspace
+	    #cd $build_home && rm -rf workspace
 	    exit 1
     fi
  
     #删除SP分支
     echo "$repo forall -c \"git branch -D SP\""
-    $repo forall -c "git branch -D SP"
+    #$repo forall -c "git branch -D SP"
     
     #创建并切换至SP分支
     echo "$repo forall -c \"$repo start SP .\""
-    $repo forall -c "$repo start SP ."
+    #$repo forall -c "$repo start SP ."
 fi
 
 ###### 02. cherry pick
@@ -119,17 +120,18 @@ function get_patchinfo()
     ssh -p 29418 sharp_secpatch_gr@10.208.60.201 gerrit query --current-patch-set $1 > patch_info_$1.txt
     
     patch_info[change_ref]=$(grep  'ref: ref' patch_info_$1.txt | tr -s ' ' | cut -d' ' -f3)
-    #echo ${patch_info[change_ref]}
+    echo ${patch_info[change_ref]} is null
     
     patch_info[change_pro]=$(grep  'project: ' patch_info_$1.txt | awk  '{print $2}')
-    #echo ${patch_info[change_pro]}
+    echo ${patch_info[change_pro]}
     
-    #echo ${patch_info[*]}
+    echo ${patch_info[*]}
     #cat patch_info_$1.txt
     rm patch_info_$1.txt
 }
 
 manifest=`grep "include" .repo/manifest.xml | sed 's/.*"\(.*\)".*/\1/'`
+echo $manifest
 if [ $? -eq 1 ]; then
     echo "error: .repo is not exist!"
     exit 1
@@ -137,6 +139,17 @@ fi
 
 
 if [ -n "$Gerrit_IDs" ]; then
+
+	#切换或创建SP分支
+    echo "$repo forall -c \"$repo start SP .\""
+    $repo forall -c "$repo start SP ."
+
+	if [ $? -eq 1 ]; then
+ 		echo "error: branch switch failed!"
+        exit 1	
+ 	fi
+
+
     echo "=====checkout gerrit id:${Gerrit_IDs}...====="
 
     #数组化,','或‘\n’分割
@@ -163,15 +176,23 @@ if [ -n "$Gerrit_IDs" ]; then
 
 
 		tmp=""
-        for line in $manifest
+        
+
+        
+        for line in $manifest #${manifest[@]}
         do
-            echo $line
-            #grep $pro .repo/manifests/$line    
+            echo line is $line 
+            echo "grep $pro .repo/manifests/$line"    
             tmp=`grep "\"${pro#*/}\"" .repo/manifests/$line | awk -F '[\"\"]' '{print \$6}'`
             if [[ $tmp != "" ]]; then
+            	echo "res is $tmp"
                 break
             fi
+            tmp=""
         done
+      
+        
+        
 
 		if [[ $tmp == "" ]]; then
 			echo "error: not found project!"
@@ -192,6 +213,8 @@ if [ -n "$Gerrit_IDs" ]; then
         git fetch ssh://sharp_secpatch_gr@10.208.60.201:29418/${patch_info[change_pro]} ${patch_info[change_ref]} && git cherry-pick FETCH_HEAD
         if [ $? -eq 1 ]; then
             echo "error: cherry pick failed!"
+            echo "git cherry-pick --abort"
+            git cherry-pick --abort
             exit 1
         fi
 
@@ -201,7 +224,7 @@ if [ -n "$Gerrit_IDs" ]; then
         #cherry-pick
         #echo cd ${xml[${patch_info[change_pro]}]}
         #git fetch ssh://lx19060027@hrots514:29418/${patch_info[change_pro]} ${patch_info[change_ref]} && git cherry-pick FETCH_HEAD            
-    done
+    done    
 fi
 
 #print
@@ -236,6 +259,14 @@ cd $code_home
 #echo "~/Build_FIH_list/fih_build.sh ${split_project[0]} $module $subModule"
 #~/Build_FIH_list/fih_build.sh ${split_project[0]} $module $subModule 
 
+
+mo=`date +%m`
+da=`date +%d`
+fulldate=`date +%Y%m%d`
+maj=${mo:1:1}
+min=${mo:0:1}${da}
+
+
 case ${split_project[0]} in
 	"OF6")
     	cd LINUX/android
@@ -249,7 +280,7 @@ case ${split_project[0]} in
 			echo "OF6 buid success! waiting for uploading imgs..."
 			#创建目录
 			date=`date -u +%Y%m%d`
-			ssh zhaoyong@10.74.185.129 "mkdir /home/zhaoyong/RomImage/${split_project[0]}/$date/$BUILD_ID"			
+			ssh zhaoyong@10.74.185.129 "mkdir -p /home/zhaoyong/RomImage/${split_project[0]}/$date/$BUILD_ID"			
 
             cd out/target/product/fih_sdm660_64/
             scp ./obj/PACKAGING/product-67JP_intermediates/67JP-product.img ./obj/PACKAGING/odm-67JP_intermediates/67JP-odm.img ./obj/PACKAGING/systemimage_intermediates/system.img ./vbmeta.img ./vendor.img ./boot.img zhaoyong@10.74.185.129:/home/zhaoyong/RomImage/${split_project[0]}/$date/$BUILD_ID
@@ -261,10 +292,60 @@ case ${split_project[0]} in
     ;;
     
     "VG2")
+    		
+    ;;
     
+    "OI6")
+    	cd LINUX/android
+		echo "scp zhaoyong@10.74.185.129:~/build_fih_list/build_oi6.sh ./"	
+		scp zhaoyong@10.74.185.129:~/build_fih_list/build_oi6.sh ./
+        ./build_oi6.sh
+        
+        if [ $? -eq 0 ]; then 
+			echo "OI6 buid success! waiting for uploading imgs..."      
+			#创建目录
+			date=`date -u +%Y%m%d`
+			ssh zhaoyong@10.74.185.129 "mkdir -p /home/zhaoyong/RomImage/${split_project[0]}/$date/$BUILD_ID"
+            cd out/target/product/OI6_BSP
+            scp ./vendor.img ./product.img ./vbmeta_system.img ./vbmeta.img ./boot.img ./super.img zhaoyong@10.74.185.129:/home/zhaoyong/RomImage/${split_project[0]}/$date/$BUILD_ID
+			echo "Rom upload over! Please get rom at ftp://10.74.185.129/home/zhaoyong/RomImage"        
+        else
+        	echo "OI6 build failed!"
+            exit 1
+        fi	
+    ;;
+    
+    "OG6")
+    	cd LINUX/android
+		echo "scp zhaoyong@10.74.185.129:~/build_fih_list/build_og6.sh ./"	
+		scp zhaoyong@10.74.185.129:~/build_fih_list/build_og6.sh ./
+        ./build_og6.sh
+        
+        if [ $? -eq 0 ]; then 
+			echo "OG6 buid success! waiting for uploading imgs..."      
+			#创建目录
+			date=`date -u +%Y%m%d`
+			ssh zhaoyong@10.74.185.129 "mkdir -p /home/zhaoyong/RomImage/${split_project[0]}/$date/$BUILD_ID"
+            cd out/target/product/OG6_BSP
+            scp ./vendor.img ./recovery.img ./vbmeta.img ./boot.img ./dtbo.img zhaoyong@10.74.185.129:/home/zhaoyong/RomImage/${split_project[0]}/$date/$BUILD_ID
+            cd ../qssi
+            scp system.img product.img vbmeta_system.img zhaoyong@10.74.185.129:/home/zhaoyong/RomImage/${split_project[0]}/$date/$BUILD_ID
+            
+			echo "Rom upload over! Please get rom at ftp://10.74.185.129/home/zhaoyong/RomImage/${split_project[0]}/$date/$BUILD_ID"        
+        else
+        	echo "OG6 build failed!"
+            exit 1
+        fi	
     ;;
     
     *)
 	
     ;;
 esac   
+
+###### 04. Restore branch
+#echo "04. Restore branch"
+
+#切换或创建base分支
+#echo "$repo forall -c \"$repo start BASE .\""
+#$repo forall -c "$repo start BASE ."

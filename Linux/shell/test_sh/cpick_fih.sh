@@ -23,7 +23,7 @@ function get_patchinfo()
 }
 
 
-Gerrit_IDs="359018"    #gerrit id 可以是一个或者多个
+Gerrit_IDs="359119"    #gerrit id 可以是一个或者多个
 
 
 manifest=`grep "include" .repo/manifest.xml | sed 's/.*"\(.*\)".*/\1/'`
