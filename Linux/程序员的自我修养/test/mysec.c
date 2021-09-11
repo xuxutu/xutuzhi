@@ -41,7 +41,7 @@ int main()
 	printf("size = %d\n", sizeof(header));
 
 
-	int fd = open("../ss.o", O_RDONLY);
+	int fd = open("ss.o", O_RDONLY);
 	if(fd < 0)
 	{
 		perror("open error: ");
@@ -213,6 +213,60 @@ puts("Section 2:");
 
 
 	printf("%s\n", (char*)((Elf64_Shdr *)Sec_table + 12) + ((Elf64_Shdr *)Sec_table + 1)->sh_name);
+
+
+printf("获取字符串表:\n");
+
+int char_table_off = ((Elf64_Shdr *)Sec_table + 12)->sh_offset;
+int char_table_size = ((Elf64_Shdr *)Sec_table + 12)->sh_size;
+
+printf("char_table_off = %d\n", char_table_off);
+printf("char_table_size = %d\n", char_table_size);
+
+char buf[char_table_size];
+
+//获取符号表偏移
+     off_t res1 = lseek(fd, char_table_off, SEEK_SET);
+     if(res1 < 0)
+     {
+         perror("lseek error: ");
+         exit(1);
+     }
+
+    if(read(fd, buf, char_table_size) < 0)
+        {
+            perror("read error: ");
+            exit(1);
+        }
+	
+	for(int i = 0; i < char_table_size; i++)
+	{	
+		if(i == 0)	
+			printf("%s\n", buf + i);
+		if(buf[i] == 0)
+		{	
+			i++;
+			if(buf[i])
+			printf("%s\n", buf + i);
+		}	
+		
+	}
+	puts("");
+
+int index = ((Elf64_Shdr *)Sec_table + 12)->sh_name;
+
+printf("name = %c\n", buf[index]);
+printf("name = %c\n", buf[index + 1]);
+printf("name = %c\n", buf[index + 2]);
+printf("name = %c\n", buf[index + 3]);
+
+//	for(int i = 0; i < char_table_size; i++)
+//	{
+//		printf("%c ", buf[i]);
+//	}
+
+printf("获取段表字符串表:\n");
+	
 
 	return 0;
 }
