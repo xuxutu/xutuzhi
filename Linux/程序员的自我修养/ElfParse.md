@@ -14,9 +14,8 @@ Elf64_Word  = 4
 Elf64_Addr  = 8
 Elf64_Off = 8
 Elf64_Xword = 8
+Elf64_Section=2
 ```
-
-
 
 
 
@@ -72,7 +71,39 @@ sh_info = 1,表示对.text重定位
 
 # 6.字符串表
 
+文件头记录了**段表的偏移**和**段表字符串表描述信息在段表中的下标**，可以获取到**段表字符串表描述信息**。
 
+**段表字符串表描述信息**记录了**段表字符串表**在文件中的**偏移**，因此可以通过遍历段表字符串，**获取到所有的段名及段的数量**（文件头直接记录了数量）。
+
+**因此通过文件头的信息我们可以解析整个ELF文件。**
+
+
+
+
+
+# 7.符号表定义
+
+![image-20210912151319593](ElfParse.assets/image-20210912151319593.png)	
+
+sizeof=21
+
+## 7.1 第1项 文件名
+
+![image-20210912180939360](ElfParse.assets/image-20210912180939360.png)	
+
+## 7.2 第2项
+
+![image-20210912184310547](ElfParse.assets/image-20210912184310547.png)	
+
+## 7.3 第7项 局部变量 static int static_var
+
+![image-20210912185830401](ElfParse.assets/image-20210912185830401.png)	
+
+## 7.4 第8项 局部未初始化变量 static int static_var2
+
+![image-20210912190812660](ElfParse.assets/image-20210912190812660.png)	
+
+![image-20210912191025657](ElfParse.assets/image-20210912191025657.png)	
 
 
 
@@ -80,3 +111,4 @@ sh_info = 1,表示对.text重定位
 
 ![image-20210911153211867](ElfParse.assets/image-20210911153211867.png)
 
+​	
