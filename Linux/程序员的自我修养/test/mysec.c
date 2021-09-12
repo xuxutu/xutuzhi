@@ -217,8 +217,8 @@ puts("Section 2:");
 
 printf("获取字符串表:\n");
 
-int char_table_off = ((Elf64_Shdr *)Sec_table + 12)->sh_offset;
-int char_table_size = ((Elf64_Shdr *)Sec_table + 12)->sh_size;
+int char_table_off = ((Elf64_Shdr *)Sec_table + 11)->sh_offset;
+int char_table_size = ((Elf64_Shdr *)Sec_table + 11)->sh_size;
 
 printf("char_table_off = %d\n", char_table_off);
 printf("char_table_size = %d\n", char_table_size);
@@ -253,12 +253,6 @@ char buf[char_table_size];
 	}
 	puts("");
 
-int index = ((Elf64_Shdr *)Sec_table + 12)->sh_name;
-
-printf("name = %c\n", buf[index]);
-printf("name = %c\n", buf[index + 1]);
-printf("name = %c\n", buf[index + 2]);
-printf("name = %c\n", buf[index + 3]);
 
 //	for(int i = 0; i < char_table_size; i++)
 //	{
@@ -266,7 +260,46 @@ printf("name = %c\n", buf[index + 3]);
 //	}
 
 printf("获取段表字符串表:\n");
-	
+printf("name = %s\n", buf + ((Elf64_Shdr *)Sec_table + 12)->sh_name);	
 
-	return 0;
+printf("获取符串表:\n");
+printf("name = %s\n", buf + ((Elf64_Shdr *)Sec_table + 11)->sh_name);
+
+
+printf("获取符号表:\n");
+printf("name = %s\n", buf + ((Elf64_Shdr *)Sec_table + 10)->sh_name);
+
+
+printf("符号表项:%d, size=%d single=%d\n", ((Elf64_Shdr *)Sec_table + 10)->sh_size / sizeof(Elf64_Sym), ((Elf64_Shdr *)Sec_table + 10)->sh_size, sizeof(Elf64_Sym));
+
+int symoff = ((Elf64_Shdr *)Sec_table + 10)->sh_offset;
+int symsize = ((Elf64_Shdr *)Sec_table + 10)->sh_size;
+
+char buf1[symsize];
+
+//获取符号表偏移
+     off_t res2 = lseek(fd, symoff, SEEK_SET);
+     if(res2 < 0)
+     {
+         perror("lseek error: ");
+         exit(1);
+     }
+
+    if(read(fd, buf1, symsize) < 0)
+        {
+            perror("read error: ");
+            exit(1);
+        }
+
+    for(int i = 1; i < 17; i++)
+    {
+		printf("第[%d]项:%s info[type:%d bindinfo:%d] size=%d shndx=%d st_value=%d\n", i, buf+ ((Elf64_Sym*)buf1)[i].st_name, ((Elf64_Sym*)buf1)[i].st_info & 0xf, (((Elf64_Sym*)buf1)[i].st_info & 0xfffffff0)>>4, ((Elf64_Sym*)buf1)[i].st_size, ((Elf64_Sym*)buf1)[i].st_shndx, ((Elf64_Sym*)buf1)[i].st_value);
+    }
+    puts("");
+
+
+printf("sizeof(Elf64_Section) = %d\n", sizeof(Elf64_Section));
+printf("sizeof(unsigned char) = %d\n", sizeof(unsigned char));
+
+return 0;
 }
