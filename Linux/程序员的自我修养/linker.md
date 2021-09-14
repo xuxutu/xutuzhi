@@ -288,3 +288,44 @@ ELF文件中的符号表往往是文件中的一个段，段名一般叫“.symt
 
 ![](linker.assets/image-20210911174529052.png)	
 
+
+
+#### 3.5.2 特殊符号
+
+链接器定义的符号
+
+```
+1.__excutable_start,该符号为程序起始地址，注意不是入口地址，是程序最开始的地址
+2.__etext或_etext或exext, 该符号为代码段结束地址，即代码段最末尾的地址
+3._edata或edata，该符号为数据段结束的地址，即数据段最末尾的地址
+4._end或end，该符号为程序结束地址
+```
+
+以上地址都是程序被装载时的虚拟地址，我们在装载这一章时再来回顾关于程序被装载后的虚拟地址。
+
+```
+#include <stdio.h>
+
+extern char __executable_start[];
+extern char etext[], _etext[], __etext[];
+extern char edata[], _edata[];
+extern char end[], _end[];
+
+int main()
+{
+	printf("程序起始地址:%X\n", __executable_start);
+	printf("代码末尾地址:%X\n", etext);
+	printf("数据段结束地址:%X\n", edata);
+	printf("程序结束地址:%X\n", end);
+
+	return 0;
+}
+
+```
+
+
+
+#### 3.5.3  符号修饰与函数签名
+
+##### C++符号修饰
+

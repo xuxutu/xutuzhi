@@ -107,6 +107,52 @@ sizeof=21
 
 
 
+## 7.5 第12项 已初始化局部变量 global_init_var
+
+![image-20210913130755746](ElfParse.assets/image-20210913130755746.png)	
+
+![image-20210913130849292](ElfParse.assets/image-20210913130849292.png)	
+
+![](ElfParse.assets/image-20210913130905783.png)	
+
+
+
+## 7.6 第13项 未初始化的全局变量 global_uninit_var
+
+![image-20210913132032949](ElfParse.assets/image-20210913132032949.png)	
+
+![image-20210913132056353](ElfParse.assets/image-20210913132056353.png)	
+
+
+
+## 7.7 第14项 函数名 func1
+
+![](ElfParse.assets/image-20210913132924783.png)	
+
+![image-20210913132955037](ElfParse.assets/image-20210913132955037.png)	
+
+
+
+## 7.8 第15项 _GLOBAL_OFFSET_TABLE_
+
+![](ElfParse.assets/image-20210914191610566.png)	
+
+## 7.9 第16项 printf
+
+![image-20210914191925685](ElfParse.assets/image-20210914191925685.png)	
+
+## 7.10 第17项 main
+
+![image-20210914192622089](ElfParse.assets/image-20210914192622089.png)
+
+
+
+![image-20210914192724785](ElfParse.assets/image-20210914192724785.png)	
+
+
+
+
+
 # 完整elf图解
 
 ![image-20210911153211867](ElfParse.assets/image-20210911153211867.png)
