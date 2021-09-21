@@ -39,6 +39,10 @@ return 1
 
 
 printf() and scanf()
+scanf控制字符中想以分隔符进行输入，那么应该什么也不写。否则写了什么就得输入什么。
+scanf放在while循环内应判断返回值，其返回值为成功输入的值的个数，否则输入不匹配的字符，会陷入死循环
+两个scanf连续从终端获取字符时，第二个会获取到换行府，解决方法是插入一个getchar吃掉一个，或者在第二个scanf这样写：scanf("%*c%d", a)
+
 
 fprintf()
 sprintf()
