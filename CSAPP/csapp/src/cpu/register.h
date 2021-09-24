@@ -1,10 +1,10 @@
-#ifndef CPU_H__
-#define CPU_H__
+#ifndef REGISTER_H__
+#define REGISTER_H__
 
 #include <stdlib.h>
 #include <stdint.h>
 
-typedef struct CPU_STRUCT
+typedef struct REG_STRUCT
 {
 	union
 	{
@@ -27,6 +27,8 @@ typedef struct CPU_STRUCT
 	uint64_t rsp;
 
 	uint64_t rip;
-} cpu_t;
+} reg_t;
+
+reg_t reg;
 
 #endif
